@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="material:specification" content="HTML Material Specification v1.5">
+<meta name="material:version" content="2026-10-15.1">
+<meta name="catalog:title" content="Химия 9 класс. Занятие 6. Растворы и электролитическая диссоциация">
+<meta name="catalog:type" content="lesson">
+<meta name="catalog:topic" content="Растворы; электролиты и неэлектролиты; электролитическая диссоциация; ионы">
+<meta name="catalog:description" content="Шестое занятие по химии в 9 классе: растворы, электрическая проводимость растворов и расплавов, электролиты и неэлектролиты, механизм и уравнения электролитической диссоциации.">
+<meta name="catalog:tags" content="химия,9 класс,растворы,электролиты,неэлектролиты,электролитическая диссоциация,ионы,катионы,анионы">
+<meta name="catalog:order" content="60">
+<meta name="catalog:hidden" content="false">
+<title>Химия 9 класс — занятие 6</title>
+<style>
+:root{--green:#123d32;--green2:#1d5a49;--paper:#fff;--bg:#edf2ee;--ink:#14201c;--muted:#61716b;--accent:#ffb000;--ok:#238b57;--bad:#c8413a;--line:#d7e0dc;--pale:#f6faf7;--sand:#fff8e8;--blue:#edf5fb;--material-max:1120px;--material-compact-max:900px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:54px}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.48 Arial,Helvetica,sans-serif}button,input,select,textarea{font:inherit}.wrap,main{width:min(var(--material-max),calc(100% - 40px));margin-inline:auto}
+header{background:var(--green);color:#fff;border-bottom:4px solid var(--accent)}.head{padding:17px 0 16px}.eyebrow{font-size:11px;letter-spacing:.11em;text-transform:uppercase;opacity:.8;margin-bottom:4px}.head h1{font-size:30px;line-height:1.12;margin:0 0 6px}.lead{font-size:14px;max-width:900px;margin:0;color:#dce9e4}.meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.badge{font-size:11px;padding:4px 8px;border:1px solid rgba(255,255,255,.28);border-radius:999px}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}nav .wrap{display:flex;gap:4px;overflow:auto;padding:4px 0}nav a{color:var(--green);text-decoration:none;font-size:12px;font-weight:700;padding:6px 8px;border-radius:6px;white-space:nowrap}nav a:hover,nav a:focus-visible{background:#eaf3ee;outline:none}
+main{padding:16px 0 40px}.card{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:19px;margin-bottom:13px}.card h2{font-size:22px;line-height:1.25;margin:0 0 10px}.card h3{font-size:17px;margin:14px 0 8px}.muted{color:var(--muted)}.small{font-size:13px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.panel{background:var(--pale);border:1px solid var(--line);border-radius:9px;padding:13px}.route{display:grid;grid-template-columns:86px 1fr;gap:7px 12px}.time{font-weight:800;color:var(--green)}.note{background:var(--sand);border-left:4px solid var(--accent);padding:10px 12px;border-radius:6px;margin:10px 0}.info{background:var(--blue);border-left:4px solid #6e9fc3;padding:10px 12px;border-radius:6px;margin:10px 0}.formula{font-family:"Cambria Math","Times New Roman",serif;font-size:1.05em}.term{font-weight:800;color:var(--green)}.chem{font-family:"Cambria Math","Times New Roman",serif;white-space:nowrap}.eq{font-family:"Cambria Math","Times New Roman",serif;font-size:1.12em;text-align:center;padding:9px;border:1px solid var(--line);border-radius:7px;background:#fbfdfc;margin:7px 0}.compare{width:100%;border-collapse:collapse;margin:8px 0}.compare th,.compare td{border:1px solid var(--line);padding:8px 9px;vertical-align:top}.compare th{background:var(--pale);text-align:left}.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:center;margin:12px 0}.flow .step{border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff;text-align:center}.arrow{font-weight:900;color:var(--green);font-size:20px}.ion{display:inline-flex;align-items:center;justify-content:center;border:1px solid #b7ccc2;border-radius:999px;padding:4px 9px;margin:2px;background:#f6faf7;font-family:"Cambria Math","Times New Roman",serif;font-weight:700}.plus{border-color:#deb7b1;background:#fff5f3}.minus{border-color:#adc5db;background:#f3f8fc}
+.identity{display:flex;align-items:end;gap:12px;flex-wrap:wrap}.field{display:grid;gap:4px;font-weight:700}.field.name{flex:1;min-width:220px}.field input{border:1px solid #9dafa6;border-radius:6px;padding:8px 10px;min-height:40px;background:#fff;color:var(--ink)}button{border:1px solid var(--line);border-radius:7px;padding:8px 13px;min-height:40px;background:#fff;color:var(--green);font-weight:700;cursor:pointer}button:hover{background:#eaf3ee}button:focus-visible,input:focus-visible{outline:3px solid #ffd36a;outline-offset:2px}.primary{background:var(--green);color:#fff;border-color:var(--green)}.primary:hover{background:var(--green2)}.accent{background:var(--accent);border-color:#d79600;color:#332400}.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}.status{font-weight:700;min-height:24px}.hidden{display:none!important}
+.progress{height:8px;border-radius:99px;background:#e4ece7;overflow:hidden;margin:9px 0 13px}.progress span{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}.screen{display:none}.screen.active{display:block}.question{border:1px solid var(--line);border-radius:9px;padding:13px;margin:10px 0;background:#fff}.qnum{font-size:12px;color:var(--muted);font-weight:800}.qtext{font-weight:700;margin:3px 0 9px}.options{display:grid;gap:6px}.option{display:flex;align-items:flex-start;gap:8px;padding:6px 7px;border-radius:6px}.option:hover{background:#f2f6f4}.option input{margin-top:3px;transform:scale(1.08)}.trainer-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px}.summary-box{background:var(--pale);border:1px solid var(--line);border-radius:8px;padding:12px}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.result-box{text-align:center;border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff}.result-box b{display:block;font-size:1.35em;color:var(--green)}.checklist{margin:6px 0;padding-left:20px}.checklist li{margin:4px 0}.homework{background:#fffdf6}.footer{padding:6px 0 28px;text-align:center;color:var(--muted);font-size:12px}
+@media(max-width:1400px) and (min-width:721px){.wrap,main{width:min(var(--material-compact-max),calc(100% - 30px))}.head h1{font-size:27px}.card{padding:16px}body{font-size:14px}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){body{font-size:16px}.wrap,main{width:min(100% - 24px,680px)}.head h1{font-size:26px}.grid2,.grid3,.result-grid{grid-template-columns:1fr}.route{grid-template-columns:74px 1fr}.card{padding:15px;border-radius:9px}.option{min-height:44px}button{min-height:44px}.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg);text-align:center}}
+@media print{nav,.interactive-only,.footer{display:none!important}body{background:#fff;color:#000;font:11pt/1.38 Arial,Helvetica,sans-serif}.wrap,main{width:100%;max-width:none}.card{border:0;border-radius:0;padding:0;margin:0 0 12pt;break-inside:avoid}.card h2{font-size:16pt}.head{padding:0}.head h1{font-size:20pt}.lead,.badge,.eyebrow{color:#000}.meta{display:none}header{background:#fff;color:#000;border-bottom:1.5pt solid #000;margin-bottom:10pt}.question{break-inside:avoid;border:1px solid #aaa;padding:5pt;margin:5pt 0}.screen{display:block!important}.options{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5pt 8pt}.option{padding:2pt 3pt;min-height:0}.progress{display:none}.grid3{grid-template-columns:repeat(3,1fr)}.flow{grid-template-columns:1fr auto 1fr auto 1fr}.arrow{transform:none}.actions{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap head">
+  <div class="eyebrow">Химия · 9 класс · занятие 6 · 2 × 40 минут</div>
+  <h1>Растворы. Электролиты и неэлектролиты. Электролитическая диссоциация</h1>
+  <p class="lead">Почему одни водные растворы проводят электрический ток, а другие — нет; как при растворении возникают ионы и как записывают уравнения электролитической диссоциации.</p>
+  <div class="meta"><span class="badge">Новая тема</span><span class="badge">Входная диагностика — 8 минут</span><span class="badge">Ионы и диссоциация</span><span class="badge">Тренажёр</span></div>
+</div></header>
+<nav><div class="wrap"><a href="index.html">Каталог курса</a><a href="#route">Маршрут</a><a href="#diagnostic">Повторение</a><a href="#solutions">Растворы</a><a href="#conductivity">Проводимость</a><a href="#dissociation">Диссоциация</a><a href="#equations">Уравнения</a><a href="#trainer">Тренажёр</a><a href="#summary">Итог</a></div></nav>
+<main>
+<section id="route" class="card">
+<h2>Маршрут занятия</h2>
+<div class="grid2">
+  <div class="panel"><h3>Урок 1</h3><div class="route">
+    <div class="time">0–8 мин.</div><div>Короткая диагностика: степени окисления, окислитель и восстановитель, электронный баланс.</div>
+    <div class="time">8–18 мин.</div><div>Растворы: растворитель, растворённое вещество, однородность раствора.</div>
+    <div class="time">18–30 мин.</div><div>Электрическая проводимость веществ, растворов и расплавов.</div>
+    <div class="time">30–40 мин.</div><div>Электролиты и неэлектролиты. Первичная классификация веществ.</div>
+  </div></div>
+  <div class="panel"><h3>Урок 2</h3><div class="route">
+    <div class="time">0–15 мин.</div><div>Электролитическая диссоциация: образование ионов в растворе, роль полярных молекул воды.</div>
+    <div class="time">15–25 мин.</div><div>Катионы и анионы. Запись простых уравнений диссоциации.</div>
+    <div class="time">25–37 мин.</div><div>Тренажёр по новой теме.</div>
+    <div class="time">37–40 мин.</div><div>Итог занятия, сохранение результатов и домашнее задание.</div>
+  </div></div>
+</div>
+<div class="note"><b>Цель занятия.</b> Понять, почему растворы электролитов проводят электрический ток, научиться различать электролиты и неэлектролиты и записывать простейшие уравнения электролитической диссоциации.</div>
+</section>
+
+<section id="diagnostic" class="card">
+<h2>1. Короткое повторение: окислительно-восстановительные реакции</h2>
+<p>Выполните задания самостоятельно. На работу отводится около 8 минут. Результат нужен прежде всего для проверки готовности к продолжению курса.</p>
+<div class="identity interactive-only">
+  <button id="startDiag" class="primary" type="button">Начать работу</button>
+</div>
+<div id="diagBody" class="hidden">
+<div class="question" data-qid="d01"><div class="qnum">1</div><div class="qtext">Степень окисления серы в <span class="chem">SO₂</span> равна:</div><div class="options">
+<label class="option"><input type="radio" name="d01" value="−2"> −2</label><label class="option"><input type="radio" name="d01" value="0"> 0</label><label class="option"><input type="radio" name="d01" value="+4"> +4</label><label class="option"><input type="radio" name="d01" value="+6"> +6</label></div></div>
+<div class="question" data-qid="d02"><div class="qnum">2</div><div class="qtext">В реакции <span class="chem">Zn + 2HCl → ZnCl₂ + H₂</span> восстановителем является:</div><div class="options">
+<label class="option"><input type="radio" name="d02" value="Zn"> Zn</label><label class="option"><input type="radio" name="d02" value="HCl"> HCl</label><label class="option"><input type="radio" name="d02" value="ZnCl₂"> ZnCl₂</label><label class="option"><input type="radio" name="d02" value="H₂"> H₂</label></div></div>
+<div class="question" data-qid="d03"><div class="qnum">3</div><div class="qtext">Процесс <span class="chem">Fe⁰ → Fe³⁺</span> — это:</div><div class="options">
+<label class="option"><input type="radio" name="d03" value="окисление, отдача 3e−"> окисление, отдача 3e⁻</label><label class="option"><input type="radio" name="d03" value="восстановление, принятие 3e−"> восстановление, принятие 3e⁻</label><label class="option"><input type="radio" name="d03" value="окисление, принятие 3e−"> окисление, принятие 3e⁻</label></div></div>
+<div class="question" data-qid="d04"><div class="qnum">4</div><div class="qtext">Какая реакция является ОВР?</div><div class="options">
+<label class="option"><input type="radio" name="d04" value="NaOH + HCl → NaCl + H₂O"> NaOH + HCl → NaCl + H₂O</label><label class="option"><input type="radio" name="d04" value="2Mg + O₂ → 2MgO"> 2Mg + O₂ → 2MgO</label><label class="option"><input type="radio" name="d04" value="BaCl₂ + Na₂SO₄ → BaSO₄ + 2NaCl"> BaCl₂ + Na₂SO₄ → BaSO₄ + 2NaCl</label></div></div>
+<div class="question" data-qid="d05"><div class="qnum">5</div><div class="qtext">В реакции <span class="chem">2Mg + O₂ → 2MgO</span> окислителем является:</div><div class="options">
+<label class="option"><input type="radio" name="d05" value="Mg"> Mg</label><label class="option"><input type="radio" name="d05" value="O₂"> O₂</label><label class="option"><input type="radio" name="d05" value="MgO"> MgO</label></div></div>
+<div class="question" data-qid="d06"><div class="qnum">6</div><div class="qtext">Какие коэффициенты стоят перед <span class="chem">Al</span> и <span class="chem">O₂</span> в уравнении образования <span class="chem">Al₂O₃</span>?</div><div class="options">
+<label class="option"><input type="radio" name="d06" value="2 и 1"> 2 и 1</label><label class="option"><input type="radio" name="d06" value="4 и 3"> 4 и 3</label><label class="option"><input type="radio" name="d06" value="2 и 3"> 2 и 3</label><label class="option"><input type="radio" name="d06" value="4 и 2"> 4 и 2</label></div></div>
+<div class="actions interactive-only"><button id="finishDiag" class="primary" type="button">Завершить повторение</button><span id="diagResult" class="status"></span></div>
+</div>
+</section>
+
+<section id="solutions" class="card">
+<h2>2. Растворы</h2>
+<div class="grid2"><div>
+<p><span class="term">Раствор</span> — однородная система переменного состава, состоящая из растворителя и одного или нескольких растворённых веществ.</p>
+<p><span class="term">Растворитель</span> — вещество, которое обычно находится в том же агрегатном состоянии, что и полученный раствор, и составляет его основную часть. В водных растворах растворителем является вода.</p>
+<p><span class="term">Растворённое вещество</span> распределено в растворе на уровне отдельных частиц — молекул или ионов. Поэтому обычным фильтрованием разделить настоящий раствор нельзя.</p>
+</div><aside class="panel">
+<h3>Примеры</h3>
+<ul class="checklist"><li>Раствор поваренной соли: вода + <span class="chem">NaCl</span>.</li><li>Раствор сахара: вода + сахароза.</li><li>Раствор соляной кислоты: вода + <span class="chem">HCl</span>.</li></ul>
+<div class="info"><b>Важно.</b> Растворение не всегда сводится к простому перемешиванию частиц. Частицы растворённого вещества взаимодействуют с молекулами растворителя.</div>
+</aside></div>
+<h3>Что происходит при растворении?</h3>
+<div class="flow"><div class="step"><b>Частицы вещества</b><br>удерживаются друг около друга</div><div class="arrow">→</div><div class="step"><b>Молекулы воды</b><br>взаимодействуют с частицами вещества</div><div class="arrow">→</div><div class="step"><b>Раствор</b><br>частицы распределяются по всему объёму</div></div>
+</section>
+
+<section id="conductivity" class="card">
+<h2>3. Почему некоторые растворы проводят электрический ток</h2>
+<p>Для прохождения электрического тока через вещество необходимы <b>свободно движущиеся заряженные частицы</b>. В металлах такими частицами являются электроны. В растворах и расплавах многих веществ перенос заряда осуществляют <b>ионы</b>.</p>
+<table class="compare"><thead><tr><th>Система</th><th>Есть подвижные заряженные частицы?</th><th>Проводимость</th></tr></thead><tbody>
+<tr><td>Твёрдый <span class="chem">NaCl</span></td><td>Ионы есть, но закреплены в узлах кристаллической решётки.</td><td>Практически не проводит.</td></tr>
+<tr><td>Расплав <span class="chem">NaCl</span></td><td>Ионы могут перемещаться.</td><td>Проводит.</td></tr>
+<tr><td>Раствор <span class="chem">NaCl</span> в воде</td><td>В растворе имеются подвижные ионы.</td><td>Проводит.</td></tr>
+<tr><td>Раствор сахара в воде</td><td>В растворе остаются нейтральные молекулы.</td><td>Практически не проводит.</td></tr>
+</tbody></table>
+<div class="grid2"><div class="panel"><h3>Электролиты</h3><p><span class="term">Электролиты</span> — вещества, растворы или расплавы которых проводят электрический ток вследствие наличия подвижных ионов.</p><p>К электролитам относятся многие <b>кислоты, основания и соли</b>.</p></div><div class="panel"><h3>Неэлектролиты</h3><p><span class="term">Неэлектролиты</span> — вещества, растворы которых практически не проводят электрический ток, потому что растворённое вещество не образует ионов в заметном количестве.</p><p>Примеры: сахароза, глюкоза, этиловый спирт.</p></div></div>
+<div class="note"><b>Не смешивайте два признака.</b> Растворимость и электропроводность — не одно и то же. Сахар хорошо растворяется в воде, но его раствор практически не проводит электрический ток.</div>
+</section>
+
+<section id="dissociation" class="card">
+<h2>4. Электролитическая диссоциация</h2>
+<p><span class="term">Электролитическая диссоциация</span> — процесс распада электролита на ионы при растворении в воде или при плавлении.</p>
+<div class="grid2"><div>
+<h3>Ионные вещества</h3>
+<p>В кристалле соли уже имеются положительные и отрицательные ионы. Полярные молекулы воды ориентируются около них, ослабляют притяжение между ионами и способствуют их переходу в раствор.</p>
+<div class="eq">NaCl → Na<sup>+</sup> + Cl<sup>−</sup></div>
+</div><div>
+<h3>Молекулярные электролиты</h3>
+<p>Некоторые вещества состоят из молекул, но при взаимодействии с водой образуют ионы. Так ведут себя, например, кислоты.</p>
+<div class="eq">HCl → H<sup>+</sup> + Cl<sup>−</sup></div>
+<p class="small muted">В водном растворе протон фактически связан с молекулами воды; в школьных уравнениях диссоциации обычно используют запись <span class="chem">H⁺</span>.</p>
+</div></div>
+<h3>Катионы и анионы</h3>
+<p><span class="ion plus">Na⁺</span> <span class="ion plus">Ca²⁺</span> <span class="ion plus">H⁺</span> — <b>катионы</b>, положительно заряженные ионы.</p>
+<p><span class="ion minus">Cl⁻</span> <span class="ion minus">SO₄²⁻</span> <span class="ion minus">OH⁻</span> — <b>анионы</b>, отрицательно заряженные ионы.</p>
+<div class="info"><b>Закон сохранения заряда.</b> Суммарный электрический заряд частиц в правой части уравнения диссоциации должен быть равен заряду исходной частицы или формульной единицы. Для нейтрального вещества сумма зарядов образовавшихся ионов равна нулю.</div>
+</section>
+
+<section id="equations" class="card">
+<h2>5. Как записывать уравнения диссоциации</h2>
+<div class="grid3">
+<div class="panel"><h3>1. Определите ионы</h3><p>По формуле вещества установите, какие катионы и анионы образуются.</p></div>
+<div class="panel"><h3>2. Учтите индексы</h3><p>Индекс в формуле показывает, сколько соответствующих ионов образуется.</p></div>
+<div class="panel"><h3>3. Проверьте заряд</h3><p>Сумма положительных и отрицательных зарядов должна быть одинаковой по модулю.</p></div>
+</div>
+<div class="grid2"><div>
+<div class="eq">NaOH → Na<sup>+</sup> + OH<sup>−</sup></div>
+<div class="eq">CaCl₂ → Ca<sup>2+</sup> + 2Cl<sup>−</sup></div>
+</div><div>
+<div class="eq">Na₂SO₄ → 2Na<sup>+</sup> + SO₄<sup>2−</sup></div>
+<div class="eq">H₂SO₄ → 2H<sup>+</sup> + SO₄<sup>2−</sup></div>
+</div></div>
+<div class="note"><b>На этом занятии</b> мы рассматриваем прежде всего состав ионов и правильную запись уравнений. Сильные и слабые электролиты и степень диссоциации будут изучаться на следующем занятии.</div>
+</section>
+
+<section id="trainer" class="card">
+<h2>6. Тренажёр</h2>
+<p>Выполните 12 заданий. Все ответы выбираются из предложенных вариантов, поэтому после завершения результат можно проверить автоматически.</p>
+<div class="progress interactive-only"><span id="progressBar"></span></div>
+<div id="trainerScreens">
+<div class="screen active" data-screen="1"><h3>Экран 1. Растворы и проводимость</h3>
+<div class="question" data-qid="q01"><div class="qnum">1</div><div class="qtext">Что является растворителем в водном растворе?</div><div class="options"><label class="option"><input type="radio" name="q01" value="вода"> вода</label><label class="option"><input type="radio" name="q01" value="любое растворённое вещество"> любое растворённое вещество</label><label class="option"><input type="radio" name="q01" value="только соль"> только соль</label></div></div>
+<div class="question" data-qid="q02"><div class="qnum">2</div><div class="qtext">Почему раствор <span class="chem">NaCl</span> проводит электрический ток?</div><div class="options"><label class="option"><input type="radio" name="q02" value="в растворе есть подвижные ионы"> в растворе есть подвижные ионы</label><label class="option"><input type="radio" name="q02" value="вода превращается в металл"> вода превращается в металл</label><label class="option"><input type="radio" name="q02" value="молекулы соли движутся быстрее электронов"> молекулы соли движутся быстрее электронов</label></div></div>
+<div class="question" data-qid="q03"><div class="qnum">3</div><div class="qtext">Какое вещество является неэлектролитом?</div><div class="options"><label class="option"><input type="radio" name="q03" value="NaCl"> NaCl</label><label class="option"><input type="radio" name="q03" value="HCl"> HCl</label><label class="option"><input type="radio" name="q03" value="сахароза"> сахароза</label><label class="option"><input type="radio" name="q03" value="NaOH"> NaOH</label></div></div>
+<div class="question" data-qid="q04"><div class="qnum">4</div><div class="qtext">Почему твёрдый кристалл <span class="chem">NaCl</span> практически не проводит электрический ток?</div><div class="options"><label class="option"><input type="radio" name="q04" value="ионы закреплены в кристаллической решётке"> ионы закреплены в кристаллической решётке</label><label class="option"><input type="radio" name="q04" value="в нём нет заряженных частиц"> в нём нет заряженных частиц</label><label class="option"><input type="radio" name="q04" value="он состоит только из нейтронов"> он состоит только из нейтронов</label></div></div>
+</div>
+<div class="screen" data-screen="2"><h3>Экран 2. Ионы и диссоциация</h3>
+<div class="question" data-qid="q05"><div class="qnum">5</div><div class="qtext">Электролитическая диссоциация — это:</div><div class="options"><label class="option"><input type="radio" name="q05" value="распад электролита на ионы"> распад электролита на ионы при растворении или плавлении</label><label class="option"><input type="radio" name="q05" value="испарение воды"> испарение воды</label><label class="option"><input type="radio" name="q05" value="разрушение атомных ядер"> разрушение атомных ядер</label></div></div>
+<div class="question" data-qid="q06"><div class="qnum">6</div><div class="qtext">Какой ион является катионом?</div><div class="options"><label class="option"><input type="radio" name="q06" value="Ca²⁺"> Ca²⁺</label><label class="option"><input type="radio" name="q06" value="Cl⁻"> Cl⁻</label><label class="option"><input type="radio" name="q06" value="SO₄²⁻"> SO₄²⁻</label></div></div>
+<div class="question" data-qid="q07"><div class="qnum">7</div><div class="qtext">Какой ион является анионом?</div><div class="options"><label class="option"><input type="radio" name="q07" value="Na⁺"> Na⁺</label><label class="option"><input type="radio" name="q07" value="H⁺"> H⁺</label><label class="option"><input type="radio" name="q07" value="OH⁻"> OH⁻</label></div></div>
+<div class="question" data-qid="q08"><div class="qnum">8</div><div class="qtext">Сколько ионов образуется из одной формульной единицы <span class="chem">CaCl₂</span> при полной диссоциации?</div><div class="options"><label class="option"><input type="radio" name="q08" value="2"> 2</label><label class="option"><input type="radio" name="q08" value="3"> 3</label><label class="option"><input type="radio" name="q08" value="4"> 4</label></div></div>
+</div>
+<div class="screen" data-screen="3"><h3>Экран 3. Уравнения диссоциации</h3>
+<div class="question" data-qid="q09"><div class="qnum">9</div><div class="qtext">Выберите правильную запись диссоциации <span class="chem">Na₂SO₄</span>.</div><div class="options"><label class="option"><input type="radio" name="q09" value="2Na⁺ + SO₄²⁻"> Na₂SO₄ → 2Na⁺ + SO₄²⁻</label><label class="option"><input type="radio" name="q09" value="Na²⁺ + SO₄²⁻"> Na₂SO₄ → Na²⁺ + SO₄²⁻</label><label class="option"><input type="radio" name="q09" value="2Na⁺ + 4SO²⁻"> Na₂SO₄ → 2Na⁺ + 4SO²⁻</label></div></div>
+<div class="question" data-qid="q10"><div class="qnum">10</div><div class="qtext">Выберите правильную запись диссоциации <span class="chem">CaCl₂</span>.</div><div class="options"><label class="option"><input type="radio" name="q10" value="Ca²⁺ + 2Cl⁻"> CaCl₂ → Ca²⁺ + 2Cl⁻</label><label class="option"><input type="radio" name="q10" value="2Ca⁺ + Cl₂⁻"> CaCl₂ → 2Ca⁺ + Cl₂⁻</label><label class="option"><input type="radio" name="q10" value="Ca⁺ + 2Cl⁺"> CaCl₂ → Ca⁺ + 2Cl⁺</label></div></div>
+<div class="question" data-qid="q11"><div class="qnum">11</div><div class="qtext">Какова сумма зарядов ионов в правой части уравнения <span class="chem">Na₂SO₄ → 2Na⁺ + SO₄²⁻</span>?</div><div class="options"><label class="option"><input type="radio" name="q11" value="0"> 0</label><label class="option"><input type="radio" name="q11" value="+2"> +2</label><label class="option"><input type="radio" name="q11" value="−2"> −2</label></div></div>
+<div class="question" data-qid="q12"><div class="qnum">12</div><div class="qtext">Какая пара веществ состоит только из электролитов?</div><div class="options"><label class="option"><input type="radio" name="q12" value="NaCl и HCl"> NaCl и HCl</label><label class="option"><input type="radio" name="q12" value="сахароза и этанол"> сахароза и этанол</label><label class="option"><input type="radio" name="q12" value="NaCl и сахароза"> NaCl и сахароза</label></div></div>
+</div>
+</div>
+<div class="trainer-nav interactive-only"><button id="prevScreen" type="button">Назад</button><span id="screenLabel" class="muted small">Экран 1 из 3</span><button id="nextScreen" type="button">Далее</button></div>
+<div class="actions interactive-only"><button id="finishTrainer" class="primary hidden" type="button">Завершить</button><span id="trainerStatus" class="status"></span></div>
+<div id="trainerResult" class="summary-box hidden interactive-only">
+<h3>Результат</h3><div class="result-grid"><div class="result-box"><b id="scoreValue">0</b>из 12</div><div class="result-box"><b id="percentValue">0%</b>правильных ответов</div><div class="result-box"><b id="answeredValue">0</b>заданий выполнено</div></div>
+<p id="resultComment"></p>
+<div class="identity"><label class="field">Фамилия<input id="studentLast" type="text" autocomplete="family-name" placeholder="Фамилия"></label><label class="field">Имя<input id="studentFirst" type="text" autocomplete="given-name" placeholder="Имя"></label><label class="field">Класс<input id="studentClass" type="text" value="9 класс"></label></div>
+<div class="actions"><button id="downloadBtn" class="accent" type="button">Сохранить и отправить результаты</button><span id="downloadStatus" class="status" role="status"></span></div>
+</div>
+</section>
+
+<section id="summary" class="card homework">
+<h2>Итог занятия</h2>
+<div class="grid2"><div><h3>К концу занятия вы должны уметь</h3><ul class="checklist"><li>различать растворитель и растворённое вещество;</li><li>объяснять электрическую проводимость растворов наличием подвижных ионов;</li><li>различать электролиты и неэлектролиты;</li><li>называть катионы и анионы;</li><li>объяснять смысл электролитической диссоциации;</li><li>записывать простые уравнения диссоциации солей, кислот и оснований.</li></ul></div><div><h3>Домашнее задание</h3><ol class="checklist"><li>Повторить определения: раствор, электролит, неэлектролит, электролитическая диссоциация, катион, анион.</li><li>Записать уравнения диссоциации: <span class="chem">KCl</span>, <span class="chem">MgCl₂</span>, <span class="chem">Na₂SO₄</span>, <span class="chem">HNO₃</span>, <span class="chem">KOH</span>.</li><li>Для каждого уравнения проверить равенство суммарных зарядов слева и справа.</li><li>Подготовиться к следующей теме: сильные и слабые электролиты.</li></ol></div></div>
+</section>
+</main>
+<div class="footer">Химия, 9 класс · Занятие 6 · Растворы и электролитическая диссоциация · HTML Material Specification v1.5</div>
+<script>
+(function(){'use strict';
+const KEY='chem9_lesson6_session_v1';
+const answers={d01:'+4',d02:'Zn',d03:'окисление, отдача 3e−',d04:'2Mg + O₂ → 2MgO',d05:'O₂',d06:'4 и 3',q01:'вода',q02:'в растворе есть подвижные ионы',q03:'сахароза',q04:'ионы закреплены в кристаллической решётке',q05:'распад электролита на ионы',q06:'Ca²⁺',q07:'OH⁻',q08:'3',q09:'2Na⁺ + SO₄²⁻',q10:'Ca²⁺ + 2Cl⁻',q11:'0',q12:'NaCl и HCl'};
+const state={version:'1.0',material_id:'chem9_lesson6',material_title:'Химия 9 класс — занятие 6',specification:'HTML Material Specification v1.5',session_id:makeId(),page_loaded_at:now(),started_at:null,finished_at:null,student_name:'',student_class:'9 класс',current_screen:1,answers:{},events:[],diagnostic_finished:false,trainer_finished:false};
+function makeId(){return 's-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10)}function now(){return new Date().toISOString()}
+function log(type,data){state.events.push(Object.assign({t:now(),type:type,screen:state.current_screen},data||{}));persist()}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function collect(id){const els=[...document.querySelectorAll('[name="'+id+'"]')];if(!els.length)return '';const x=els.find(e=>e.checked);return x?x.value:''}
+function scoreIds(ids){let score=0,answered=0;ids.forEach(id=>{const v=collect(id)||state.answers[id]||'';state.answers[id]=v;if(v)answered++;if(v===answers[id])score++});return {score,answered,max:ids.length}}
+function startDiag(){if(!state.started_at)state.started_at=now();document.getElementById('diagBody').classList.remove('hidden');document.getElementById('startDiag').disabled=true;log('diagnostic_start',{})}
+function finishDiag(){const r=scoreIds(['d01','d02','d03','d04','d05','d06']);state.diagnostic_finished=true;document.getElementById('diagResult').textContent='Правильно: '+r.score+' из '+r.max+'. Переходите к новой теме.';document.getElementById('finishDiag').disabled=true;log('diagnostic_finish',r)}
+function showScreen(n){n=Math.max(1,Math.min(3,n));state.current_screen=n;document.querySelectorAll('#trainerScreens .screen').forEach(s=>s.classList.toggle('active',Number(s.dataset.screen)===n));document.getElementById('screenLabel').textContent='Экран '+n+' из 3';document.getElementById('prevScreen').disabled=n===1;document.getElementById('nextScreen').classList.toggle('hidden',n===3);document.getElementById('finishTrainer').classList.toggle('hidden',n!==3);document.getElementById('progressBar').style.width=(n/3*100)+'%';log('screen_view',{screen:n})}
+function finishTrainer(){const ids=Array.from({length:12},(_,i)=>'q'+String(i+1).padStart(2,'0'));const r=scoreIds(ids);state.trainer_finished=true;state.finished_at=now();document.getElementById('scoreValue').textContent=r.score;document.getElementById('percentValue').textContent=Math.round(r.score/r.max*100)+'%';document.getElementById('answeredValue').textContent=r.answered;document.getElementById('resultComment').textContent=r.score>=10?'Основные понятия усвоены уверенно.':r.score>=7?'Основные понятия в целом понятны; проверьте задания, где возникли ошибки.':'Вернитесь к разделам об ионах и уравнениях диссоциации и повторите их ещё раз.';document.getElementById('trainerResult').classList.remove('hidden');document.getElementById('finishTrainer').disabled=true;log('trainer_finish',r)}
+function report(){const diag=scoreIds(['d01','d02','d03','d04','d05','d06']);const ids=Array.from({length:12},(_,i)=>'q'+String(i+1).padStart(2,'0'));const tr=scoreIds(ids);const detail={};Object.keys(answers).forEach(id=>detail[id]={value:state.answers[id]||collect(id)||'',expected:answers[id],correct:(state.answers[id]||collect(id)||'')===answers[id]});return {schema:'chemistry-telemetry-1.0',generated_at:now(),material:{id:state.material_id,title:state.material_title,specification:state.specification,version:state.version},student:{name:state.student_name,last_name:state.student_last||'',first_name:state.student_first||'',class:state.student_class},session:{id:state.session_id,page_loaded_at:state.page_loaded_at,started_at:state.started_at,finished_at:state.finished_at,user_agent:navigator.userAgent,language:navigator.language,timezone:Intl.DateTimeFormat().resolvedOptions().timeZone,screen:{width:screen.width,height:screen.height,pixel_ratio:window.devicePixelRatio||1}},diagnostic:diag,trainer:tr,answers:detail,telemetry:{event_count:state.events.length,events:state.events}}}
+function crc32(bytes){let table=crc32.table;if(!table){table=crc32.table=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?(0xedb88320^(c>>>1)):(c>>>1);table[n]=c>>>0}}let c=0xffffffff;for(let i=0;i<bytes.length;i++)c=table[(c^bytes[i])&255]^(c>>>8);return (c^0xffffffff)>>>0}
+function u16(n){return [n&255,(n>>>8)&255]}function u32(n){return [n&255,(n>>>8)&255,(n>>>16)&255,(n>>>24)&255]}
+function zipOne(filename,text){const enc=new TextEncoder(),name=enc.encode(filename),data=enc.encode(text),crc=crc32(data),time=new Date(),dosTime=(time.getHours()<<11)|(time.getMinutes()<<5)|(time.getSeconds()>>1),dosDate=((time.getFullYear()-1980)<<9)|((time.getMonth()+1)<<5)|time.getDate();const local=[80,75,3,4,...u16(20),...u16(0),...u16(0),...u16(dosTime),...u16(dosDate),...u32(crc),...u32(data.length),...u32(data.length),...u16(name.length),...u16(0),...name,...data];const central=[80,75,1,2,...u16(20),...u16(20),...u16(0),...u16(0),...u16(dosTime),...u16(dosDate),...u32(crc),...u32(data.length),...u32(data.length),...u16(name.length),...u16(0),...u16(0),...u16(0),...u16(0),...u32(0),...u32(0),...name];const end=[80,75,5,6,...u16(0),...u16(0),...u16(1),...u16(1),...u32(central.length),...u32(local.length),...u16(0)];return new Uint8Array([...local,...central,...end])}
+function safeName(){return (state.student_name||'student').toLowerCase().replace(/[^a-zа-яё0-9]+/gi,'_').replace(/^_+|_+$/g,'').slice(0,60)||'student'}
+function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+// Отправка файла на Google Диск учителя (apps-script/submissions/COURSE_INTEGRATION.md)
+const DRIVE_SUBMIT={url:'https://script.google.com/macros/s/AKfycbyWAKvbdYrkIDuUTzVbEtEwiYlxD0B9_hlupb8uND8v9Kufefts_LjuNnPX1QwitgIf/exec',course:'9-chemistry',task:'lesson-06-solutions-dissociation',maxBytes:20*1024*1024};
+function blobToBase64(blob){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>{const s=String(r.result);resolve(s.slice(s.indexOf(',')+1))};r.onerror=()=>reject(new Error('Не удалось прочитать файл'));r.readAsDataURL(blob)})}
+async function sendToDrive(blob,fileName,who){if(blob.size>DRIVE_SUBMIT.maxBytes)throw new Error('Файл больше 20 МБ');const res=await fetch(DRIVE_SUBMIT.url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({course:DRIVE_SUBMIT.course,task:DRIVE_SUBMIT.task,lastName:who.lastName,firstName:who.firstName,fileName:fileName,mimeType:blob.type||'application/octet-stream',data:await blobToBase64(blob)})});if(!res.ok)throw new Error('HTTP '+res.status);const j=await res.json();if(!j||j.ok!==true)throw new Error((j&&j.error)||'Сервер не подтвердил приём')}
+async function downloadResults(){const btn=document.getElementById('downloadBtn'),st=document.getElementById('downloadStatus');const lastEl=document.getElementById('studentLast'),firstEl=document.getElementById('studentFirst');const last=lastEl.value.trim(),first=firstEl.value.trim();if(!last||!first){st.textContent='Укажите фамилию и имя.';(last?firstEl:lastEl).focus();return}state.student_last=last;state.student_first=first;state.student_name=first+' '+last;state.student_class=document.getElementById('studentClass').value.trim()||'9 класс';persist();const bytes=zipOne('results.json',JSON.stringify(report(),null,2));const blob=new Blob([bytes],{type:'application/zip'});const name='chemistry9_lesson6_'+safeName()+'_'+state.session_id+'.zip';download(blob,name);log('download_results',{bytes:bytes.length});btn.disabled=true;st.textContent='Файл сохранён. Отправляю учителю…';try{await sendToDrive(blob,name,{lastName:last,firstName:first});st.textContent='Файл сохранён и отправлен учителю.';log('drive_submit',{ok:true})}catch(err){st.textContent='Файл сохранён, но отправить не удалось ('+err.message+'). Передайте файл учителю.';log('drive_submit',{ok:false,error:String(err.message)})}finally{btn.disabled=false}}
+document.getElementById('startDiag').addEventListener('click',startDiag);document.getElementById('finishDiag').addEventListener('click',finishDiag);document.getElementById('prevScreen').addEventListener('click',()=>showScreen(state.current_screen-1));document.getElementById('nextScreen').addEventListener('click',()=>showScreen(state.current_screen+1));document.getElementById('finishTrainer').addEventListener('click',finishTrainer);document.getElementById('downloadBtn').addEventListener('click',downloadResults);
+document.querySelectorAll('input[type=radio]').forEach(el=>{el.addEventListener('change',()=>{state.answers[el.name]=el.value;log('answer_change',{qid:el.name,value:el.value})});el.addEventListener('focus',()=>log('input_focus',{qid:el.name}));el.addEventListener('blur',()=>log('input_blur',{qid:el.name}))});document.addEventListener('visibilitychange',()=>log('visibility',{hidden:document.hidden}));window.addEventListener('beforeunload',()=>persist());showScreen(1);log('page_load',{referrer:document.referrer||'',viewport:{w:innerWidth,h:innerHeight}});
+})();
+</script>
+</body></html>

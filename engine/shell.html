@@ -1,0 +1,64 @@
+<noscript><p style="margin:16px;font:16px Arial">Для работы конспекта требуется включить JavaScript в браузере.</p></noscript>
+<div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate-card">
+    <h2 id="gate-title">Вход в конспект</h2>
+    <p class="sub">{{TITLE}}</p>
+    <form id="gate-form" autocomplete="off" novalidate>
+      <div id="gate-word-box">
+        <label for="g-word">Кодовое слово группы</label>
+        <input type="text" id="g-word" autocomplete="off" autocapitalize="off" spellcheck="false">
+      </div>
+      <div id="gate-group-line" class="group-line" hidden></div>
+      <div class="row2">
+        <div><label for="g-first">Имя</label><input type="text" id="g-first" autocomplete="off"></div>
+        <div><label for="g-last">Фамилия</label><input type="text" id="g-last" autocomplete="off"></div>
+      </div>
+      <div class="actions">
+        <button class="btn primary" type="submit" id="g-go">Продолжить</button>
+        <button class="btn grey" type="button" id="g-anon">Пройти анонимно</button>
+      </div>
+      <p class="autosave">Работа сохраняется автоматически.</p>
+      <div class="msg" id="g-msg" role="status" aria-live="polite"></div>
+      <button class="link" type="button" id="g-load">Загрузить работу</button>
+      <input type="file" id="g-file" accept=".zip,.json,application/zip,application/json" hidden>
+    </form>
+    <div id="gate-resume" hidden>
+      <p id="resume-text" style="margin:0 0 14px"></p>
+      <div class="actions">
+        <button class="btn primary" type="button" id="r-continue">Продолжить</button>
+        <button class="btn" type="button" id="r-restart">Начать заново</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="top"><div class="wrap head">
+  <div class="eyebrow">{{EYEBROW}}</div>
+  <h1>{{TITLE}}</h1>
+  <p class="lead">{{LEAD}}</p>
+  <div class="meta">
+    {{BADGES}}
+    <span class="chip" id="chip-student" hidden></span>
+    <span class="chip" id="chip-sync" hidden></span>
+  </div>
+</div></header>
+
+<nav class="menu" id="menu" aria-label="Части занятия"><div class="wrap">
+{{MENU}}
+  <span class="nav-prog" id="nav-prog"></span>
+</div></nav>
+
+<main id="app">
+
+{{PAGES}}
+
+<div class="pager noprint">
+  <button class="btn" type="button" id="btn-prev">Назад</button>
+  <button class="btn primary" type="button" id="btn-next">Далее</button>
+</div>
+</main>
+
+<div class="turtle-win" id="turtle-win" role="dialog" aria-label="Рисунок черепахи" hidden>
+  <div class="pane-head" id="turtle-drag"><span>Рисунок черепахи</span><button class="btn" type="button" id="btn-close-turtle" aria-label="Закрыть окно рисунка" style="min-height:26px;padding:0 8px">✕</button></div>
+  <div class="body"><div id="turtle"></div></div>
+</div>
