@@ -12,7 +12,7 @@
 
 ## 1. Заглушки
 
-`course.json`: `scriptUrl`, `courseUrl`; затем `node tools/build.js --all`. Кодовые слова — свойство скрипта `CODEWORDS`.
+Адрес скрипта уже подставлен (`course.json`, `scriptUrl`), кодовые слова заданы в свойстве скрипта `CODEWORDS`. Остаются адрес сайта курса (`courseUrl` в `course.json`, затем `node tools/build.js --all`) и `target` курса в репозитории Learn-it. Подробнее — методичка К1, раздел 1.
 
 ## 2. Что используется
 

@@ -26,6 +26,8 @@ async function verify(browser, id) {
   const problems = [];
   const bad = m => { problems.push(m); console.log('  ✗ ' + m); };
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  // боевой скрипт и сервер Яндекса не вызываются: проверка не должна писать данные в таблицы учителя
+  await ctx.route(/script\.google\.com|yandexcloud\.net/, r => r.abort());
   const page = await ctx.newPage();
   const reqs = [], errs = [];
   page.on('request', r => { if (!/^(file|data|blob):/.test(r.url())) reqs.push(r.url()); });

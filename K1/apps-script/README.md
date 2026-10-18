@@ -63,18 +63,11 @@
 4. Нажать **Развернуть** (Deploy) и скопировать **URL веб-приложения** (Web app URL). Он выглядит так: `https://script.google.com/macros/s/AKfycb…/exec` и заканчивается на `/exec`.
 5. Открыть этот адрес в браузере: должен отобразиться ответ вида `{"ok":true,"service":"learnit-collector","version":"1.0.0"}`. Адрес, оканчивающийся на `/dev`, не подходит: он работает только для владельца.
 
-## Шаг 6. Вставить адрес в конспект
+## Шаг 6. Вставить адрес в конспекты
 
-1. Открыть `K1_Algoritmy_i_ispolniteli.html` в текстовом редакторе.
-2. Найти блок `TELEMETRY_CONFIG` (в начале раздела `<script id="telemetry-config">`).
-3. В строке с `name: "google"` заменить значение `url`:
-
-   ```js
-   { name: "google", url: "https://script.google.com/macros/s/AKfycb…/exec", enabled: true },
-   ```
-
-4. В той же настройке заменить заглушку `courseUrl: "https://REPLACE_ME.learn-it.app/"` на адрес сайта курса (в скрипте адрес только сохраняется в данных, на работу он не влияет).
-5. Сохранить файл. Адрес Yandex (`name: "yandex"`) остаётся с `enabled: false`; включение — заменой `false` на `true`.
+1. В репозитории открыть `course.json` и в поле `scriptUrl` записать адрес `/exec` из шага 5. В поле `courseUrl` — адрес сайта курса `https://<сайт>.learn-it.app/` (в скрипте адрес только сохраняется в данных, на работу он не влияет).
+2. Выполнить `node tools/build.js --all`: адрес попадает в `TELEMETRY_CONFIG.endpoints[0].url` каждого собранного конспекта. (Допустима и прямая правка этой строки в готовом HTML.)
+3. Адрес Yandex (`yandexUrl` в `course.json`) остаётся с `"yandexEnabled": false`; включение — заменой на `true` и пересборкой.
 
 ## Шаг 7. Пробный запуск
 
