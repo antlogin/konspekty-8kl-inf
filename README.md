@@ -1,0 +1,1 @@
+# konspekty-8kl-inf
