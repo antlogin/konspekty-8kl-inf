@@ -340,7 +340,7 @@ body.locked nav.menu,body.locked main{display:none}
       <p class="autosave">Работа сохраняется автоматически.</p>
       <div class="msg" id="g-msg" role="status" aria-live="polite"></div>
       <button class="link" type="button" id="g-load">Загрузить работу</button>
-      <input type="file" id="g-file" accept=".json,application/json" hidden>
+      <input type="file" id="g-file" accept=".zip,.json,application/zip,application/json" hidden>
     </form>
     <div id="gate-resume" hidden>
       <p id="resume-text" style="margin:0 0 14px"></p>
@@ -400,7 +400,7 @@ body.locked nav.menu,body.locked main{display:none}
     <h3>Порядок работы</h3>
     <div class="grid2">
       <div class="panel"><h4>Песочница</h4><p>Программа записывается в редакторе и запускается кнопкой «Запустить» или клавишами <b>Ctrl</b>+<b>Enter</b>. Клавиша <b>Tab</b> вставляет отступ из четырёх пробелов; для выхода из редактора с клавиатуры нажимается <b>Esc</b>, затем <b>Tab</b>.</p></div>
-      <div class="panel"><h4>Сохранение</h4><p>Работа сохраняется автоматически: после перезагрузки страницы предлагается продолжить. Кнопка «Сохранить работу» в части «Итог» скачивает файл с результатами.</p></div>
+      <div class="panel"><h4>Сохранение</h4><p>Работа сохраняется автоматически: после перезагрузки страницы предлагается продолжить. Кнопка «Сохранить работу» в части «Итог» скачивает zip-архив с результатами.</p></div>
     </div>
     <p class="small muted" style="margin:10px 0 0;max-width:680px">Шаги не блокируются: к любой части занятия можно перейти через меню в шапке.</p>
   </div>
@@ -580,7 +580,7 @@ print("Прибытие: 09:40")</pre>
 
   <div class="finish-box noprint" id="finish-box">
     <b>Завершение занятия</b>
-    <p class="small muted" style="margin:4px 0 0;max-width:680px">Кнопка «Завершить занятие» передаёт результаты учителю. Кнопка «Сохранить работу» скачивает файл с результатами и доступна всегда.</p>
+    <p class="small muted" style="margin:4px 0 0;max-width:680px">Кнопка «Завершить занятие» передаёт результаты учителю. Кнопка «Сохранить работу» скачивает zip-архив с результатами и доступна всегда.</p>
     <div class="actions">
       <button class="btn accent" type="button" id="btn-finish">Завершить занятие</button>
       <button class="btn" type="button" id="btn-save">Сохранить работу</button>
@@ -607,6 +607,17 @@ window.addEventListener('error', function (e) {
   if (!m) return;
   m.className = 'msg bad';
   m.textContent = 'Ошибка загрузки страницы: ' + (e.message || 'неизвестная ошибка') + ' (' + String(e.filename || '').split('/').pop().slice(0, 40) + ':' + (e.lineno || '?') + ')';
+});
+// Файл, загруженный не полностью (обрезан при скачивании), не доходит до основного скрипта.
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    if (window.lessonSandbox) return;
+    var m = document.getElementById('g-msg');
+    if (m && !/Ошибка/.test(m.textContent)) {
+      m.className = 'msg bad';
+      m.textContent = 'Файл загружен не полностью или повреждён: скрипты страницы не запустились. Следует скачать файл заново (например, архивом ветки с GitHub).';
+    }
+  }, 800);
 });
 </script>
 <script id="skulpt-core">
@@ -1833,7 +1844,7 @@ const QUESTIONS = {
       { id: 'd', text: 'В инструкции не названа конечная цель маршрута.' }
     ],
     explain: 'Инструкция должна быть однозначной: направление поворота не задано, поэтому разные люди выполнят её по-разному.' },
-  d1: { group: 'code', mode: 'instant', num: '',
+  d1: { group: 'code', mode: 'check', num: '',
     text: 'Определить, что выведет программа из раздела «Готовая программа». Пустая строка в вариантах отмечена пометкой.',
     code: 'print("Маршрут: Подгорица - Котор")\nprint("Отправление: 08:15")\nprint()\nprint("Прибытие: 09:40")',
     options: [
@@ -1909,7 +1920,7 @@ const partTitle = { plan: 'План занятия', review: 'Повторени
 
 function newState(student, group, checked) {
   return { v: 1, attemptId: uuid(), seq: 1, startedAt: Date.now(), student: student, group: group, groupChecked: checked,
-    part: 'plan', done: {}, codes: {}, answers: {}, revealed: {}, stats: {}, solved: {}, firstOpened: {}, finished: false, finishedAt: null };
+    part: 'plan', done: {}, codes: {}, answers: {}, revealed: {}, qcheck: {}, stats: {}, solved: {}, firstOpened: {}, finished: false, finishedAt: null };
 }
 const stat = id => (S.stats[id] = S.stats[id] || { runs: 0, checks: 0, hints: 0, autoHints: 0, errors: 0 });
 
@@ -2577,13 +2588,12 @@ function createSandbox(host, id, task) {
     }
     msg.className = 'check-msg ' + (allOk ? 'ok' : 'bad');
     msg.textContent = (allOk ? '✓ ' : '✗ ') + text;
-    // таблица тестов (скрытые тесты показывают только итог)
-    detail.innerHTML = results.map((r, i) => {
-      const hid = !!r.t.hidden;
-      const head = '<h5>' + (hid ? 'Скрытый тест ' + (i + 1) : 'Тест ' + (i + 1)) + ' <span class="pill ' + (r.passed ? 'ok' : 'bad') + '">' + (r.passed ? '✓ верно' : '✗ неверно') + '</span></h5>';
-      if (hid) return '<div class="t">' + head + '</div>';
+    // сравнение ожидаемого и полученного выводится только при неверном результате (верный результат показывается один раз — в сообщении)
+    const many = results.length > 1;
+    detail.innerHTML = allOk ? '' : results.filter(r => !r.passed && !r.t.hidden).map(r => {
+      const i = results.indexOf(r);
       const got = r.run.ok ? r.run.output.replace(/\n$/, '') : (r.run.output.replace(/\n$/, '') + (r.run.output ? '\n' : '') + '[' + r.run.error.type + ']');
-      return '<div class="t">' + head + '<div class="cmp"><div><div class="lab">Ожидалось</div><pre>' + esc(r.t.expected) + '</pre></div><div><div class="lab">Получено</div><pre>' + esc(got === '' ? '(пусто)' : got) + '</pre></div></div></div>';
+      return '<div class="t">' + (many ? '<h5>Тест ' + (i + 1) + '</h5>' : '') + '<div class="cmp"><div><div class="lab">Ожидалось</div><pre>' + esc(r.t.expected) + '</pre></div><div><div class="lab">Получено</div><pre>' + esc(got === '' ? '(пусто)' : got) + '</pre></div></div></div>';
     }).join('');
     // подсказка по результату проверки
     hintsBox.querySelectorAll('.hint.auto').forEach(n => n.remove());
@@ -2684,10 +2694,14 @@ function buildQuestion(id) {
     (Q.code ? '<pre class="code py qcode">' + esc(Q.code) + '</pre>' : '') +
     '<fieldset class="choice-list"><legend>Выберите один вариант</legend><div class="q-opts">' +
     opts.map((o, i) => '<div class="choice-option" data-o="' + o.id + '"><input type="radio" name="' + id + '" id="' + id + '-' + o.id + '" value="' + o.id + '"><label class="choice" for="' + id + '-' + o.id + '">' + optHtml(o) + '</label></div>').join('') +
-    '</div></fieldset><div class="verdict" role="status" aria-live="polite"></div>' +
+    '</div></fieldset>' +
+    (Q.mode === 'check' ? '<div class="actions" style="margin-top:10px"><button class="btn accent b-qcheck" type="button">Проверить</button></div>' : '') +
+    '<div class="verdict" role="status" aria-live="polite"></div>' +
     (Q.mode === 'reveal' ? '<details class="selfcheck"><summary>Проверить себя</summary><div class="ans"></div></details>' : '');
   const code = $('.qcode', el); if (code) decorateStaticCode(code);
   $$('input', el).forEach(inp => inp.addEventListener('change', () => onAnswer(id, inp.value, inp.id)));
+  const qb = $('.b-qcheck', el);
+  if (qb) qb.addEventListener('click', () => checkQuestion(id));
   const det = $('details', el);
   if (det) det.addEventListener('toggle', () => { if (det.open && !S.revealed[id]) { S.revealed[id] = true; touch(); } if (det.open) revealQuestion(id); });
   return el;
@@ -2695,6 +2709,7 @@ function buildQuestion(id) {
 function onAnswer(id, val, controlId) {
   const prev = S.answers[id] ? [S.answers[id]] : [];
   S.answers[id] = val;
+  if (QUESTIONS[id].mode === 'check') { const c = S.qcheck[id] || { n: 0 }; S.qcheck[id] = { n: c.n, shown: false }; }
   rec('answer_changed', 'user', { questionId: id, controlId: controlId }, { previousAnswer: prev, answer: [val] });
   paintQuestion(id);
 }
@@ -2707,9 +2722,27 @@ function paintQuestion(id) {
     $('.choice-option[data-o="' + val + '"]', el).classList.add(ok ? 'correct' : 'wrong');
     verdict.className = 'verdict ' + (ok ? 'ok' : 'bad');
     verdict.innerHTML = ok ? '✓ Верно. ' + esc(Q.explain) : '✗ Неверно. Ответ можно изменить.';
+  } else if (Q.mode === 'check') {
+    const c = S.qcheck[id];
+    if (val && c && c.shown) {
+      const ok = !!Q.options.find(o => o.id === val).ok;
+      $('.choice-option[data-o="' + val + '"]', el).classList.add(ok ? 'correct' : 'wrong');
+      verdict.className = 'verdict ' + (ok ? 'ok' : 'bad');
+      verdict.innerHTML = ok ? '✓ Верно. ' + esc(Q.explain) : '✗ Неверно. Ответ можно изменить и проверить повторно.';
+    } else { verdict.className = 'verdict'; verdict.textContent = ''; }
   } else if (Q.mode === 'reveal') {
     if (S.revealed[id]) revealQuestion(id);
   }
+}
+function checkQuestion(id) {
+  const Q = QUESTIONS[id], val = S.answers[id], verdict = $('.q[data-q="' + id + '"] .verdict');
+  if (!val) { verdict.className = 'verdict'; verdict.textContent = 'Требуется выбрать вариант ответа.'; return; }
+  const c = S.qcheck[id] || { n: 0 };
+  S.qcheck[id] = { n: c.n + 1, shown: true };
+  const ok = !!Q.options.find(o => o.id === val).ok;
+  rec('answers_checked', 'user', { questionId: id }, { checkNo: c.n + 1, units: [{ unitId: id, questionId: id, correct: ok, checks: c.n + 1 }] });
+  paintQuestion(id);
+  touch();
 }
 function revealQuestion(id) {
   const Q = QUESTIONS[id], el = $('.q[data-q="' + id + '"]'), val = S.answers[id];
@@ -2786,18 +2819,67 @@ function buildExport(withState) {
   if (withState !== false) o.state = JSON.parse(JSON.stringify(S));
   return o;
 }
-function download(name, text) {
-  const blob = new Blob([text], { type: 'application/json' });
+/* ---------- zip: JSON работы сохраняется внутри архива (без сжатия, без внешних библиотек) ---------- */
+const CRC_TABLE = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+function crc32(u8) { let c = 0xFFFFFFFF; for (let i = 0; i < u8.length; i++) c = CRC_TABLE[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+function makeZip(name, text) {
+  const enc = new TextEncoder(), nameB = enc.encode(name), data = enc.encode(text), crc = crc32(data), d = new Date();
+  const time = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1), date = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
+  const out = new Uint8Array(30 + nameB.length + data.length + 46 + nameB.length + 22), v = new DataView(out.buffer);
+  let p = 0;
+  const u16 = x => { v.setUint16(p, x, true); p += 2; }, u32 = x => { v.setUint32(p, x >>> 0, true); p += 4; };
+  u32(0x04034b50); u16(20); u16(0x0800); u16(0); u16(time); u16(date); u32(crc); u32(data.length); u32(data.length); u16(nameB.length); u16(0);
+  out.set(nameB, p); p += nameB.length; out.set(data, p); p += data.length;
+  const cdStart = p;
+  u32(0x02014b50); u16(20); u16(20); u16(0x0800); u16(0); u16(time); u16(date); u32(crc); u32(data.length); u32(data.length); u16(nameB.length); u16(0); u16(0); u16(0); u16(0); u32(0); u32(0);
+  out.set(nameB, p); p += nameB.length;
+  const cdSize = p - cdStart;
+  u32(0x06054b50); u16(0); u16(0); u16(1); u16(1); u32(cdSize); u32(cdStart); u16(0);
+  return out;
+}
+/* Читает первый .json из zip (без сжатия или deflate) либо обычный JSON-файл. */
+async function readWorkFile(file) {
+  const buf = new Uint8Array(await file.arrayBuffer());
+  if (!(buf[0] === 0x50 && buf[1] === 0x4b)) return JSON.parse(new TextDecoder().decode(buf));
+  const v = new DataView(buf.buffer);
+  let e = buf.length - 22;
+  while (e >= 0 && v.getUint32(e, true) !== 0x06054b50) e--;
+  if (e < 0) throw new Error('zip');
+  let p = v.getUint32(e + 16, true);
+  const count = v.getUint16(e + 10, true);
+  for (let i = 0; i < count; i++) {
+    if (v.getUint32(p, true) !== 0x02014b50) break;
+    const method = v.getUint16(p + 10, true), csize = v.getUint32(p + 20, true), nl = v.getUint16(p + 28, true), el = v.getUint16(p + 30, true), cl = v.getUint16(p + 32, true), off = v.getUint32(p + 42, true);
+    const name = new TextDecoder().decode(buf.subarray(p + 46, p + 46 + nl));
+    p += 46 + nl + el + cl;
+    if (!/\.json$/i.test(name)) continue;
+    const start = off + 30 + v.getUint16(off + 26, true) + v.getUint16(off + 28, true);
+    const raw = buf.subarray(start, start + csize);
+    if (method === 0) return JSON.parse(new TextDecoder().decode(raw));
+    if (method === 8 && window.DecompressionStream) {
+      const text = await new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();
+      return JSON.parse(text);
+    }
+    throw new Error('zip method');
+  }
+  throw new Error('zip empty');
+}
+function download(name, bytes, type) {
+  const blob = new Blob([bytes], { type: type });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob); a.download = name;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
-function fileName() {
+const TRANSLIT = { а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'e', ж: 'zh', з: 'z', и: 'i', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p', р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'kh', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'shch', ъ: '', ы: 'y', ь: '', э: 'e', ю: 'yu', я: 'ya' };
+const latin = t => String(t).replace(/[А-Яа-яЁё]/g, c => { const r = TRANSLIT[c.toLowerCase()] || ''; return c === c.toLowerCase() ? r : r.charAt(0).toUpperCase() + r.slice(1); });
+function baseName() {
   const who = S.student.anonymous ? S.student.anonCode : (S.student.lastName + '_' + S.student.firstName);
-  return CFG.lessonId + '_' + who.replace(/[^A-Za-zА-Яа-яЁё0-9_-]+/g, '_') + '.json';
+  return CFG.lessonId + '_' + latin(who).replace(/[^A-Za-z0-9_-]+/g, '_');
 }
-function saveWork() { download(fileName(), JSON.stringify(buildExport(true), null, 1)); }
+const jsonName = () => baseName() + '.json';
+const zipName = () => baseName() + '.zip';
+function saveWork() { download(zipName(), makeZip(jsonName(), JSON.stringify(buildExport(true), null, 1)), 'application/zip'); }
 
 /* ---------- завершение занятия ---------- */
 let finishSeq = null;
@@ -2808,16 +2890,16 @@ async function finishLesson() {
   rec('attempt_finished', 'system', { pageId: S.part }, { durationMs: S.finishedAt - S.startedAt, practiceSolved: CFG.practiceTaskIds.filter(id => S.solved[id]).length });
   const exp = buildExport(false);
   if (JSON.stringify(exp).length > 900000) { exp.events = exp.events.slice(-400); exp.eventsTruncated = true; }
-  const json = JSON.stringify(exp);
+  const zipSize = makeZip(jsonName(), JSON.stringify(exp)).length;
   const ev = rec('result_submitted', 'system', { pageId: S.part }, {
     fields: { 'form-name': CFG.trainerId, student: S.student.anonymous ? S.student.anonCode : S.student.lastName + ' ' + S.student.firstName, group: S.group || '', attemptId: S.attemptId },
-    files: [{ field: 'file', name: fileName(), size: json.length, content: exp }]
+    files: [{ field: 'file', name: zipName(), size: zipSize, content: exp }]
   });
   finishSeq = ev.seq;
   const n = CFG.practiceTaskIds.filter(id => S.solved[id]).length;
   $('#finish-sum').textContent = 'Решено задач практикума: ' + n + ' из ' + CFG.practiceTaskIds.length + '. Время занятия: ' + Math.round((S.finishedAt - S.startedAt) / 60000) + ' мин.';
   flushStorageSync();
-  if (!liveEndpoints().length) { setSentMark('bad', 'Сервер учителя не подключён. Файл с результатами сохраняется кнопкой «Сохранить работу».'); return; }
+  if (!liveEndpoints().length) { setSentMark('bad', 'Сервер учителя не подключён. Архив с результатами сохраняется кнопкой «Сохранить работу».'); return; }
   setSentMark('', 'Отправка…');
   await flush('finish');
   checkSent(true);
@@ -2826,7 +2908,7 @@ function checkSent(final) {
   if (finishSeq == null) return;
   const still = liveEndpoints().some(ep => (T.queues[ep.name] || []).some(it => it.a === S.attemptId && it.e.seq === finishSeq));
   if (!still) { setSentMark('ok', '✓ Ответы переданы учителю'); finishSeq = null; }
-  else if (final) setSentMark('bad', 'Не удалось передать ответы. Файл с результатами сохраняется кнопкой «Сохранить работу»; передача будет повторяться автоматически.');
+  else if (final) setSentMark('bad', 'Не удалось передать ответы. Архив с результатами сохраняется кнопкой «Сохранить работу»; передача будет повторяться автоматически.');
 }
 
 /* ---------- сервер: проверка слова, снимки ---------- */
@@ -2842,7 +2924,7 @@ async function checkWord(word) {
 }
 function snapshotPayload() {
   const codes = {}; Object.keys(S.codes).forEach(k => { codes[k] = cap(S.codes[k], 6000); });
-  return { attemptId: S.attemptId, seq: S.seq, startedAt: S.startedAt, part: S.part, done: S.done, codes: codes, answers: S.answers, revealed: S.revealed,
+  return { attemptId: S.attemptId, seq: S.seq, startedAt: S.startedAt, part: S.part, done: S.done, codes: codes, answers: S.answers, revealed: S.revealed, qcheck: S.qcheck,
     stats: S.stats, solved: S.solved, firstOpened: S.firstOpened, finished: S.finished, finishedAt: S.finishedAt };
 }
 async function sendSnapshot() {
@@ -2890,6 +2972,7 @@ function enterNew(student, group, checked) {
 }
 function resumeState(state, events, source, snapTime, serverMaxSeq) {
   S = state; allEvents = events || [];
+  S.qcheck = S.qcheck || {};
   if (access && access.group) { S.group = access.group; S.groupChecked = !!access.checked; }
   let max = S.seq - 1;
   allEvents.forEach(e => { if (e.seq > max) max = e.seq; });
@@ -2973,7 +3056,7 @@ async function submitGate(anon) {
 async function loadWorkFile(file) {
   gate.msg('');
   let obj;
-  try { obj = JSON.parse(await file.text()); } catch (e) { gate.msg('Файл не удалось прочитать.', true); return; }
+  try { obj = await readWorkFile(file); } catch (e) { gate.msg('Файл не удалось прочитать: требуется архив .zip с работой, сохранённый кнопкой «Сохранить работу».', true); return; }
   if (!obj || obj.trainerId !== CFG.trainerId || !obj.state || !obj.attemptId) { gate.msg('Файл не относится к этому конспекту.', true); return; }
   const word = (access && access.word) || $('#g-word').value.trim();
   if (!word) { gate.msg('Для загрузки работы требуется кодовое слово группы.', true); return; }
