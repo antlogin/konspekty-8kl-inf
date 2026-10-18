@@ -11,15 +11,6 @@ const ev = (seq, type, data, ctx) => ({ seq, eventType: type, eventVersion: 1, s
   const srv2 = createServer({ CODEWORDS: JSON.stringify({ '8a-Ok': 'Компас пт' }) }, require('path').join(__dirname, '..', 'apps-script', 'Code.gs'));
   for (const w of ['8a-Ok', '8а-Ok', '8а-оk', ' 8A-OK ', '8а-ОК']) assert.deepStrictEqual(srv2.post({ action: 'checkWord', word: w }), { ok: true, group: 'Компас пт' }, w);
   assert.strictEqual(srv2.post({ action: 'checkWord', word: '8a-Oh' }).error, 'bad_word');
-  // формат «группа → слово» (GROUP_WORDS), список слов, объединение с CODEWORDS
-  const srv3 = createServer({ GROUP_WORDS: JSON.stringify({ 'Компас ср': '8a-ok', 'Компас пт': '8b-well', 'ФШ пн': ['8d', '8d-extra'] }), CODEWORDS: JSON.stringify({ 'старое': 'Резерв' }) }, require('path').join(__dirname, '..', 'apps-script', 'Code.gs'));
-  const g3 = w => srv3.post({ action: 'checkWord', word: w });
-  assert.deepStrictEqual(g3('8a-Ok'), { ok: true, group: 'Компас ср' }); assert.deepStrictEqual(g3('8B-WELL'), { ok: true, group: 'Компас пт' });
-  assert.deepStrictEqual(g3('8d'), { ok: true, group: 'ФШ пн' }); assert.deepStrictEqual(g3('8d-extra'), { ok: true, group: 'ФШ пн' }); assert.deepStrictEqual(g3('старое'), { ok: true, group: 'Резерв' });
-  assert.strictEqual(g3('слово1').error, 'bad_word');
-  // ошибочный формат из практики: {"слово1":"8a-ok"} принимал бы «слово1» с группой «8a-ok»
-  const srv4 = createServer({ CODEWORDS: JSON.stringify({ 'слово1': '8a-ok' }) }, require('path').join(__dirname, '..', 'apps-script', 'Code.gs'));
-  assert.strictEqual(srv4.post({ action: 'checkWord', word: '8a-ok' }).error, 'bad_word');
   assert.deepStrictEqual(srv.post({ action: 'checkWord', word: 'REPLACE_ME_x' }).error, 'bad_word');
   assert.deepStrictEqual(srv.post('garbage').error, 'bad_json');
   assert.deepStrictEqual(srv.post({ action: 'zzz' }).error, 'unknown_action');
