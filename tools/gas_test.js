@@ -1,6 +1,6 @@
 const { createServer } = require('./gas_mock');
 const assert = require('assert');
-const srv = createServer({ CODEWORDS: JSON.stringify({ 'Слово Кс': 'Компас ср', 'слово пт': 'Компас пт', 'REPLACE_ME_x': 'Плохая', 'слово фш': 'ФШ пн' }) }, require('path').join(__dirname, '..', 'K1', 'apps-script', 'Code.gs'));
+const srv = createServer({ CODEWORDS: JSON.stringify({ 'Слово Кс': 'Компас ср', 'слово пт': 'Компас пт', 'REPLACE_ME_x': 'Плохая', 'слово фш': 'ФШ пн' }) }, require('path').join(__dirname, '..', 'apps-script', 'Code.gs'));
 const meta = (o) => Object.assign({ courseId: 'informatics-8-algorithms-python', courseTitle: 'Информатика 8', lessonId: 'K1', lessonTitle: 'К1 Алгоритмы и исполнители. Свойства алгоритмов', tasksTotal: 5, practiceTaskIds: ['p1','p2','p3','p4','p5'], word: 'слово кс', student: { firstName: 'Ана', lastName: 'Петрович' } }, o || {});
 const ev = (seq, type, data, ctx) => ({ seq, eventType: type, eventVersion: 1, schemaVersion: 1, clientTime: new Date(Date.UTC(2026,9,21,8,0,seq)).toISOString(), elapsedMs: seq * 1000, trainerId: 'informatics-8-k01-lesson', trainerVersion: '1.0.0', eventSource: 'user', context: ctx || {}, data: data || {} });
 (async () => {

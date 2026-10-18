@@ -24,7 +24,7 @@ lessons/K<N>/            содержание урока (только это п
   methodichka.md         методичка учителя
 tools/                   build.js, verify.js, trace.js, тесты скрипта (gas_test.js)
 K<N>/                    результат сборки: K<N>_<slug>.html и LOCAL_metodichka_K<N>.md (коммитится)
-K1/apps-script/          Code.gs и README.md: один скрипт на весь курс
+apps-script/             Code.gs и README.md: один скрипт на весь курс (в папки уроков не кладётся)
 ```
 
 `catalog:title` — без «Занятие N». Метатеги и Skulpt добавляет сборка. Строку пути и счётчик Метрики вставляет сборка сайта Learn-it, вручную не добавлять.

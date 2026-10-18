@@ -14,7 +14,7 @@
 
 Скачивать целиком: архивом ветки (`https://github.com/antlogin/konspekty-8kl-inf/archive/refs/heads/claude/affectionate-lovelace-yc6y43.zip`, после слияния PR — `…/refs/heads/main.zip`), через `git clone` или кнопкой «Download raw file» на GitHub. Из окна просмотра в приложении Claude файл скачивается обрезанным (около 1,1 МБ).
 
-Не публиковать: `K<N>/LOCAL_metodichka_K<N>.md` (служебное, `LOCAL_` с подчёркиванием не синхронизируется), `K1/apps-script/`, `engine/`, `lessons/`, `tools/`, `course.json`, `AUTHORING.md`.
+Не публиковать: `K<N>/LOCAL_metodichka_K<N>.md` (служебное, `LOCAL_` с подчёркиванием не синхронизируется), `apps-script/`, `engine/`, `lessons/`, `tools/`, `course.json`, `AUTHORING.md`.
 
 ## Что уже настроено
 

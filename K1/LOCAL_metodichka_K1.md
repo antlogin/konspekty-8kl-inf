@@ -8,7 +8,7 @@
 | Компас, ср | 21.10.2026 | очно |
 | Компас, пт | 23.10.2026 | очно |
 
-Файлы: `K1_Algoritmy_i_ispolniteli.html` (конспект), `apps-script/Code.gs` и `apps-script/README.md` (приём данных). Исходники конспекта — `lessons/K1/`, правила создания уроков — `AUTHORING.md`.
+Файлы: `K1_Algoritmy_i_ispolniteli.html` (конспект), `../apps-script/Code.gs` и `../apps-script/README.md` (в корне репозитория, не в папке урока) (приём данных). Исходники конспекта — `lessons/K1/`, правила создания уроков — `AUTHORING.md`.
 
 ---
 
