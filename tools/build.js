@@ -30,7 +30,7 @@ function build(id) {
     lessonId: L.id, lessonTitle: L.lessonTitle, practiceTaskIds: L.practiceTaskIds
   };
   const cfgText = '/* ===== НАСТРОЙКИ (создаются сборкой из course.json и lessons/' + id + '/lesson.json) =========\n' +
-    '   Заглушки REPLACE_ME: адрес веб-приложения Apps Script и адрес сайта курса — задаются в course.json. */\n' +
+    '   Адрес веб-приложения Apps Script и адрес сайта курса задаются в course.json. */\n' +
     'const TELEMETRY_CONFIG = ' + JSON.stringify(cfg, null, 2) + ';\n';
 
   const menu = L.parts.map(p => '  <button type="button" data-part="' + p.id + '">' + esc(p.title) + '</button>').join('\n');
