@@ -7,10 +7,6 @@ const ev = (seq, type, data, ctx) => ({ seq, eventType: type, eventVersion: 1, s
   assert.deepStrictEqual(srv.get().ok, true);
   assert.deepStrictEqual(srv.post({ action: 'checkWord', word: ' слово  КС ', courseId: 'x' }), { ok: true, group: 'Компас ср' });
   assert.deepStrictEqual(srv.post({ action: 'checkWord', word: 'нет' }).error, 'bad_word');
-  // похожие кириллические и латинские буквы считаются одинаковыми
-  const srv2 = createServer({ CODEWORDS: JSON.stringify({ '8a-Ok': 'Компас пт' }) }, require('path').join(__dirname, '..', 'apps-script', 'Code.gs'));
-  for (const w of ['8a-Ok', '8а-Ok', '8а-оk', ' 8A-OK ', '8а-ОК']) assert.deepStrictEqual(srv2.post({ action: 'checkWord', word: w }), { ok: true, group: 'Компас пт' }, w);
-  assert.strictEqual(srv2.post({ action: 'checkWord', word: '8a-Oh' }).error, 'bad_word');
   assert.deepStrictEqual(srv.post({ action: 'checkWord', word: 'REPLACE_ME_x' }).error, 'bad_word');
   assert.deepStrictEqual(srv.post('garbage').error, 'bad_json');
   assert.deepStrictEqual(srv.post({ action: 'zzz' }).error, 'unknown_action');

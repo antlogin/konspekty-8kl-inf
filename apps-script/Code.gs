@@ -15,7 +15,7 @@
  * Подробная инструкция — README.md.
  */
 
-var VERSION = '1.0.1';
+var VERSION = '1.0.0';
 var CONFIG = {
   ROOT_FOLDER_NAME: 'Learn-it результаты',
   UNVERIFIED_GROUP: 'Не проверена',
@@ -77,13 +77,6 @@ function normWord_(w) {
   return String(w == null ? '' : w).trim().toLowerCase().replace(/ё/g, 'е').replace(/\s+/g, ' ');
 }
 
-/** Нормализация кодового слова: дополнительно кириллические буквы, похожие на латинские, приводятся к латинским
- *  (слово «8а-Ok» с кириллической «а» и слово «8a-Ok» с латинской «a» считаются одинаковыми). */
-var LOOKALIKE = { 'а': 'a', 'в': 'b', 'е': 'e', 'к': 'k', 'м': 'm', 'н': 'h', 'о': 'o', 'р': 'p', 'с': 'c', 'т': 't', 'у': 'y', 'х': 'x' };
-function normCode_(w) {
-  return normWord_(w).replace(/[авекмнорстух]/g, function (c) { return LOOKALIKE[c]; });
-}
-
 /** Возвращает карту {нормализованное слово: группа} или null, если слова не заданы. */
 function loadCodewords_(courseId) {
   var props = PropertiesService.getScriptProperties();
@@ -93,7 +86,7 @@ function loadCodewords_(courseId) {
   try { src = JSON.parse(raw); } catch (e) { return null; }
   var map = {}, n = 0;
   Object.keys(src).forEach(function (k) {
-    var nk = normCode_(k);
+    var nk = normWord_(k);
     if (!nk || /^replace_me/.test(nk) || !src[k]) return;   // заглушки не принимаются
     map[nk] = String(src[k]);
     n++;
@@ -105,7 +98,7 @@ function loadCodewords_(courseId) {
 function groupByWord_(word, courseId) {
   var map = loadCodewords_(courseId);
   if (!map) return null;
-  var g = map[normCode_(word)];
+  var g = map[normWord_(word)];
   return g || '';
 }
 
@@ -488,27 +481,4 @@ function testSetup() {
   try {
     Logger.log('Корневая папка на Диске: ' + rootFolder_().getUrl());
   } catch (e) { Logger.log('ОШИБКА доступа к Диску: ' + e.message); }
-}
-
-/** Запускается вручную из редактора: показывает, как скрипт прочитал свойство CODEWORDS (журнал виден только владельцу). */
-function debugCodewords() {
-  var props = PropertiesService.getScriptProperties();
-  var raw = props.getProperty('CODEWORDS');
-  if (!raw) { Logger.log('Свойство CODEWORDS не задано.'); return; }
-  var src;
-  try { src = JSON.parse(raw); } catch (e) { Logger.log('ОШИБКА: значение CODEWORDS не является корректным JSON: ' + e.message); return; }
-  Object.keys(src).forEach(function (k) {
-    var flags = [];
-    if (/[а-яё]/i.test(k) && /[a-z]/i.test(k)) flags.push('смесь кириллицы и латиницы');
-    if (k !== k.trim()) flags.push('пробел в начале или в конце');
-    if (/^(компас|фш|комп)/i.test(k)) flags.push('похоже, слово и группа поменялись местами: слева должно быть слово, справа — группа');
-    Logger.log('слово «' + k + '» → группа «' + src[k] + '»' + (flags.length ? '  [' + flags.join('; ') + ']' : ''));
-  });
-}
-
-/** Показывает, какая группа соответствует слову (впишите слово в строку ниже и запустите функцию). */
-function debugOneWord() {
-  var word = 'ВПИШИТЕ СЛОВО';
-  var g = groupByWord_(word, '');
-  Logger.log(g === null ? 'CODEWORDS не настроено' : (g ? 'Слово «' + word + '» принято, группа: ' + g : 'Слово «' + word + '» не найдено'));
 }
