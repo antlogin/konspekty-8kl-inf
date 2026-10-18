@@ -9,13 +9,14 @@
  *   getSnapshot  — выдача последнего снимка для восстановления.
  *
  * Настройки хранятся в свойствах скрипта (Project Settings → Script properties):
- *   CODEWORDS        — JSON вида {"слово 1":"Компас ср","слово 2":"Компас пт","слово 3":"ФШ пн"} (обязательно);
- *   CODEWORDS_<id>   — необязательно: отдельные слова для курса с courseId = <id>;
+ *   GROUP_WORDS      — JSON вида {"Компас ср":"слово1","Компас пт":"слово2","ФШ пн":"слово3"} (группа → слово или список слов);
+ *   CODEWORDS        — то же в обратной записи: {"слово1":"Компас ср"} (слово → группа); достаточно одного из двух свойств;
+ *   GROUP_WORDS_<id>, CODEWORDS_<id> — необязательно: отдельные слова для курса с courseId = <id>;
  *   ROOT_FOLDER_ID   — необязательно: id папки на Диске вместо папки «Learn-it результаты».
  * Подробная инструкция — README.md.
  */
 
-var VERSION = '1.0.1';
+var VERSION = '1.0.2';
 var CONFIG = {
   ROOT_FOLDER_NAME: 'Learn-it результаты',
   UNVERIFIED_GROUP: 'Не проверена',
@@ -84,19 +85,30 @@ function normCode_(w) {
   return normWord_(w).replace(/[авекмнорстух]/g, function (c) { return LOOKALIKE[c]; });
 }
 
-/** Возвращает карту {нормализованное слово: группа} или null, если слова не заданы. */
-function loadCodewords_(courseId) {
+/** Читает JSON-свойство (с отдельным вариантом для курса) или возвращает null. */
+function readJsonProp_(name, courseId) {
   var props = PropertiesService.getScriptProperties();
-  var raw = (courseId && props.getProperty('CODEWORDS_' + courseId)) || props.getProperty('CODEWORDS');
+  var raw = (courseId && props.getProperty(name + '_' + courseId)) || props.getProperty(name);
   if (!raw) return null;
-  var src;
-  try { src = JSON.parse(raw); } catch (e) { return null; }
+  try { return JSON.parse(raw); } catch (e) { return null; }
+}
+
+/** Возвращает карту {нормализованное слово: группа} или null, если слова не заданы.
+ *  Источники (допустимы оба, записи объединяются):
+ *    GROUP_WORDS — {"Компас ср": "слово1", "ФШ пн": ["слово2", "слово3"]}  (группа → слово или список слов);
+ *    CODEWORDS   — {"слово1": "Компас ср"}                                   (слово → группа). */
+function loadCodewords_(courseId) {
   var map = {}, n = 0;
-  Object.keys(src).forEach(function (k) {
-    var nk = normCode_(k);
-    if (!nk || /^replace_me/.test(nk) || !src[k]) return;   // заглушки не принимаются
-    map[nk] = String(src[k]);
-    n++;
+  var add = function (word, group) {
+    var nk = normCode_(word);
+    if (!nk || /^replace_me/.test(nk) || !group) return;   // заглушки не принимаются
+    map[nk] = String(group); n++;
+  };
+  var byWord = readJsonProp_('CODEWORDS', courseId);
+  if (byWord) Object.keys(byWord).forEach(function (w) { add(w, byWord[w]); });
+  var byGroup = readJsonProp_('GROUP_WORDS', courseId);
+  if (byGroup) Object.keys(byGroup).forEach(function (g) {
+    [].concat(byGroup[g]).forEach(function (w) { add(w, g); });
   });
   return n ? map : null;
 }
@@ -484,26 +496,36 @@ function testSetup() {
   var map = loadCodewords_('');
   Logger.log('Версия: ' + VERSION);
   Logger.log(map ? 'Кодовых слов: ' + Object.keys(map).length + '; группы: ' + Object.keys(map).map(function (k) { return map[k]; }).join(', ')
-    : 'ОШИБКА: свойство CODEWORDS не задано или содержит только заглушки REPLACE_ME');
+    : 'ОШИБКА: ни CODEWORDS, ни GROUP_WORDS не заданы или содержат только заглушки REPLACE_ME');
   try {
     Logger.log('Корневая папка на Диске: ' + rootFolder_().getUrl());
   } catch (e) { Logger.log('ОШИБКА доступа к Диску: ' + e.message); }
 }
 
-/** Запускается вручную из редактора: показывает, как скрипт прочитал свойство CODEWORDS (журнал виден только владельцу). */
+/** Запускается вручную из редактора: показывает, как скрипт прочитал свойства CODEWORDS и GROUP_WORDS (журнал виден только владельцу). */
 function debugCodewords() {
   var props = PropertiesService.getScriptProperties();
-  var raw = props.getProperty('CODEWORDS');
-  if (!raw) { Logger.log('Свойство CODEWORDS не задано.'); return; }
-  var src;
-  try { src = JSON.parse(raw); } catch (e) { Logger.log('ОШИБКА: значение CODEWORDS не является корректным JSON: ' + e.message); return; }
-  Object.keys(src).forEach(function (k) {
-    var flags = [];
-    if (/[а-яё]/i.test(k) && /[a-z]/i.test(k)) flags.push('смесь кириллицы и латиницы');
-    if (k !== k.trim()) flags.push('пробел в начале или в конце');
-    if (/^(компас|фш|комп)/i.test(k)) flags.push('похоже, слово и группа поменялись местами: слева должно быть слово, справа — группа');
-    Logger.log('слово «' + k + '» → группа «' + src[k] + '»' + (flags.length ? '  [' + flags.join('; ') + ']' : ''));
+  var shown = 0;
+  [['CODEWORDS', 'слово → группа'], ['GROUP_WORDS', 'группа → слово']].forEach(function (p) {
+    var raw = props.getProperty(p[0]);
+    if (!raw) { Logger.log('Свойство ' + p[0] + ' не задано.'); return; }
+    var src;
+    try { src = JSON.parse(raw); } catch (e) { Logger.log('ОШИБКА: значение ' + p[0] + ' не является корректным JSON: ' + e.message + ' (в JSON допустимы только двойные кавычки)'); return; }
+    Logger.log('Свойство ' + p[0] + ' (формат: ' + p[1] + '):');
+    Object.keys(src).forEach(function (k) {
+      var left = k, right = String(src[k]), flags = [];
+      var words = p[0] === 'CODEWORDS' ? [left] : [].concat(src[k]).map(String);
+      if (/^слово\s*\d*$/i.test(left) && p[0] === 'CODEWORDS') flags.push('«' + left + '» похоже на название-заглушку, а не на слово группы: в CODEWORDS слева должно быть само слово, справа — группа (или используйте GROUP_WORDS)');
+      words.forEach(function (w) {
+        if (/[а-яё]/i.test(w) && /[a-z]/i.test(w)) flags.push('слово «' + w + '» содержит и кириллицу, и латиницу');
+        if (w !== w.trim()) flags.push('слово «' + w + '» с пробелом в начале или в конце');
+      });
+      Logger.log('  ' + left + ' → ' + (p[0] === 'CODEWORDS' ? right : words.join(', ')) + (flags.length ? '   [' + flags.join('; ') + ']' : ''));
+      shown++;
+    });
   });
+  var map = loadCodewords_('');
+  Logger.log(map ? 'Итог: принимаются слова — ' + Object.keys(map).length + ' шт.; группы: ' + Object.keys(map).map(function (k) { return map[k]; }).filter(function (g, i, a) { return a.indexOf(g) === i; }).join(', ') : 'Итог: ни одного рабочего слова нет.');
 }
 
 /** Показывает, какая группа соответствует слову (впишите слово в строку ниже и запустите функцию). */
