@@ -1,0 +1,863 @@
+<title>Песочница Python для конспекта</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap">
+<style>
+/* BASICS */
+
+.CodeMirror {
+  /* Set height, width, borders, and global font properties here */
+  font-family: monospace;
+  height: 300px;
+  color: black;
+  direction: ltr;
+}
+
+/* PADDING */
+
+.CodeMirror-lines {
+  padding: 4px 0; /* Vertical padding around content */
+}
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  padding: 0 4px; /* Horizontal padding of content */
+}
+
+.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+  background-color: white; /* The little square between H and V scrollbars */
+}
+
+/* GUTTER */
+
+.CodeMirror-gutters {
+  border-right: 1px solid #ddd;
+  background-color: #f7f7f7;
+  white-space: nowrap;
+}
+.CodeMirror-linenumbers {}
+.CodeMirror-linenumber {
+  padding: 0 3px 0 5px;
+  min-width: 20px;
+  text-align: right;
+  color: #999;
+  white-space: nowrap;
+}
+
+.CodeMirror-guttermarker { color: black; }
+.CodeMirror-guttermarker-subtle { color: #999; }
+
+/* CURSOR */
+
+.CodeMirror-cursor {
+  border-left: 1px solid black;
+  border-right: none;
+  width: 0;
+}
+/* Shown when moving in bi-directional text */
+.CodeMirror div.CodeMirror-secondarycursor {
+  border-left: 1px solid silver;
+}
+.cm-fat-cursor .CodeMirror-cursor {
+  width: auto;
+  border: 0 !important;
+  background: #7e7;
+}
+.cm-fat-cursor div.CodeMirror-cursors {
+  z-index: 1;
+}
+.cm-fat-cursor .CodeMirror-line::selection,
+.cm-fat-cursor .CodeMirror-line > span::selection, 
+.cm-fat-cursor .CodeMirror-line > span > span::selection { background: transparent; }
+.cm-fat-cursor .CodeMirror-line::-moz-selection,
+.cm-fat-cursor .CodeMirror-line > span::-moz-selection,
+.cm-fat-cursor .CodeMirror-line > span > span::-moz-selection { background: transparent; }
+.cm-fat-cursor { caret-color: transparent; }
+@-moz-keyframes blink {
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
+}
+@-webkit-keyframes blink {
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
+}
+@keyframes blink {
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
+}
+
+/* Can style cursor different in overwrite (non-insert) mode */
+.CodeMirror-overwrite .CodeMirror-cursor {}
+
+.cm-tab { display: inline-block; text-decoration: inherit; }
+
+.CodeMirror-rulers {
+  position: absolute;
+  left: 0; right: 0; top: -50px; bottom: 0;
+  overflow: hidden;
+}
+.CodeMirror-ruler {
+  border-left: 1px solid #ccc;
+  top: 0; bottom: 0;
+  position: absolute;
+}
+
+/* DEFAULT THEME */
+
+.cm-s-default .cm-header {color: blue;}
+.cm-s-default .cm-quote {color: #090;}
+.cm-negative {color: #d44;}
+.cm-positive {color: #292;}
+.cm-header, .cm-strong {font-weight: bold;}
+.cm-em {font-style: italic;}
+.cm-link {text-decoration: underline;}
+.cm-strikethrough {text-decoration: line-through;}
+
+.cm-s-default .cm-keyword {color: #708;}
+.cm-s-default .cm-atom {color: #219;}
+.cm-s-default .cm-number {color: #164;}
+.cm-s-default .cm-def {color: #00f;}
+.cm-s-default .cm-variable,
+.cm-s-default .cm-punctuation,
+.cm-s-default .cm-property,
+.cm-s-default .cm-operator {}
+.cm-s-default .cm-variable-2 {color: #05a;}
+.cm-s-default .cm-variable-3, .cm-s-default .cm-type {color: #085;}
+.cm-s-default .cm-comment {color: #a50;}
+.cm-s-default .cm-string {color: #a11;}
+.cm-s-default .cm-string-2 {color: #f50;}
+.cm-s-default .cm-meta {color: #555;}
+.cm-s-default .cm-qualifier {color: #555;}
+.cm-s-default .cm-builtin {color: #30a;}
+.cm-s-default .cm-bracket {color: #997;}
+.cm-s-default .cm-tag {color: #170;}
+.cm-s-default .cm-attribute {color: #00c;}
+.cm-s-default .cm-hr {color: #999;}
+.cm-s-default .cm-link {color: #00c;}
+
+.cm-s-default .cm-error {color: #f00;}
+.cm-invalidchar {color: #f00;}
+
+.CodeMirror-composing { border-bottom: 2px solid; }
+
+/* Default styles for common addons */
+
+div.CodeMirror span.CodeMirror-matchingbracket {color: #0b0;}
+div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
+.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }
+.CodeMirror-activeline-background {background: #e8f2ff;}
+
+/* STOP */
+
+/* The rest of this file contains styles related to the mechanics of
+   the editor. You probably shouldn't touch them. */
+
+.CodeMirror {
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.CodeMirror-scroll {
+  overflow: scroll !important; /* Things will break if this is overridden */
+  /* 50px is the magic margin used to hide the element's real scrollbars */
+  /* See overflow: hidden in .CodeMirror */
+  margin-bottom: -50px; margin-right: -50px;
+  padding-bottom: 50px;
+  height: 100%;
+  outline: none; /* Prevent dragging from highlighting the element */
+  position: relative;
+  z-index: 0;
+}
+.CodeMirror-sizer {
+  position: relative;
+  border-right: 50px solid transparent;
+}
+
+/* The fake, visible scrollbars. Used to force redraw during scrolling
+   before actual scrolling happens, thus preventing shaking and
+   flickering artifacts. */
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+  position: absolute;
+  z-index: 6;
+  display: none;
+  outline: none;
+}
+.CodeMirror-vscrollbar {
+  right: 0; top: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.CodeMirror-hscrollbar {
+  bottom: 0; left: 0;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.CodeMirror-scrollbar-filler {
+  right: 0; bottom: 0;
+}
+.CodeMirror-gutter-filler {
+  left: 0; bottom: 0;
+}
+
+.CodeMirror-gutters {
+  position: absolute; left: 0; top: 0;
+  min-height: 100%;
+  z-index: 3;
+}
+.CodeMirror-gutter {
+  white-space: normal;
+  height: 100%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: -50px;
+}
+.CodeMirror-gutter-wrapper {
+  position: absolute;
+  z-index: 4;
+  background: none !important;
+  border: none !important;
+}
+.CodeMirror-gutter-background {
+  position: absolute;
+  top: 0; bottom: 0;
+  z-index: 4;
+}
+.CodeMirror-gutter-elt {
+  position: absolute;
+  cursor: default;
+  z-index: 4;
+}
+.CodeMirror-gutter-wrapper ::selection { background-color: transparent }
+.CodeMirror-gutter-wrapper ::-moz-selection { background-color: transparent }
+
+.CodeMirror-lines {
+  cursor: text;
+  min-height: 1px; /* prevents collapsing before first draw */
+}
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  /* Reset some styles that the rest of the page might have set */
+  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+  border-width: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  white-space: pre;
+  word-wrap: normal;
+  line-height: inherit;
+  color: inherit;
+  z-index: 2;
+  position: relative;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-variant-ligatures: contextual;
+  font-variant-ligatures: contextual;
+}
+.CodeMirror-wrap pre.CodeMirror-line,
+.CodeMirror-wrap pre.CodeMirror-line-like {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: normal;
+}
+
+.CodeMirror-linebackground {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  z-index: 0;
+}
+
+.CodeMirror-linewidget {
+  position: relative;
+  z-index: 2;
+  padding: 0.1px; /* Force widget margins to stay inside of the container */
+}
+
+.CodeMirror-widget {}
+
+.CodeMirror-rtl pre { direction: rtl; }
+
+.CodeMirror-code {
+  outline: none;
+}
+
+/* Force content-box sizing for the elements where we expect it */
+.CodeMirror-scroll,
+.CodeMirror-sizer,
+.CodeMirror-gutter,
+.CodeMirror-gutters,
+.CodeMirror-linenumber {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.CodeMirror-measure {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.CodeMirror-cursor {
+  position: absolute;
+  pointer-events: none;
+}
+.CodeMirror-measure pre { position: static; }
+
+div.CodeMirror-cursors {
+  visibility: hidden;
+  position: relative;
+  z-index: 3;
+}
+div.CodeMirror-dragcursors {
+  visibility: visible;
+}
+
+.CodeMirror-focused div.CodeMirror-cursors {
+  visibility: visible;
+}
+
+.CodeMirror-selected { background: #d9d9d9; }
+.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }
+.CodeMirror-crosshair { cursor: crosshair; }
+.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }
+.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }
+
+.cm-searching {
+  background-color: #ffa;
+  background-color: rgba(255, 255, 0, .4);
+}
+
+/* Used to force a border model for a node */
+.cm-force-border { padding-right: .1px; }
+
+@media print {
+  /* Hide the cursor when printing */
+  .CodeMirror div.CodeMirror-cursors {
+    visibility: hidden;
+  }
+}
+
+/* See issue #2901 */
+.cm-tab-wrap-hack:after { content: ''; }
+
+/* Help users use markselection to safely style text background */
+span.CodeMirror-selectedtext { background: none; }
+
+/* Layout: страница конспекта; задание сверху, ниже рабочая зона «редактор | консоль и лист в клетку», внизу проверка и журнал учителя */
+:root{
+  --paper:#f6f8fb; --sheet:#ffffff; --ink:#1b2433; --muted:#5b6678; --line:#d9e0ea;
+  --accent:#1f5fbf; --accent-soft:#e3ecfa; --grid:#dbe6f5; --axis:#a9bde0;
+  --ok:#1d7a46; --ok-soft:#e1f3e8; --bad:#b3261e; --bad-soft:#fbe5e3; --warn:#8a5a00; --warn-soft:#fbf0d9;
+  --code-bg:#fbfcfe; --tsheet:#fdfdfb; --tgrid:#d6e2f3; --taxis:#9fb6dc; /* лист для черепахи светлый в обеих темах: перо по умолчанию чёрное */ --kw:#7a2bb3; --str:#1d7a46; --num:#b35a00; --cmt:#7d8797; --fn:#1f5fbf;
+  --f-display:"Literata",Georgia,"Times New Roman",serif;
+  --f-body:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11161f; --sheet:#171e2a; --ink:#e5eaf2; --muted:#9aa6b8; --line:#2b3546;
+  --accent:#7aa8f0; --accent-soft:#1d2b44; --grid:#222d3f; --axis:#3d5378;
+  --ok:#6fd39b; --ok-soft:#163626; --bad:#ff8a80; --bad-soft:#3d1c1a; --warn:#f0c46a; --warn-soft:#3a2e14;
+  --code-bg:#131a25; --kw:#c79bf0; --str:#86d9a6; --num:#f0b070; --cmt:#7f8b9e; --fn:#8fb6f5; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11161f; --sheet:#171e2a; --ink:#e5eaf2; --muted:#9aa6b8; --line:#2b3546;
+  --accent:#7aa8f0; --accent-soft:#1d2b44; --grid:#222d3f; --axis:#3d5378;
+  --ok:#6fd39b; --ok-soft:#163626; --bad:#ff8a80; --bad-soft:#3d1c1a; --warn:#f0c46a; --warn-soft:#3a2e14;
+  --code-bg:#131a25; --kw:#c79bf0; --str:#86d9a6; --num:#f0b070; --cmt:#7f8b9e; --fn:#8fb6f5; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--f-body)}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:24px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(1.6rem,3.4vw,2.2rem)}
+h2{font-size:1.3rem}
+h3{font-size:1.05rem;font-family:var(--f-body);font-weight:600}
+p{margin:0}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+code,kbd{font-family:var(--f-mono);font-size:.9em;background:var(--accent-soft);padding:.05em .35em;border-radius:4px}
+header{display:grid;gap:8px;max-width:72ch}
+.task{background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:20px;display:grid;gap:10px;max-width:none}
+.task .lead{max-width:70ch}
+.examples{display:flex;gap:12px;flex-wrap:wrap}
+.ex{font-family:var(--f-mono);font-size:.88rem;border:1px dashed var(--line);border-radius:6px;padding:6px 10px;color:var(--muted)}
+.ex b{color:var(--ink);font-weight:600}
+
+.work{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;height:clamp(480px,72vh,660px)}
+.right{display:grid;grid-template-rows:minmax(0,2fr) minmax(0,1fr);gap:16px;min-width:0;min-height:0}
+.pane.editor #editor-host{flex:1;min-height:0}
+.pane.editor .CodeMirror,.pane.editor #fallback-editor{height:100%}
+@media (max-width:860px){.work{grid-template-columns:minmax(0,1fr);height:auto}.right{grid-template-rows:auto auto}
+  .pane.editor .CodeMirror,.pane.editor #fallback-editor{height:300px}.console{min-height:160px;max-height:320px}.errors{max-height:260px}}
+.pane{background:var(--sheet);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.pane-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);font-size:.85rem;color:var(--muted);flex-wrap:wrap}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;padding:10px 12px;border-top:1px solid var(--line)}
+button{font:500 .92rem var(--f-body);border-radius:7px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:8px 14px;cursor:pointer}
+button:hover:not(:disabled){border-color:var(--accent)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button:disabled{opacity:.5;cursor:default}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--sheet)}
+button.check{border-color:var(--ok);color:var(--ok)}
+.kbd-hint{font-size:.8rem;color:var(--muted);align-self:center;margin-left:auto}
+
+.CodeMirror{height:300px;font-family:var(--f-mono);font-size:14.5px;line-height:1.55;background:var(--code-bg);color:var(--ink)}
+.CodeMirror-gutters{background:var(--code-bg);border-right:1px solid var(--line)}
+.CodeMirror-linenumber{color:var(--cmt)}
+.CodeMirror-cursor{border-left:2px solid var(--accent)}
+.CodeMirror-selected,.CodeMirror-focused .CodeMirror-selected{background:var(--accent-soft)}
+.cm-s-default .cm-keyword{color:var(--kw);font-weight:600}
+.cm-s-default .cm-string{color:var(--str)}
+.cm-s-default .cm-number{color:var(--num)}
+.cm-s-default .cm-comment{color:var(--cmt);font-style:italic}
+.cm-s-default .cm-builtin{color:var(--fn)}
+.cm-s-default .cm-def,.cm-s-default .cm-variable,.cm-s-default .cm-operator,.cm-s-default .cm-property{color:var(--ink)}
+.cm-s-default .cm-variable-2{color:var(--ink)}
+.err-line{background:var(--bad-soft)}
+#fallback-editor{width:100%;height:300px;border:0;padding:10px;font:14.5px/1.55 var(--f-mono);background:var(--code-bg);color:var(--ink);resize:vertical}
+
+.console{flex:1;min-height:0;font:14px/1.5 var(--f-mono);padding:10px 12px;overflow:auto;white-space:pre-wrap;word-break:break-word;background:var(--code-bg)}
+.console .sys{color:var(--muted)}
+.console .err{color:var(--bad)}
+.pane.err-pane .pane-head{color:var(--muted)}
+.pane.err-pane.has-error{border-color:var(--bad)}
+.pane.err-pane.has-error .pane-head{color:var(--bad);background:var(--bad-soft)}
+.errors{flex:1;min-height:0;overflow:auto;padding:10px 12px;display:grid;align-content:start;gap:8px}
+.errors .empty{color:var(--muted);font-size:.9rem}
+.errors .raw{font:13.5px/1.5 var(--f-mono);color:var(--bad);overflow-wrap:anywhere}
+.errors .ru{max-width:65ch}
+.errors .goto{justify-self:start;padding:4px 10px;font-size:.85rem}
+.console input{font:inherit;color:var(--accent);background:transparent;border:0;border-bottom:1px dashed var(--accent);min-width:8ch;width:12ch;padding:0}
+.console .typed{color:var(--accent)}
+
+.turtle-win{position:fixed;z-index:20;width:min(440px,calc(100vw - 32px));background:var(--sheet);border:1px solid var(--line);border-radius:10px;
+  box-shadow:0 18px 50px rgba(10,20,40,.28),0 2px 8px rgba(10,20,40,.18);display:grid;overflow:hidden}
+.turtle-win[hidden]{display:none}
+.turtle-win .pane-head{cursor:move;user-select:none;touch-action:none;color:var(--ink);font-weight:500}
+.turtle-win .body{padding:10px 12px;display:grid;gap:6px}
+.icon-btn{padding:4px 10px;font-size:.85rem}
+@media (max-width:600px){.turtle-win{left:max(16px,env(safe-area-inset-left,0px))!important;right:max(16px,env(safe-area-inset-right,0px));width:auto;top:auto!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))}}
+#turtle{position:relative;width:100%;aspect-ratio:4/3;margin:0 auto;border:1px solid var(--line);
+  background-color:var(--tsheet);
+  background-image:linear-gradient(var(--taxis),var(--taxis)),linear-gradient(var(--taxis),var(--taxis)),
+    linear-gradient(to right,var(--tgrid) 1px,transparent 1px),linear-gradient(to bottom,var(--tgrid) 1px,transparent 1px);
+  background-size:1px 100%,100% 1px,5% 6.6667%,5% 6.6667%;background-position:center,center,center,center;background-repeat:no-repeat,no-repeat,repeat,repeat}
+#turtle canvas{position:absolute!important;inset:0;margin:0!important;width:100%!important;height:100%!important} /* Skulpt ставит слоям inline-стили со сдвигом */
+.caption{font-size:.8rem;color:var(--muted)}
+
+.results{display:grid;gap:12px}
+.verdict{display:flex;align-items:center;gap:10px;font-weight:600}
+.pill{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.idle{background:var(--accent-soft);color:var(--accent)}
+.table-scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.mono{font-family:var(--f-mono)}
+.hint{background:var(--warn-soft);color:var(--ink);border-radius:8px;padding:10px 14px;max-width:75ch}
+.hint b{color:var(--warn)}
+.hints{display:grid;gap:8px}
+
+.bottom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:860px){.bottom{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:12px;min-width:0}
+.log{font:12.5px/1.5 var(--f-mono);max-height:260px;overflow:auto;display:grid;gap:2px}
+.log div{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:8px}
+.log time{color:var(--muted)}
+.log .t{font-weight:600}
+.log .t-run{color:var(--accent)} .log .t-error{color:var(--bad)} .log .t-check{color:var(--ok)} .log .t-hint{color:var(--warn)} .log .t-input,.log .t-output{color:var(--muted)}
+.log span:last-child{overflow-wrap:anywhere}
+pre.api{margin:0;font:12.5px/1.5 var(--f-mono);background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow-x:auto}
+.stats{display:flex;gap:16px;flex-wrap:wrap;font-size:.9rem;color:var(--muted)}
+.stats b{color:var(--ink);font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Информатика · 8 класс · Цикл с параметром</span>
+    <h1>Сумма чисел от 1 до n</h1>
+    <p>Цикл <code>for i in range(a, b)</code> перебирает числа от <code>a</code> до <code>b − 1</code>. Чтобы сложить много чисел, заводят переменную-накопитель: сначала <code>s = 0</code>, затем в цикле <code>s = s + i</code>.</p>
+  </header>
+
+  <section class="task" aria-labelledby="task-h">
+    <span class="eyebrow">Задание 1</span>
+    <h2 id="task-h">Напиши программу</h2>
+    <p class="lead">Программа получает с клавиатуры целое число <code>n</code> (n ≥ 0) и выводит одно число: сумму 1 + 2 + … + n. В редакторе уже есть черновик. Запусти его, найди ошибку и нажми «Проверить».</p>
+    <div class="examples">
+      <span class="ex">ввод <b>5</b> → вывод <b>15</b></span>
+      <span class="ex">ввод <b>1</b> → вывод <b>1</b></span>
+      <span class="ex">ввод <b>0</b> → вывод <b>0</b></span>
+    </div>
+  </section>
+
+  <section class="work">
+    <div class="pane editor">
+      <div class="pane-head"><span>Редактор · Python 3</span><button id="btn-reset" type="button">Вернуть черновик</button></div>
+      <div id="editor-host"><textarea id="fallback-editor" spellcheck="false" aria-label="Код программы"></textarea></div>
+      <div class="toolbar">
+        <button id="btn-run" class="primary" type="button">▶ Запустить</button>
+        <button id="btn-stop" type="button" disabled>■ Стоп</button>
+        <button id="btn-check" class="check" type="button">✓ Проверить</button>
+        <button id="btn-hint" type="button">Подсказка</button>
+        <button id="btn-turtle" type="button">Пример с черепахой</button>
+        <span class="kbd-hint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> запуск</span>
+      </div>
+    </div>
+    <div class="right">
+      <div class="pane">
+        <div class="pane-head"><span>Вывод программы</span><span><button id="btn-show-turtle" class="icon-btn" type="button" hidden>Рисунок</button> <button id="btn-clear" class="icon-btn" type="button">Очистить</button></span></div>
+        <div class="console" id="console" aria-live="polite"><span class="sys">Загружаю Python…</span></div>
+      </div>
+      <div class="pane err-pane" id="err-pane">
+        <div class="pane-head"><span id="err-title">Сообщения об ошибках</span></div>
+        <div class="errors" id="errors" aria-live="polite"><span class="empty">Ошибок нет.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="turtle-win" id="turtle-win" role="dialog" aria-label="Рисунок черепахи" hidden>
+    <div class="pane-head" id="turtle-drag"><span>Рисунок черепахи</span><button id="btn-close-turtle" class="icon-btn" type="button" aria-label="Закрыть окно рисунка">✕</button></div>
+    <div class="body">
+      <div id="turtle"></div>
+      <span class="caption">Лист в клетку: начало координат в центре, одна клетка 20 шагов черепахи. Окно можно перетащить за заголовок.</span>
+    </div>
+  </div>
+
+  <section class="card results" aria-labelledby="res-h">
+    <div class="verdict"><h3 id="res-h">Проверка</h3><span class="pill idle" id="verdict">ещё не проверено</span></div>
+    <div class="table-scroll" id="tests-box"><p class="caption">Нажми «Проверить»: программа запустится на нескольких тестах, в том числе на скрытых.</p></div>
+    <div class="hints" id="hints"></div>
+  </section>
+
+  <section class="bottom">
+    <div class="card">
+      <div class="verdict"><h3>Журнал для учителя</h3></div>
+      <div class="stats"><span>Запусков: <b id="st-runs">0</b></span><span>Ошибок: <b id="st-errors">0</b></span><span>Проверок: <b id="st-checks">0</b></span><span>Подсказок: <b id="st-hints">0</b></span></div>
+      <div class="log" id="log"></div>
+    </div>
+    <div class="card">
+      <h3>Как скрипт страницы следит за песочницей</h3>
+      <p class="caption">Каждое действие ученика приходит событием. Журнал слева собран ровно этими подписками.</p>
+<pre class="api">lessonSandbox.on('run',    e =&gt; …) // e.code
+lessonSandbox.on('input',  e =&gt; …) // e.prompt, e.value
+lessonSandbox.on('output', e =&gt; …) // e.text
+lessonSandbox.on('error',  e =&gt; …) // e.type, e.line, e.message, e.ru
+lessonSandbox.on('check',  e =&gt; …) // e.passed, e.total, e.tests
+lessonSandbox.on('hint',   e =&gt; …) // e.text
+
+// запустить код с заранее заданным вводом:
+const r = await lessonSandbox.run(code, { inputs: ['5'] })
+// r.ok, r.output, r.error</pre>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const DRAFT = "n = int(input('Введите n: '))\ns = 0\nfor i in range(1, n):\n    s = s + i\nprint(s)\n";
+  const TURTLE = "import turtle\n\nt = turtle.Turtle()\nt.shape('turtle')\nt.speed(3)\n\n# квадрат со стороной 5 клеток\nfor i in range(4):\n    t.forward(100)\n    t.left(90)\n";
+  const STORE = 'sandbox-task1-code';
+
+  /* ---------- редактор ---------- */
+  let saved = null;
+  try { saved = localStorage.getItem(STORE); } catch (e) {}
+  const ta = $('fallback-editor');
+  ta.value = saved || DRAFT;
+  let cm = null;
+  if (window.CodeMirror) {
+    cm = CodeMirror.fromTextArea(ta, {
+      mode: 'python', lineNumbers: true, indentUnit: 4, tabSize: 4, indentWithTabs: false,
+      extraKeys: {
+        Tab: c => c.somethingSelected() ? c.indentSelection('add') : c.replaceSelection('    ', 'end'),
+        'Ctrl-Enter': () => runInteractive(), 'Cmd-Enter': () => runInteractive()
+      }
+    });
+    cm.on('change', () => { clearErrLine(); try { localStorage.setItem(STORE, cm.getValue()); } catch (e) {} });
+  } else {
+    ta.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) runInteractive(); });
+    ta.addEventListener('input', () => { try { localStorage.setItem(STORE, ta.value); } catch (e) {} });
+  }
+  const getCode = () => cm ? cm.getValue() : ta.value;
+  const setCode = s => cm ? cm.setValue(s) : (ta.value = s);
+  let errMark = null;
+  function markErrLine(line) { if (!cm || !line) return; clearErrLine(); errMark = cm.addLineClass(line - 1, 'background', 'err-line'); }
+  function clearErrLine() { if (cm && errMark) { cm.removeLineClass(errMark, 'background', 'err-line'); errMark = null; } }
+
+  /* ---------- события для скрипта страницы ---------- */
+  const listeners = {};
+  const on = (type, fn) => ((listeners[type] = listeners[type] || []).push(fn), () => listeners[type] = listeners[type].filter(f => f !== fn));
+  const emit = (type, data) => (listeners[type] || []).forEach(fn => { try { fn({ type, time: new Date(), ...data }); } catch (e) { console.error(e); } });
+
+  /* ---------- понятные ошибки ---------- */
+  function explain(type, msg, line, code) {
+    const lines = code.split('\n');
+    const src = (lines[line - 1] || '').trim();
+    const prev = (lines[line - 2] || '').trimEnd();
+    const at = line ? ` в строке ${line}` : '';
+    if (type === 'SyntaxError' || type === 'IndentationError') {
+      if (/^(if|elif|else|for|while|def)\b/.test(src) && !src.endsWith(':')) return `Нет двоеточия${at}. Строка с <code>${src.split(/\s/)[0]}</code> должна заканчиваться знаком <code>:</code>.`;
+      if (prev.endsWith(':') && (lines[line - 1] || '').search(/\S/) <= prev.search(/\S/)) return `Нет отступа${at}. После строки с двоеточием команды тела нужно сдвинуть вправо на 4 пробела.`;
+      const open = (src.match(/[(\[]/g) || []).length, close = (src.match(/[)\]]/g) || []).length;
+      if (open !== close) return `Скобки не сходятся${at}: открыто ${open}, закрыто ${close}.`;
+      if (((src.match(/'/g) || []).length % 2) || ((src.match(/"/g) || []).length % 2)) return `Не закрыта кавычка${at}.`;
+      if (/(^|[^=!<>])=([^=]|$)/.test(src) && /^(if|elif|while)\b/.test(src)) return `В условии${at} для сравнения нужно <code>==</code>, а не <code>=</code>.`;
+      if (type === 'IndentationError') return `Неправильный отступ${at}. Строки одного блока должны начинаться с одинакового числа пробелов.`;
+      return `Python не смог разобрать строку ${line}. Проверь двоеточия, скобки, кавычки и отступы рядом с ней.`;
+    }
+    if (type === 'NameError') { const n = (msg.match(/name '([^']+)'/) || [])[1]; return `Python не знает имени <code>${n}</code>${at}. Проверь, нет ли опечатки, и задана ли переменная раньше этой строки.`; }
+    if (type === 'TypeError' && /concatenate|unsupported operand/.test(msg)) return `Нельзя смешивать текст и число${at}. Функция <code>input()</code> возвращает строку; чтобы получить число, напиши <code>int(input())</code>.`;
+    if (type === 'TypeError') return `Действие${at} нельзя выполнить с такими значениями: ${msg}.`;
+    if (type === 'ValueError' && /int\(\)/.test(msg)) { const v = (msg.match(/: (.*)$/) || [])[1] || ''; return `<code>int()</code> не смог превратить ${v} в целое число${at}. Введи число цифрами.`; }
+    if (type === 'ZeroDivisionError') return `Деление на ноль${at}.`;
+    if (type === 'IndexError') return `Обращение к элементу, которого нет в списке${at}.`;
+    if (type === 'TimeLimitError' || type === 'Stopped') return type === 'Stopped' ? 'Программа остановлена.' : 'Программа работает слишком долго. Возможно, цикл никогда не заканчивается.';
+    if (type === 'NoMoreInput') return 'Программа просит ввод больше раз, чем нужно в задании.';
+    return `${type}${at}: ${msg}`;
+  }
+  function parseError(e, code) {
+    if (e && e.__stopped) return { type: 'Stopped', line: null, message: 'остановлено', ru: explain('Stopped') };
+    if (e && e.__noinput) return { type: 'NoMoreInput', line: null, message: 'нет больше ввода', ru: explain('NoMoreInput') };
+    const type = (e && e.tp$name) || 'Error';
+    let message = '';
+    try { message = e.args && e.args.v && e.args.v[0] ? String(e.args.v[0].v) : String(e); } catch (_) { message = String(e); }
+    const line = (e && e.traceback && e.traceback[0] && e.traceback[0].lineno) || null;
+    return { type, line, message, ru: explain(type, message, line, code) };
+  }
+
+  /* ---------- запуск ---------- */
+  let busy = false, stopFlag = false, pendingInput = null;
+  function readFile(f) {
+    if (Sk.builtinFiles && Sk.builtinFiles.files[f] !== undefined) return Sk.builtinFiles.files[f];
+    throw new Sk.builtin.ImportError("модуль не найден: " + f);
+  }
+  async function run(code, opts = {}) {
+    if (!window.Sk) throw new Error('Python не загрузился');
+    const inputs = opts.inputs ? opts.inputs.slice() : null;
+    let output = '';
+    stopFlag = false;
+    Sk.configure({
+      __future__: Sk.python3, read: readFile, yieldLimit: 50, execLimit: opts.timeLimit || null,
+      inputfunTakesPrompt: true,
+      output: text => { output += text; opts.onOutput && opts.onOutput(text); emit('output', { text, silent: !!opts.silent }); },
+      inputfun: prompt => {
+        if (inputs) {
+          if (!inputs.length) { const err = new Error('no input'); err.__noinput = true; throw err; }
+          const v = String(inputs.shift()); emit('input', { prompt, value: v, silent: !!opts.silent }); return v;
+        }
+        return opts.onInput(prompt).then(v => { emit('input', { prompt, value: v }); return v; });
+      }
+    });
+    Sk.execLimit = opts.timeLimit || Number.POSITIVE_INFINITY;
+    Sk.TurtleGraphics = { target: opts.turtleTarget || 'turtle-hidden', width: 400, height: 300, animate: !opts.silent };
+    try {
+      await Sk.misceval.asyncToPromise(() => Sk.importMainWithBody('<stdin>', false, code, true),
+        { '*': () => { if (stopFlag) { const err = new Error('stop'); err.__stopped = true; throw err; } } });
+      return { ok: true, output };
+    } catch (e) {
+      const error = parseError(e, code);
+      if (!opts.silent) emit('error', error);
+      return { ok: false, output, error };
+    }
+  }
+
+  const con = $('console');
+  const print = (text, cls) => { const s = document.createElement('span'); if (cls) s.className = cls; s.textContent = text; con.appendChild(s); con.scrollTop = con.scrollHeight; return s; };
+  function askInput(prompt) {
+    if (prompt) print(prompt);
+    return new Promise((resolve, reject) => {
+      const inp = document.createElement('input');
+      inp.id = 'console-input'; inp.setAttribute('aria-label', 'Ввод для программы'); inp.autocomplete = 'off';
+      con.appendChild(inp); inp.focus(); con.scrollTop = con.scrollHeight;
+      pendingInput = { reject: () => { inp.remove(); const err = new Error('stop'); err.__stopped = true; reject(err); } };
+      inp.addEventListener('keydown', ev => {
+        if (ev.key !== 'Enter') return;
+        const v = inp.value; inp.remove(); pendingInput = null;
+        print(v, 'typed'); print('\n'); resolve(v);
+      });
+    });
+  }
+
+  const hidden = document.createElement('div'); hidden.id = 'turtle-hidden'; hidden.hidden = true; document.body.appendChild(hidden);
+  function setBusy(b) { busy = b; $('btn-run').disabled = b; $('btn-check').disabled = b; $('btn-stop').disabled = !b; $('btn-turtle').disabled = b; }
+
+  const stats = { runs: 0, errors: 0, checks: 0, hints: 0 };
+  async function runInteractive() {
+    if (busy || !window.Sk) return;
+    const code = getCode();
+    clearErrLine(); con.textContent = ''; showError(null);
+    const usesTurtle = /\bturtle\b/.test(code);
+    $('turtle').innerHTML = ''; $('btn-show-turtle').hidden = !usesTurtle;
+    if (usesTurtle) openTurtle(); else $('turtle-win').hidden = true;
+    setBusy(true); emit('run', { code });
+    const r = await run(code, { onInput: askInput, onOutput: t => print(t), turtleTarget: usesTurtle ? 'turtle' : null });
+    setBusy(false);
+    if (r.ok) print((r.output && !r.output.endsWith('\n') ? '\n' : '') + '— программа завершена —', 'sys');
+    else {
+      print((r.output && !r.output.endsWith('\n') ? '\n' : '') + '— программа прервана ошибкой —', 'err');
+      showError(r.error);
+      markErrLine(r.error.line);
+    }
+  }
+  function showError(err) {
+    const box = $('errors'), pane = $('err-pane');
+    pane.classList.toggle('has-error', !!err && err.type !== 'Stopped');
+    if (!err) { box.innerHTML = '<span class="empty">Ошибок нет.</span>'; $('err-title').textContent = 'Сообщения об ошибках'; return; }
+    $('err-title').textContent = err.type === 'Stopped' ? 'Программа остановлена' : (err.line ? `Ошибка в строке ${err.line}` : 'Ошибка');
+    box.innerHTML = `<div class="ru">${err.ru}</div><div class="raw"></div>`;
+    box.querySelector('.raw').textContent = err.type === 'Stopped' ? '' : `${err.type}: ${err.message}`;
+    if (cm && err.line) {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'goto'; b.textContent = `Перейти к строке ${err.line}`;
+      b.onclick = () => { cm.focus(); cm.setCursor({ line: err.line - 1, ch: 0 }); cm.scrollIntoView(null, 80); };
+      box.appendChild(b);
+    }
+  }
+
+  /* окно рисунка: открывается поверх страницы, перетаскивается за заголовок */
+  const win = $('turtle-win');
+  let winPlaced = false;
+  function openTurtle() {
+    win.hidden = false;
+    if (!winPlaced) {
+      const r = document.querySelector('.pane.editor').getBoundingClientRect();
+      win.style.left = Math.max(16, r.right - win.offsetWidth - 24) + 'px';
+      win.style.top = Math.max(16, Math.min(r.top + 56, innerHeight - win.offsetHeight - 16)) + 'px';
+      winPlaced = true;
+    }
+  }
+  $('btn-close-turtle').onclick = () => { win.hidden = true; };
+  $('btn-show-turtle').onclick = openTurtle;
+  (() => {
+    const h = $('turtle-drag'); let sx, sy, ox, oy, drag = false;
+    h.addEventListener('pointerdown', e => {
+      if (e.target.closest('button')) return;
+      drag = true; h.setPointerCapture(e.pointerId); sx = e.clientX; sy = e.clientY; ox = win.offsetLeft; oy = win.offsetTop;
+    });
+    h.addEventListener('pointermove', e => {
+      if (!drag) return;
+      win.style.left = Math.min(Math.max(0, ox + e.clientX - sx), innerWidth - 80) + 'px';
+      win.style.top = Math.min(Math.max(0, oy + e.clientY - sy), innerHeight - 40) + 'px';
+    });
+    h.addEventListener('pointerup', () => { drag = false; });
+  })();
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !win.hidden) win.hidden = true; });
+
+  function stop() { stopFlag = true; if (pendingInput) pendingInput.reject(); }
+
+  /* ---------- автопроверка ---------- */
+  const TESTS = [5, 1, 0, 10, 100, 37].map(n => ({ n, expected: n * (n + 1) / 2, hidden: n > 10 }));
+  const sumTo = k => k * (k + 1) / 2;
+  const nums = s => (s.match(/-?\d+/g) || []).map(Number);
+
+  function diagnose(code, results) {
+    const failed = results.filter(r => !r.passed);
+    if (!failed.length) return null;
+    if (!/input\s*\(/.test(code)) return 'Программа не читает число. Получи <code>n</code> через <code>input()</code>.';
+    const err = failed.find(r => r.error);
+    if (err) {
+      if (err.error.type === 'TimeLimitError') return 'На одном из тестов программа не закончилась. Проверь условие цикла.';
+      return `На тесте n = ${err.n} программа упала с ошибкой. ${err.error.ru}`;
+    }
+    if (failed.every(r => r.got.length === 0)) return 'Программа ничего не выводит. Не забыт ли <code>print(s)</code>?';
+    if (failed.some(r => r.got.length > 1)) {
+      const r = failed.find(r => r.got.length > 1);
+      if (r.got[r.got.length - 1] === r.expected) return '<code>print</code> стоит внутри цикла, поэтому печатается каждая промежуточная сумма. Убери отступ перед <code>print</code>, чтобы он выполнился один раз после цикла.';
+      return 'Программа выводит несколько чисел, а нужно одно.';
+    }
+    const v = r => r.got[0];
+    if (failed.every(r => v(r) === sumTo(r.n - 1))) return 'Ответ каждый раз меньше на n. Вспомни, что <code>range(1, n)</code> останавливается на n − 1. Каким должен быть второй аргумент, чтобы в сумму попало само n?';
+    if (failed.every(r => v(r) === r.n)) return 'Выводится само число n, а не сумма. Проверь, что печатается накопитель <code>s</code>.';
+    if (failed.every(r => v(r) === r.n - 1 || v(r) === Math.max(0, r.n - 1))) return 'Выводится последнее значение <code>i</code>, а не сумма.';
+    if (new Set(results.map(v)).size === 1) return 'На всех тестах один и тот же ответ. Похоже, программа не использует введённое число.';
+    if (failed.every(r => v(r) > r.expected)) return 'Ответ больше нужного. Проверь, с какого числа начинается <code>range</code> и чему равно <code>s</code> до цикла.';
+    return 'На некоторых тестах ответ неверный. Сравни свой вывод с ожидаемым в таблице.';
+  }
+
+  async function check() {
+    if (busy || !window.Sk) return;
+    const code = getCode();
+    setBusy(true);
+    const v0 = $('verdict'); v0.className = 'pill idle'; v0.textContent = 'проверяю…';
+    const results = [];
+    for (const t of TESTS) {
+      const r = await run(code, { inputs: [String(t.n)], silent: true, timeLimit: 1500 });
+      const got = nums(r.output);
+      results.push({ ...t, got, output: r.output.trim(), error: r.ok ? null : r.error, passed: r.ok && got.length === 1 && got[0] === t.expected });
+      if (stopFlag || (r.error && r.error.type === 'TimeLimitError')) break;
+    }
+    setBusy(false);
+    const passed = results.filter(r => r.passed).length, total = TESTS.length;
+    renderResults(results, passed, total);
+    const diag = diagnose(code, results);
+    if (diag) showHint(diag, 'auto');
+    emit('check', { passed: passed === total, score: passed, total, code, tests: results.map(r => ({ n: r.n, passed: r.passed, output: r.output, error: r.error && r.error.type })) });
+  }
+  function renderResults(results, passed, total) {
+    const ok = passed === total;
+    const v = $('verdict'); v.className = 'pill ' + (ok ? 'ok' : 'bad'); v.textContent = ok ? `засчитано · ${passed}/${total}` : `не засчитано · ${passed}/${total}`;
+    const rows = results.map(r => `<tr><td class="mono">${r.hidden ? 'скрытый' : r.n}</td><td class="mono">${r.hidden ? '•••' : r.expected}</td><td class="mono">${r.hidden && !r.passed ? '•••' : esc(r.error ? r.error.type : (r.output || '(пусто)'))}</td><td><span class="pill ${r.passed ? 'ok' : 'bad'}">${r.passed ? 'верно' : 'неверно'}</span></td></tr>`).join('');
+    $('tests-box').innerHTML = `<table><thead><tr><th>Ввод</th><th>Ожидается</th><th>Вывод программы</th><th>Итог</th></tr></thead><tbody>${rows}</tbody></table>`;
+    $('hints').innerHTML = '';
+    if (ok) { const d = document.createElement('div'); d.className = 'hint'; d.innerHTML = '<b>Отлично!</b> Все тесты пройдены. Попробуй посчитать ту же сумму без цикла по формуле n·(n+1)/2.'; $('hints').appendChild(d); }
+  }
+  const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+  const LADDER = [
+    'Сумму копят в переменной: до цикла <code>s = 0</code>, в теле цикла <code>s = s + i</code>, а <code>print(s)</code> после цикла, без отступа.',
+    '<code>range(a, b)</code> перебирает числа от a до b − 1. Число b в перебор не попадает.',
+    'Чтобы перебрать числа от 1 до n включительно, нужно <code>range(1, n + 1)</code>.'
+  ];
+  let ladderStep = 0;
+  function showHint(html, source) {
+    const d = document.createElement('div'); d.className = 'hint';
+    d.innerHTML = `<b>${source === 'auto' ? 'Что не так' : 'Подсказка ' + ladderStep + ' из ' + LADDER.length}.</b> ${html}`;
+    $('hints').appendChild(d);
+    emit('hint', { text: d.textContent, source });
+  }
+  function nextHint() {
+    if (ladderStep >= LADDER.length) return;
+    ladderStep++; showHint(LADDER[ladderStep - 1], 'ladder');
+    if (ladderStep >= LADDER.length) $('btn-hint').disabled = true;
+  }
+
+  /* ---------- журнал учителя (пример подписки) ---------- */
+  const log = $('log');
+  function logLine(type, text) {
+    const d = document.createElement('div');
+    const t = new Date().toLocaleTimeString('ru-RU');
+    d.innerHTML = `<time>${t}</time><span class="t t-${type}">${type}</span><span></span>`;
+    d.lastChild.textContent = text; log.prepend(d);
+  }
+  const bump = k => { stats[k]++; $('st-' + k).textContent = stats[k]; };
+  on('run', e => { bump('runs'); logLine('run', e.code.split('\n').length + ' строк кода'); });
+  on('input', e => { if (!e.silent) logLine('input', `${e.prompt || ''}${e.value}`); });
+  on('output', e => { if (!e.silent && e.text.trim()) logLine('output', e.text.trim()); });
+  on('error', e => { bump('errors'); logLine('error', `${e.type}${e.line ? ', строка ' + e.line : ''}`); });
+  on('check', e => { bump('checks'); logLine('check', `${e.score}/${e.total} ${e.passed ? 'засчитано' : 'не засчитано'}`); });
+  on('hint', e => { bump('hints'); logLine('hint', e.text.slice(0, 80)); });
+
+  window.lessonSandbox = { on, run: (code, opts = {}) => run(code, { silent: true, timeLimit: 3000, ...opts }), getCode, setCode };
+
+  /* ---------- кнопки ---------- */
+  $('btn-run').onclick = runInteractive;
+  $('btn-stop').onclick = stop;
+  $('btn-check').onclick = check;
+  $('btn-hint').onclick = nextHint;
+  $('btn-clear').onclick = () => { con.textContent = ''; showError(null); clearErrLine(); };
+  $('btn-reset').onclick = () => setCode(DRAFT);
+  $('btn-turtle').onclick = () => { setCode(TURTLE); runInteractive(); };
+
+  con.textContent = '';
+  if (window.Sk) print('Python готов. Нажми «Запустить».\n', 'sys');
+  else { print('Не удалось загрузить Python. Проверь подключение к интернету и обнови страницу.\n', 'err'); setBusy(false); $('btn-run').disabled = $('btn-check').disabled = true; }
+})();
+</script>

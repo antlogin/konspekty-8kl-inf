@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="catalog:title" content="Дизайн-проект учебной страницы">
+  <meta name="catalog:type" content="reference">
+  <meta name="catalog:topic" content="Шаблон интерфейса">
+  <meta name="catalog:description" content="Демонстрационный дизайн-проект учебной HTML-страницы по спецификации v1.5.">
+  <meta name="catalog:tags" content="дизайн, шаблон, интерфейс, учебная страница">
+  <meta name="catalog:order" content="10">
+  <meta name="catalog:hidden" content="true">
+  <meta name="catalog:legacy" content="">
+
+  <title>Дизайн-проект учебной страницы</title>
+
+  <style>
+    :root {
+      --green: #123d32;
+      --green2: #1d5a49;
+      --paper: #ffffff;
+      --bg: #edf2ee;
+      --ink: #14201c;
+      --muted: #61716b;
+      --accent: #ffb000;
+      --ok: #238b57;
+      --bad: #c8413a;
+      --line: #d7e0dc;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.48 system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    }
+
+    a { color: inherit; }
+
+    .wrap,
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      width: 100%;
+      background: var(--green);
+      color: white;
+      padding: 18px 0 16px;
+    }
+
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #bfe2d4;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      max-width: 820px;
+      font-size: 30px;
+      line-height: 1.03;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 0;
+      color: #e3f0eb;
+      font-size: 14px;
+    }
+
+    .lesson-badge {
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #281b00;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      width: 100%;
+      overflow-x: auto;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-row {
+      display: flex;
+      gap: 6px;
+      padding: 6px 0;
+    }
+
+    nav a {
+      flex: 0 0 auto;
+      padding: 7px 10px;
+      border-radius: 9px;
+      color: var(--green);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      background: #e7f2ed;
+    }
+
+    /* ===== MAIN ===== */
+    main {
+      padding: 18px 0 48px;
+    }
+
+    .card {
+      margin-bottom: 12px;
+      padding: 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgb(25 58 46 / 4%);
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      color: var(--green);
+      font-size: 22px;
+      line-height: 1.15;
+    }
+
+    h3 {
+      margin: 16px 0 6px;
+      color: var(--green2);
+      font-size: 17px;
+    }
+
+    p {
+      margin: 8px 0 14px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .mini-card {
+      padding: 10px;
+      background: #fff6dc;
+      border: 1px solid #f0d58b;
+      border-left: 5px solid var(--accent);
+      border-radius: 10px;
+    }
+
+    .formula {
+      margin: 18px 0;
+      padding: 18px;
+      text-align: center;
+      background: #eaf4ef;
+      border-radius: 12px;
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 850;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 5px 10px;
+      border: 1px solid #aec7bd;
+      border-radius: 999px;
+      color: var(--green);
+      background: white;
+      font-size: 14px;
+    }
+
+    /* ===== ACTIONS ===== */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    button,
+    .button {
+      min-height: 38px;
+      border: 0;
+      border-radius: 10px;
+      padding: 8px 13px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .primary {
+      background: var(--green);
+      color: white;
+    }
+
+    .primary:hover {
+      background: var(--green2);
+    }
+
+    .accent {
+      background: var(--accent);
+      color: #281b00;
+    }
+
+    .accent:hover {
+      background: #e9a200;
+    }
+
+    .secondary {
+      background: white;
+      color: var(--green);
+      border: 1px solid var(--line);
+    }
+
+    .secondary:hover {
+      background: #eaf4ef;
+      border-color: #aec7bd;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ===== TRAINER SAMPLE ===== */
+    .trainer {
+      border-top: 7px solid var(--accent);
+    }
+
+    .trainer-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .progress-wrap {
+      width: 220px;
+      max-width: 100%;
+    }
+
+    .progress {
+      height: 8px;
+      overflow: hidden;
+      background: #dce5e0;
+      border-radius: 99px;
+    }
+
+    .progress > span {
+      display: block;
+      width: 60%;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .choice-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      min-inline-size: 0;
+    }
+
+    .choice-option {
+      position: relative;
+      min-width: 0;
+    }
+
+    /* Visually hidden, but still keyboard- and screen-reader-accessible. */
+    .choice-option input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      width: 100%;
+      min-height: 44px;
+      padding: 12px 14px;
+      text-align: left;
+      background: var(--paper);
+      color: var(--ink);
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      cursor: pointer;
+      transition:
+        border-color .15s,
+        background .15s,
+        transform .15s;
+    }
+
+    .choice::before {
+      content: "";
+      flex: 0 0 20px;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #8da59a;
+      border-radius: 50%;
+      background: var(--paper);
+      box-shadow: inset 0 0 0 5px var(--paper);
+    }
+
+    .choice-option:hover .choice {
+      border-color: var(--green2);
+      transform: translateY(-1px);
+    }
+
+    .choice-option input:checked + .choice {
+      border-color: #d19a00;
+      background: #fff3cf;
+    }
+
+    .choice-option input:checked + .choice::before {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    .choice-option input:focus-visible + .choice {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .feedback-examples {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .answer-state {
+      min-height: 44px;
+      padding: 12px 14px;
+      border: 2px solid;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    .answer-state.correct {
+      border-color: var(--ok);
+      background: #e5f6ed;
+      color: #16663f;
+    }
+
+    .answer-state.wrong {
+      border-color: var(--bad);
+      background: #fff0ef;
+      color: #812d29;
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .status {
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-weight: 750;
+    }
+
+    .status.ok {
+      background: #e5f6ed;
+      color: #16663f;
+      border: 1px solid #b9dfc9;
+    }
+
+    .status.bad {
+      background: #fff0ef;
+      color: #812d29;
+      border: 1px solid #efc0bd;
+    }
+
+    /* ===== TABLE ===== */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      background: #eaf4ef;
+      color: var(--green);
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    footer {
+      padding: 22px 0 28px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+
+    /* ===== COMPACT DESKTOP ===== */
+    @media (max-width: 1400px) and (min-width: 721px) {
+      body {
+        font-size: 14px;
+        line-height: 1.44;
+      }
+
+      .wrap,
+      main {
+        width: min(900px, calc(100% - 36px));
+      }
+
+      header {
+        padding: 11px 0 10px;
+      }
+
+      .eyebrow {
+        font-size: 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .lead {
+        font-size: 12px;
+      }
+
+      .lesson-badge {
+        font-size: 10px;
+      }
+
+      nav a {
+        padding-block: 5px;
+        font-size: 11px;
+      }
+
+      main {
+        padding-top: 14px;
+      }
+
+      .card {
+        margin-bottom: 9px;
+        padding: 14px;
+        border-radius: 8px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      h3 {
+        font-size: 15px;
+      }
+
+      button,
+      .button {
+        min-height: 34px;
+      }
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 720px) {
+      .wrap,
+      main {
+        width: auto;
+        margin-inline: 14px;
+      }
+
+      header .wrap {
+        width: auto;
+        margin-inline: 14px;
+      }
+
+      .header-grid,
+      .grid-2,
+      .status-row,
+      .feedback-examples {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-badge {
+        justify-self: start;
+      }
+
+      .trainer-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .progress-wrap {
+        width: 100%;
+      }
+
+      .actions {
+        align-items: stretch;
+      }
+
+      .actions > * {
+        width: 100%;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        animation: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    @media print {
+      nav,
+      .actions,
+      .trainer-demo-controls {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+        font-size: 13px;
+      }
+
+      .wrap,
+      main,
+      header .wrap {
+        width: 100%;
+        margin-inline: 0;
+      }
+
+      .card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap header-grid">
+      <div>
+        <p class="eyebrow">Учебный материал · дизайн-проект</p>
+        <h1>Единый шаблон для уроков, тестов и тренажёров</h1>
+        <p class="lead">
+          Демонстрационная страница, показывающая визуальную систему,
+          сетку, адаптивность и интерактивные состояния проекта.
+        </p>
+      </div>
+      <div class="lesson-badge">Шаблон v1.5</div>
+    </div>
+  </header>
+
+  <nav aria-label="Навигация по странице">
+    <div class="wrap nav-row">
+      <a href="#overview">Обзор</a>
+      <a href="#content">Контент</a>
+      <a href="#components">Компоненты</a>
+      <a href="#trainer">Тренажёр</a>
+      <a href="#table">Таблица</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="card" id="overview">
+      <h2>Обзор дизайн-системы</h2>
+
+      <div class="grid-2">
+        <div class="mini-card">
+          <strong>Основной принцип</strong>
+          <p>
+            На компьютере содержимое занимает не более 80% ширины окна,
+            поэтому слева и справа всегда остаётся не менее 10% свободного пространства.
+          </p>
+        </div>
+
+        <div>
+          <h3>Ключевые признаки</h3>
+          <div class="tags">
+            <span class="tag">адаптивность</span>
+            <span class="tag">масштабирование</span>
+            <span class="tag">мобильный дизайн</span>
+            <span class="tag">единая палитра</span>
+            <span class="tag">доступный focus</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="formula">
+        desktop: ≤ 1120px · compact: ≤ 900px · mobile: около 14px боковых полей
+      </div>
+    </section>
+
+    <section class="card" id="content">
+      <h2>Пример учебного содержания</h2>
+
+      <div class="grid-2">
+        <div>
+          <h3>Основной блок</h3>
+          <p>
+            Основной текст набран системным шрифтом с размером около 16 px
+            и увеличенным межстрочным интервалом для комфортного чтения.
+          </p>
+          <p class="muted">
+            Второстепенные комментарии и пояснения используют приглушённый цвет.
+          </p>
+        </div>
+
+        <div>
+          <h3>Визуальная иерархия</h3>
+          <p>
+            Заголовки используют тёмно-зелёную гамму. Жёлтый цвет применяется
+            только как акцент: для важных действий, выбора и прогресса.
+          </p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="primary" type="button">Основное действие</button>
+        <button class="accent" type="button">Акцентное действие</button>
+        <button class="secondary" type="button">Вторичное действие</button>
+      </div>
+    </section>
+
+    <section class="card" id="components">
+      <h2>Компоненты и состояния</h2>
+
+      <div class="grid-2">
+        <div>
+          <h3>Карточки</h3>
+          <p>
+            Белые поверхности отделяются от светлого фона тонкой границей
+            и умеренной тенью. Скругления — мягкие, без декоративной избыточности.
+          </p>
+        </div>
+
+        <div>
+          <h3>Состояния</h3>
+          <p>
+            Выбор обозначается жёлтым, успех — зелёным,
+            ошибка — красным. Эти состояния не смешиваются между собой.
+          </p>
+        </div>
+      </div>
+
+      <div class="status-row">
+        <div class="status ok">Верно — состояние успешного действия</div>
+        <div class="status bad">Ошибка — состояние неверного действия</div>
+      </div>
+    </section>
+
+    <section class="card trainer" id="trainer">
+      <div class="trainer-head">
+        <div>
+          <h2>Пример тренажёра</h2>
+          <p class="muted">Интерактивные элементы сохраняют крупную область нажатия и читаемость на телефоне.</p>
+        </div>
+
+        <div class="progress-wrap" aria-label="Прогресс">
+          <div class="progress"><span></span></div>
+          <p class="muted">Прогресс: 60%</p>
+        </div>
+      </div>
+
+      <fieldset class="choice-list">
+        <legend class="muted">Выберите один вариант</legend>
+
+        <div class="choice-option">
+          <input type="radio" name="demo-choice" id="choice-1">
+          <label class="choice" for="choice-1">Обычный вариант ответа</label>
+        </div>
+
+        <div class="choice-option">
+          <input type="radio" name="demo-choice" id="choice-2" checked>
+          <label class="choice" for="choice-2">Выбранный вариант ответа</label>
+        </div>
+
+        <div class="choice-option">
+          <input type="radio" name="demo-choice" id="choice-3">
+          <label class="choice" for="choice-3">Ещё один вариант ответа</label>
+        </div>
+      </fieldset>
+
+      <div class="feedback-examples" aria-label="Примеры обратной связи">
+        <div class="answer-state correct">Правильный ответ</div>
+        <div class="answer-state wrong">Неверный ответ</div>
+      </div>
+    </section>
+
+    <section class="card" id="table">
+      <h2>Пример таблицы</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Компонент</th>
+              <th>Цвет</th>
+              <th>Назначение</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Основной зелёный</td>
+              <td>#123d32</td>
+              <td>Шапка, основные кнопки, крупные акценты</td>
+            </tr>
+            <tr>
+              <td>Жёлтый</td>
+              <td>#ffb000</td>
+              <td>Выбор, прогресс, ключевые действия</td>
+            </tr>
+            <tr>
+              <td>Успех</td>
+              <td>#238b57</td>
+              <td>Правильные ответы и позитивная обратная связь</td>
+            </tr>
+            <tr>
+              <td>Ошибка</td>
+              <td>#c8413a</td>
+              <td>Ошибочные ответы и предупреждения</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Дизайн-проект учебной HTML-страницы · спецификация v1.5
+  </footer>
+
+</body>
+</html>
