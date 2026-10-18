@@ -318,6 +318,7 @@ body.locked nav.menu,body.locked main{display:none}
 </style>
 </head>
 <body class="locked">
+<noscript><p style="margin:16px;font:16px Arial">Для работы конспекта требуется включить JavaScript в браузере.</p></noscript>
 <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
   <div class="gate-card">
     <h2 id="gate-title">Вход в конспект</h2>
@@ -600,6 +601,14 @@ print("Прибытие: 09:40")</pre>
   <div class="body"><div id="turtle"></div></div>
 </div>
 
+<script id="error-trap">
+window.addEventListener('error', function (e) {
+  var m = document.getElementById('g-msg');
+  if (!m) return;
+  m.className = 'msg bad';
+  m.textContent = 'Ошибка загрузки страницы: ' + (e.message || 'неизвестная ошибка') + ' (' + String(e.filename || '').split('/').pop().slice(0, 40) + ':' + (e.lineno || '?') + ')';
+});
+</script>
 <script id="skulpt-core">
 (function(){'use strict';var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.ASSUME_ES5=!1;$jscomp.ASSUME_NO_NATIVE_MAP=!1;$jscomp.ASSUME_NO_NATIVE_SET=!1;$jscomp.SIMPLE_FROUND_POLYFILL=!1;$jscomp.defineProperty=$jscomp.ASSUME_ES5||"function"==typeof Object.defineProperties?Object.defineProperty:function(m,q,a){m!=Array.prototype&&m!=Object.prototype&&(m[q]=a.value)};$jscomp.getGlobal=function(m){return"undefined"!=typeof window&&window===m?m:"undefined"!=typeof global&&null!=global?global:m};$jscomp.global=$jscomp.getGlobal(this);
 $jscomp.polyfill=function(m,q,a,c){if(q){a=$jscomp.global;m=m.split(".");for(c=0;c<m.length-1;c++){var b=m[c];b in a||(a[b]={});a=a[b]}m=m[m.length-1];c=a[m];q=q(c);q!=c&&null!=q&&$jscomp.defineProperty(a,m,{configurable:!0,writable:!0,value:q})}};$jscomp.polyfill("Array.prototype.includes",function(m){return m?m:function(m,a){var c=this;c instanceof String&&(c=String(c));var b=c.length;a=a||0;for(0>a&&(a=Math.max(a+b,0));a<b;a++){var e=c[a];if(e===m||Object.is(e,m))return!0}return!1}},"es7","es3");
@@ -3019,31 +3028,42 @@ function markActive() {
 }
 
 /* ---------- запуск ---------- */
+// Каждый этап запускается отдельно: сбой в одном месте не отключает форму входа, а причина показывается в форме.
+function reportBootError(where, e) {
+  console.error(where, e);
+  const m = $('#g-msg');
+  if (m) { m.className = 'msg bad'; m.textContent = 'Ошибка загрузки страницы (' + where + '): ' + (e && e.message ? e.message : e); }
+}
+function step(where, fn) { try { fn(); } catch (e) { reportBootError(where, e); } }
 function boot() {
-  // страница без Python не запускается: интерфейс сообщает об этом
-  loadTele();
-  $$('.flow-fig').forEach(buildFlow);
-  $$('pre.code.py').forEach(decorateStaticCode);
-  $$('.sbx').forEach(h => { const id = h.dataset.task; createSandbox(h, id, TASKS[id]); });
-  buildQuestions();
-  bindNav();
-  bindBrowserEvents();
-  $('#btn-finish').addEventListener('click', finishLesson);
-  $('#btn-save').addEventListener('click', () => { saveWork(); });
-  $('#gate-form').addEventListener('submit', e => { e.preventDefault(); submitGate(false); });
-  $('#g-anon').addEventListener('click', () => submitGate(true));
-  $('#g-load').addEventListener('click', () => $('#g-file').click());
-  $('#g-file').addEventListener('change', e => { const f = e.target.files[0]; e.target.value = ''; if (f) loadWorkFile(f); });
-  $$('#page-plan .card, #page-theory .step').forEach(() => {});
-  const st = jget(K.state), ev = jget(K.events);
-  if (st && st.attemptId && st.student && access && access.word) {
-    showResume('Найдена работа от ' + hhmm(st.savedAt || st.startedAt) + ' (' + (st.student.anonymous ? st.student.anonCode : st.student.firstName + ' ' + st.student.lastName) + ').',
-      () => resumeState(st, ev && ev.attemptId === st.attemptId ? ev.events : [], 'browser', st.savedAt),
-      () => { store.del(K.state); store.del(K.events); skipServerRestore = true; prepareForm(); $('#g-first').focus(); });
-  } else prepareForm();
-  if (!window.Sk) {
-    const m = $('#g-msg'); m.className = 'msg bad'; m.textContent = 'Интерпретатор Python не загрузился. Следует обновить страницу.';
-  }
+  step('форма входа', () => {
+    $('#gate-form').addEventListener('submit', e => { e.preventDefault(); submitGate(false); });
+    $('#g-go').addEventListener('click', e => { e.preventDefault(); submitGate(false); });
+    $('#g-anon').addEventListener('click', () => submitGate(true));
+    $('#g-load').addEventListener('click', () => $('#g-file').click());
+    $('#g-file').addEventListener('change', e => { const f = e.target.files[0]; e.target.value = ''; if (f) loadWorkFile(f); });
+  });
+  step('телеметрия', loadTele);
+  step('блок-схемы', () => { $$('.flow-fig').forEach(buildFlow); $$('pre.code.py').forEach(decorateStaticCode); });
+  step('песочницы', () => { $$('.sbx').forEach(h => { const id = h.dataset.task; createSandbox(h, id, TASKS[id]); }); });
+  step('вопросы', buildQuestions);
+  step('меню', bindNav);
+  step('события браузера', bindBrowserEvents);
+  step('кнопки итога', () => {
+    $('#btn-finish').addEventListener('click', finishLesson);
+    $('#btn-save').addEventListener('click', () => { saveWork(); });
+  });
+  step('начальное состояние', () => {
+    const st = jget(K.state), ev = jget(K.events);
+    if (st && st.attemptId && st.student && access && access.word) {
+      showResume('Найдена работа от ' + hhmm(st.savedAt || st.startedAt) + ' (' + (st.student.anonymous ? st.student.anonCode : st.student.firstName + ' ' + st.student.lastName) + ').',
+        () => resumeState(st, ev && ev.attemptId === st.attemptId ? ev.events : [], 'browser', st.savedAt),
+        () => { store.del(K.state); store.del(K.events); skipServerRestore = true; prepareForm(); $('#g-first').focus(); });
+    } else prepareForm();
+  });
+  step('Python', () => {
+    if (!window.Sk) reportBootError('Python', new Error('интерпретатор Python не загрузился; следует обновить страницу'));
+  });
   window.lessonSandbox = {
     on: on, run: (code, o) => runPython(code, Object.assign({ silent: true, timeLimit: 3000 }, o || {})),
     sandboxes: SB, tasks: TASKS, state: () => S, events: () => allEvents, queue: () => T.queues, flush: flush, openPart: openPart,
