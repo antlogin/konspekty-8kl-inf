@@ -1,0 +1,225 @@
+<!-- ===================== 1. ПЛАН ЗАНЯТИЯ ===================== -->
+<section class="page print-page" id="page-plan" data-part="plan" aria-labelledby="h-plan">
+  <div class="card" id="route">
+    <h2 id="h-plan" tabindex="-1">План занятия</h2>
+    <div class="route">
+      <div class="route-lesson">
+        <ul class="route-list">
+          <li><span class="time">3&nbsp;мин</span><span><b>Повторение.</b> Три вопроса по теме К2: комментарии, способы записи алгоритмов, линейный алгоритм.</span></li>
+          <li><span class="time">7&nbsp;мин</span><span><b>Теория.</b> Исполнитель «Черепаха»: среда и система команд; линейные программы рисования фигур; перо, цвет, координаты.</span></li>
+          <li><span class="time">5&nbsp;мин</span><span><b>Разбор кода.</b> Программа для черепахи и три задания к ней.</span></li>
+          <li><span class="time">15–18&nbsp;мин</span><span><b>Практикум.</b> Три обязательные задачи и две задачи со звёздочкой (★) с автоматической проверкой рисунка.</span></li>
+          <li><span class="time">3&nbsp;мин</span><span><b>Итог.</b> Вывод, задания «Проверить себя», завершение занятия.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card goal">
+    <h3>Цель занятия</h3>
+    <p style="margin:0;max-width:680px">Усвоить среду и систему команд исполнителя «Черепаха», научиться составлять линейные программы рисования отрезков и фигур на языке Python и управлять пером, цветом и положением черепахи.</p>
+    <div class="note route-goal"><b>Планируемый результат.</b> Называются среда и команды исполнителя «Черепаха»; по рисунку определяется последовательность команд; составляются линейные программы, рисующие углы, квадрат, прямоугольник и треугольник; используются команды управления пером, цветом и координатами.</div>
+  </div>
+  <div class="card noprint">
+    <h3>Порядок работы</h3>
+    <div class="grid2">
+      <div class="panel"><h4>Песочница</h4><p>Программа записывается в редакторе и запускается кнопкой «Запустить» или клавишами <b>Ctrl</b>+<b>Enter</b>. Рисунок черепахи появляется в отдельном окне поверх страницы; окно перетаскивается за заголовок и закрывается крестиком или клавишей <b>Esc</b>. Кнопка «Рисунок» над выводом открывает окно снова.</p></div>
+      <div class="panel"><h4>Сохранение</h4><p>Работа сохраняется автоматически: после перезагрузки страницы предлагается продолжить. Кнопка «Сохранить работу» в части «Итог» скачивает zip-архив с результатами.</p></div>
+    </div>
+    <p class="small muted" style="margin:10px 0 0;max-width:680px">Шаги не блокируются: к любой части занятия можно перейти через меню в шапке. Предыдущий конспект: <a href="../K2/K2_Sposoby_zapisi_algoritmov.html">К2. Способы записи алгоритмов. Блок-схемы. Среда Python</a>.</p>
+  </div>
+</section>
+
+<!-- ===================== 2. ПОВТОРЕНИЕ ===================== -->
+<section class="page" id="page-review" data-part="review" aria-labelledby="h-review">
+  <h2 id="h-review" tabindex="-1">Повторение</h2>
+  <p class="lede">Три вопроса по теме предыдущего конспекта. Проверка выполняется сразу после выбора ответа; ответ можно изменить.</p>
+  <div class="qs" data-qgroup="review"></div>
+</section>
+
+<!-- ===================== 3. ТЕОРИЯ ===================== -->
+<section class="page print-page" id="page-theory" data-part="theory" aria-labelledby="h-theory">
+  <h2 id="h-theory" tabindex="-1">Теория</h2>
+
+  <div class="step" id="step-1">
+    <h3>Шаг 1. Исполнитель «Черепаха»</h3>
+    <div class="prose">
+      <p>Исполнитель «Черепаха» (англ. <i>turtle</i>) — виртуальный исполнитель, который перемещается по плоскости и оставляет за собой след. Он применяется для построения рисунков по программе; идея исполнителя восходит к учебному языку программирования Logo.</p>
+      <p>Среда исполнителя — плоскость с системой координат. Начало координат (0;&nbsp;0) находится в центре поля, ось <i>x</i> направлена вправо, ось <i>y</i> — вверх. В начале работы черепаха находится в начале координат и направлена вправо. Расстояния измеряются в шагах, углы — в градусах.</p>
+      <p>Чтобы использовать исполнителя в Python, программа начинается командой <code>import turtle</code>: она подключает модуль (англ. <i>module</i>) — готовый набор команд. Команды записываются в виде <code>turtle.команда(параметры)</code>. Исполнитель работает в режиме программного управления: выполняется вся программа сверху вниз.</p>
+    </div>
+    <div class="tbl-wrap" style="margin:10px 0">
+      <table class="tbl stack">
+        <thead><tr><th>Команда</th><th>Действие</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Команда"><code>turtle.forward(n)</code></td><td data-l="Действие">переместиться вперёд на <i>n</i> шагов</td></tr>
+          <tr><td data-l="Команда"><code>turtle.backward(n)</code></td><td data-l="Действие">переместиться назад на <i>n</i> шагов</td></tr>
+          <tr><td data-l="Команда"><code>turtle.left(a)</code></td><td data-l="Действие">повернуть налево (против часовой стрелки) на <i>a</i> градусов</td></tr>
+          <tr><td data-l="Команда"><code>turtle.right(a)</code></td><td data-l="Действие">повернуть направо (по часовой стрелке) на <i>a</i> градусов</td></tr>
+          <tr><td data-l="Команда"><code>turtle.penup()</code>, <code>turtle.pendown()</code></td><td data-l="Действие">поднять перо (перемещение без следа) и опустить перо</td></tr>
+          <tr><td data-l="Команда"><code>turtle.pencolor("red")</code></td><td data-l="Действие">задать цвет линии: <code>"red"</code>, <code>"blue"</code>, <code>"green"</code>, <code>"black"</code></td></tr>
+          <tr><td data-l="Команда"><code>turtle.pensize(n)</code></td><td data-l="Действие">задать толщину линии</td></tr>
+          <tr><td data-l="Команда"><code>turtle.goto(x, y)</code></td><td data-l="Действие">переместиться в точку с координатами (<i>x</i>;&nbsp;<i>y</i>)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fig-pair">
+      <div class="fig-box"><h4>Блок-схема</h4>
+        <div class="flow-fig" role="img" aria-label="Блок-схема: начало, подключить модуль turtle, вперёд на 100, налево на 90, вперёд на 50, конец" data-flow="start:Начало|proc:Подключить модуль turtle|proc:Вперёд на 100|proc:Налево на 90|proc:Вперёд на 50|end:Конец"></div>
+      </div>
+      <div class="fig-box"><h4>Программа на Python</h4>
+<pre class="code py">import turtle
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(50)</pre>
+        <p class="legend">Действия исполнителя обозначаются в блок-схеме прямоугольниками (процесс).</p>
+        <h4 style="margin-top:12px">Рисунок</h4>
+        <div class="trace-fig" data-trace="[[0,0,100,0],[100,0,100,50]]"></div>
+      </div>
+    </div>
+    <div class="sbx" data-task="th1"></div>
+  </div>
+
+  <div class="step" id="step-2">
+    <h3>Шаг 2. Линейный алгоритм: рисование фигур</h3>
+    <div class="prose">
+      <p>Линейный алгоритм (следование) — последовательность команд, которые выполняются одна за другой в порядке записи, каждая один раз. Программы для черепахи в этом конспекте линейные: команды повторяются записью подряд (циклы изучаются в следующих конспектах).</p>
+      <p>Фигура строится из отрезков; между отрезками черепаха поворачивается. Для квадрата со стороной 100 дважды записываются два действия: «вперёд на 100» и «налево на 90» — всего четыре стороны и четыре поворота.</p>
+      <p>Угол поворота на вершине равен внешнему углу фигуры, то есть 180° минус внутренний угол. У квадрата внутренний угол 90°, поэтому поворот равен 90°; у равностороннего треугольника внутренний угол 60°, поэтому поворот равен 120°.</p>
+    </div>
+    <div class="fig-pair">
+      <div class="fig-box"><h4>Блок-схема</h4>
+        <div class="flow-fig" role="img" aria-label="Блок-схема квадрата: начало, подключить модуль turtle, четыре раза вперёд на 100 и налево на 90, конец" data-flow="start:Начало|proc:Подключить модуль turtle|proc:Вперёд на 100|proc:Налево на 90|proc:Вперёд на 100|proc:Налево на 90|proc:Вперёд на 100|proc:Налево на 90|proc:Вперёд на 100|proc:Налево на 90|end:Конец"></div>
+      </div>
+      <div class="fig-box"><h4>Программа на Python</h4>
+<pre class="code py">import turtle
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(100)
+turtle.left(90)</pre>
+        <h4 style="margin-top:12px">Рисунок</h4>
+        <div class="trace-fig" data-trace="[[0,0,100,0],[100,0,100,100],[100,100,0,100],[0,100,0,0]]"></div>
+      </div>
+    </div>
+    <div class="sbx" data-task="th2"></div>
+  </div>
+
+  <div class="step" id="step-3">
+    <h3>Шаг 3. Перо, цвет и координаты</h3>
+    <div class="prose">
+      <p>Перо — часть исполнителя, которая оставляет след. Пока перо опущено (<code>pendown</code>), перемещение рисует линию. Команда <code>penup()</code> поднимает перо: черепаха перемещается без следа, пока перо снова не опущено командой <code>pendown()</code>.</p>
+      <p>Цвет и толщина линии задаются командами <code>pencolor("red")</code> и <code>pensize(3)</code>. Они действуют на все следующие линии, пока не заданы новые значения. Название цвета записывается в кавычках на английском языке.</p>
+      <p>Команда <code>goto(x, y)</code> перемещает черепаху в точку с заданными координатами. Если перо опущено, до новой точки проводится линия; направление черепахи при этом не меняется. Для перемещения без следа перед <code>goto</code> записывается <code>penup()</code>.</p>
+    </div>
+    <div class="fig-pair">
+      <div class="fig-box"><h4>Блок-схема</h4>
+        <div class="flow-fig" role="img" aria-label="Блок-схема: начало, подключить модуль, цвет зелёный, вперёд на 40, поднять перо, вперёд на 20, опустить перо, вперёд на 40, конец" data-flow="start:Начало|proc:Подключить модуль turtle|proc:Цвет линии: зелёный|proc:Вперёд на 40|proc:Поднять перо|proc:Вперёд на 20|proc:Опустить перо|proc:Вперёд на 40|end:Конец"></div>
+      </div>
+      <div class="fig-box"><h4>Программа на Python</h4>
+<pre class="code py">import turtle
+turtle.pencolor("green")
+turtle.forward(40)
+turtle.penup()
+turtle.forward(20)
+turtle.pendown()
+turtle.forward(40)</pre>
+        <h4 style="margin-top:12px">Рисунок</h4>
+        <div class="trace-fig" data-trace="[[0,0,40,0,&quot;green&quot;],[60,0,100,0,&quot;green&quot;]]"></div>
+      </div>
+    </div>
+    <div class="sbx" data-task="th3"></div>
+  </div>
+</section>
+
+<!-- ===================== 4. РАЗБОР КОДА ===================== -->
+<section class="page" id="page-code" data-part="code" aria-labelledby="h-code">
+  <h2 id="h-code" tabindex="-1">Разбор кода</h2>
+  <div class="card">
+    <h3>Готовая программа</h3>
+    <div class="grid2">
+      <div>
+<pre class="code py">import turtle
+turtle.pencolor("blue")
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(50)</pre>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl stack">
+          <thead><tr><th>Строка</th><th>Что происходит</th></tr></thead>
+          <tbody>
+            <tr><td data-l="Строка">1</td><td data-l="Что происходит">Подключается модуль с командами исполнителя.</td></tr>
+            <tr><td data-l="Строка">2</td><td data-l="Что происходит">Задаётся синий цвет линий.</td></tr>
+            <tr><td data-l="Строка">3</td><td data-l="Что происходит">Черепаха проходит вперёд 100 шагов и рисует отрезок.</td></tr>
+            <tr><td data-l="Строка">4</td><td data-l="Что происходит">Черепаха поворачивается налево на 90°.</td></tr>
+            <tr><td data-l="Строка">5</td><td data-l="Что происходит">Черепаха проходит вперёд 50 шагов в новом направлении.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="legend" style="max-width:680px">Команды выполняются сверху вниз. Направление движения определяется накопленными поворотами: после <code>left(90)</code> команда <code>forward</code> перемещает черепаху вверх.</p>
+  </div>
+
+  <div class="task" id="task-d1">
+    <div class="task-head"><h3>Задание 1. Определите, что нарисует программа</h3></div>
+    <div class="q-slot" data-q="d1"></div>
+  </div>
+  <div class="sbx" data-task="d2"></div>
+  <div class="sbx" data-task="d3"></div>
+</section>
+
+<!-- ===================== 5. ПРАКТИКУМ ===================== -->
+<section class="page" id="page-practice" data-part="practice" aria-labelledby="h-practice">
+  <h2 id="h-practice" tabindex="-1">Практикум</h2>
+  <p class="lede">Три обязательные задачи и две задачи со звёздочкой (★) по возрастанию сложности. Рисунок проверяется автоматически: сравниваются нарисованные отрезки с образцом; порядок команд, при котором получен тот же рисунок, значения не имеет. Подсказки открываются по одной.</p>
+  <div class="progress-line"><b id="pr-count">Решено: 0 из 5</b><div class="progress-bar" aria-hidden="true"><span id="pr-bar"></span></div></div>
+  <div class="sbx" data-task="p1"></div>
+  <div class="sbx" data-task="p2"></div>
+  <div class="sbx" data-task="p3"></div>
+  <div class="sbx" data-task="p4"></div>
+  <div class="sbx" data-task="p5"></div>
+</section>
+
+<!-- ===================== 6. ИТОГ ===================== -->
+<section class="page print-page" id="page-summary" data-part="summary" aria-labelledby="h-summary">
+  <h2 id="h-summary" tabindex="-1">Итог</h2>
+  <div class="card summary" id="vyvod">
+    <h3>Вывод</h3>
+    <ul>
+      <li><b>Исполнитель «Черепаха»</b> перемещается по плоскости и оставляет след. Среда — плоскость с системой координат: начало (0;&nbsp;0) в центре, ось <i>x</i> вправо, ось <i>y</i> вверх; в начале работы черепаха направлена вправо.</li>
+      <li><b>Программа для черепахи</b> начинается командой <code>import turtle</code>; команды записываются как <code>turtle.команда(параметры)</code> и выполняются сверху вниз (программное управление).</li>
+      <li><b>Линейный алгоритм</b> — команды выполняются одна за другой в порядке записи, каждая один раз. Угол поворота на вершине фигуры равен внешнему углу: 90° для квадрата, 120° для равностороннего треугольника.</li>
+    </ul>
+    <div class="tbl-wrap">
+      <table class="tbl stack">
+        <thead><tr><th>Команда</th><th>Действие</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Команда"><code>forward(n)</code>, <code>backward(n)</code></td><td data-l="Действие">движение вперёд и назад на <i>n</i> шагов</td></tr>
+          <tr><td data-l="Команда"><code>left(a)</code>, <code>right(a)</code></td><td data-l="Действие">поворот налево и направо на <i>a</i> градусов</td></tr>
+          <tr><td data-l="Команда"><code>penup()</code>, <code>pendown()</code></td><td data-l="Действие">поднять и опустить перо</td></tr>
+          <tr><td data-l="Команда"><code>pencolor("цвет")</code>, <code>pensize(n)</code></td><td data-l="Действие">цвет и толщина линии</td></tr>
+          <tr><td data-l="Команда"><code>goto(x, y)</code></td><td data-l="Действие">перемещение в точку (<i>x</i>;&nbsp;<i>y</i>)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card noprint">
+    <h3>Проверить себя</h3>
+    <div class="selfcheck-grid" data-qgroup="selfcheck"></div>
+  </div>
+
+  <div class="finish-box noprint" id="finish-box">
+    <b>Завершение занятия</b>
+    <p class="small muted" style="margin:4px 0 0;max-width:680px">Кнопка «Завершить занятие» передаёт результаты учителю. Кнопка «Сохранить работу» скачивает zip-архив с результатами и доступна всегда.</p>
+    <div class="actions">
+      <button class="btn accent" type="button" id="btn-finish">Завершить занятие</button>
+      <button class="btn" type="button" id="btn-save">Сохранить работу</button>
+      <span class="sent-mark" id="sent-mark" role="status" aria-live="polite"></span>
+    </div>
+    <p id="finish-sum" class="small" style="margin:8px 0 0"></p>
+  </div>
+</section>

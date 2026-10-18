@@ -8,7 +8,7 @@
 | Компас, ср | 21.10.2026 | очно |
 | Компас, пт | 23.10.2026 | очно |
 
-Файлы: `K1_Algoritmy_i_ispolniteli.html` (конспект), `apps-script/Code.gs` и `apps-script/README.md` (приём данных).
+Файлы: `K1_Algoritmy_i_ispolniteli.html` (конспект), `apps-script/Code.gs` и `apps-script/README.md` (приём данных). Исходники конспекта — `lessons/K1/`, правила создания уроков — `AUTHORING.md`.
 
 ---
 
@@ -16,8 +16,8 @@
 
 | № | Что | Где | Чем заменить |
 |---|---|---|---|
-| 1 | Адрес веб-приложения Google Apps Script | `K1_Algoritmy_i_ispolniteli.html`, блок `TELEMETRY_CONFIG`, `endpoints[0].url` (значение `https://script.google.com/macros/s/REPLACE_ME_APPS_SCRIPT_DEPLOYMENT_ID/exec`) | адрес `…/exec` после развёртывания ([README скрипта](apps-script/README.md), шаги 5–6) |
-| 2 | Адрес сайта курса | там же, `courseUrl` (значение `https://REPLACE_ME.learn-it.app/`) | `https://<сайт>.learn-it.app/` курса «Информатика 8. Алгоритмы + Python» (открытый вопрос спецификации, раздел 4) |
+| 1 | Адрес веб-приложения Google Apps Script | `course.json`, поле `scriptUrl` (значение `https://script.google.com/macros/s/REPLACE_ME_APPS_SCRIPT_DEPLOYMENT_ID/exec`); затем `node tools/build.js --all`. В собранном HTML это `TELEMETRY_CONFIG.endpoints[0].url` | адрес `…/exec` после развёртывания ([README скрипта](apps-script/README.md), шаги 5–6) |
+| 2 | Адрес сайта курса | `course.json`, поле `courseUrl` (значение `https://REPLACE_ME.learn-it.app/`); затем пересборка | `https://<сайт>.learn-it.app/` курса «Информатика 8. Алгоритмы + Python» (открытый вопрос спецификации, раздел 4) |
 | 3 | Кодовые слова трёх групп | свойство скрипта `CODEWORDS` (Настройки проекта → Свойства скрипта); значения `REPLACE_ME…` скрипт отвергает | слова групп Компас ср, Компас пт, ФШ пн (шаг 3 README) |
 | 4 | `target` курса в репозитории Learn-it | вне этого архива (`sources.local.json`, `sites.json`) | по документу `ADD_NEW_COURSE.md`, когда будет выбран адрес сайта |
 

@@ -1,0 +1,79 @@
+{
+ "d2": {
+  "ref": "import turtle\nturtle.pencolor(\"blue\")\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(80)\n",
+  "wrong": [
+   "import turtle\nturtle.pencolor(\"blue\")\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(50)",
+   "import turtle\nturtle.pencolor(\"blue\")\nturtle.forward(80)\nturtle.left(90)\nturtle.forward(50)",
+   "import turtle\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(80)",
+   "import turtle\nturtle.pencolor(\"blue\")\nturtle.forward(100)\nturtle.right(90)\nturtle.forward(80)"
+  ]
+ },
+ "d3": {
+  "ref": "import turtle\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(100)\n",
+  "wrong": [
+   "import turtle\nturtle.forward(100)\nturtle.lef(90)\nturtle.forward(100)",
+   "import turtle\nturtle.forward(100)\nturtle.right(90)\nturtle.forward(100)",
+   "import turtle\nturtle.forward(100)\nturtle.forward(100)",
+   "import turtle\nturtle.forward(100)\nturtle.left(90)"
+  ]
+ },
+ "p1": {
+  "ref": "import turtle\nturtle.forward(120)\nturtle.left(90)\nturtle.forward(80)\n",
+  "alt": [
+   "import turtle\nturtle.forward(120)\nturtle.left(90)\nturtle.forward(80)\nturtle.left(90)\n",
+   "import turtle\nturtle.goto(120, 0)\nturtle.goto(120, 80)\n"
+  ],
+  "wrong": [
+   "import turtle\nturtle.forward(120)\nturtle.right(90)\nturtle.forward(80)",
+   "import turtle\nturtle.forward(80)\nturtle.left(90)\nturtle.forward(120)",
+   "import turtle\nturtle.forward(120)\nturtle.forward(80)",
+   "turtle.forward(120)\nturtle.left(90)\nturtle.forward(80)",
+   "import turtle\nturtle.forward(120)\nturtle.left(90)\nturtle.backward(80)",
+   "import turtle\n"
+  ]
+ },
+ "p2": {
+  "ref": "import turtle\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(100)\nturtle.left(90)\n",
+  "alt": [
+   "import turtle\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(100)\n"
+  ],
+  "wrong": [
+   "import turtle\nturtle.forward(80)\nturtle.left(90)\nturtle.forward(80)\nturtle.left(90)\nturtle.forward(80)\nturtle.left(90)\nturtle.forward(80)\nturtle.left(90)\n",
+   "import turtle\nturtle.forward(100)\nturtle.right(90)\nturtle.forward(100)\nturtle.right(90)\nturtle.forward(100)\nturtle.right(90)\nturtle.forward(100)\nturtle.right(90)\n",
+   "import turtle\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(100)\nturtle.left(90)\n",
+   "import turtle\nturtle.forward(100)\nturtle.left(60)\nturtle.forward(100)\nturtle.left(60)\nturtle.forward(100)\nturtle.left(60)\nturtle.forward(100)\nturtle.left(60)\n",
+   "import turtle\nturtle.forward(100)\nturtle.forward(100)\nturtle.forward(100)\nturtle.forward(100)"
+  ]
+ },
+ "p3": {
+  "ref": "import turtle\nturtle.pencolor(\"red\")\nturtle.forward(150)\nturtle.left(90)\nturtle.forward(80)\nturtle.left(90)\nturtle.forward(150)\nturtle.left(90)\nturtle.forward(80)\n",
+  "wrong": [
+   "import turtle\nturtle.forward(150)\nturtle.left(90)\nturtle.forward(80)\nturtle.left(90)\nturtle.forward(150)\nturtle.left(90)\nturtle.forward(80)",
+   "import turtle\nturtle.pencolor(\"blue\")\nturtle.forward(150)\nturtle.left(90)\nturtle.forward(80)\nturtle.left(90)\nturtle.forward(150)\nturtle.left(90)\nturtle.forward(80)",
+   "import turtle\nturtle.pencolor(\"red\")\nturtle.forward(80)\nturtle.left(90)\nturtle.forward(150)\nturtle.left(90)\nturtle.forward(80)\nturtle.left(90)\nturtle.forward(150)",
+   "import turtle\nturtle.pencolor(\"red\")\nturtle.forward(150)\nturtle.left(90)\nturtle.forward(80)\nturtle.left(90)\nturtle.forward(150)",
+   "import turtle\nturtle.pencolor(\"red\")\nturtle.forward(150)\nturtle.right(90)\nturtle.forward(80)\nturtle.right(90)\nturtle.forward(150)\nturtle.right(90)\nturtle.forward(80)"
+  ]
+ },
+ "p4": {
+  "ref": "import turtle\nturtle.penup()\nturtle.goto(-100, 0)\nturtle.pendown()\nturtle.forward(200)\nturtle.penup()\nturtle.goto(0, -100)\nturtle.pendown()\nturtle.left(90)\nturtle.forward(200)\n",
+  "wrong": [
+   "import turtle\nturtle.goto(-100, 0)\nturtle.forward(200)\nturtle.goto(0, -100)\nturtle.left(90)\nturtle.forward(200)",
+   "import turtle\nturtle.penup()\nturtle.goto(-100, 0)\nturtle.pendown()\nturtle.forward(200)",
+   "import turtle\nturtle.penup()\nturtle.goto(-100, 0)\nturtle.pendown()\nturtle.forward(200)\nturtle.penup()\nturtle.goto(0, -100)\nturtle.pendown()\nturtle.forward(200)",
+   "import turtle\nturtle.penup()\nturtle.backward(100)\nturtle.pendown()\nturtle.forward(200)\nturtle.penup()\nturtle.backward(100)\nturtle.left(90)\nturtle.backward(100)\nturtle.pendown()\nturtle.forward(200)"
+  ]
+ },
+ "p5": {
+  "ref": "import turtle\nturtle.forward(100)\nturtle.left(120)\nturtle.forward(100)\nturtle.left(120)\nturtle.forward(100)\n",
+  "alt": [
+   "import turtle\nturtle.forward(100)\nturtle.left(120)\nturtle.forward(100)\nturtle.left(120)\nturtle.forward(100)\nturtle.left(120)\n"
+  ],
+  "wrong": [
+   "import turtle\nturtle.forward(100)\nturtle.left(60)\nturtle.forward(100)\nturtle.left(60)\nturtle.forward(100)",
+   "import turtle\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(100)\nturtle.left(90)\nturtle.forward(100)",
+   "import turtle\nturtle.forward(100)\nturtle.left(120)\nturtle.forward(100)",
+   "import turtle\nturtle.forward(100)\nturtle.right(120)\nturtle.forward(100)\nturtle.right(120)\nturtle.forward(100)"
+  ]
+ }
+}
