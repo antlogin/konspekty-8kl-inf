@@ -100,6 +100,14 @@ pre{font-family:var(--mono)}
 .t-bi{color:var(--bi)}
 pre.sample{margin:6px 0 0;background:#f4f7f5;border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:var(--code-fs);line-height:var(--lh);white-space:pre;overflow-x:auto}
 .sample-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:8px}
+.io{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:12px;max-width:560px}
+.io pre.sample{min-height:2.4em}
+.ex{background:#fbfcfb;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:8px 12px;margin:10px 0;max-width:680px}
+.ex>b:first-child{display:block;margin-bottom:4px}
+.ex pre{margin:6px 0 0}
+.ex-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:10px 0}
+@media (max-width:760px){.ex-grid{grid-template-columns:minmax(0,1fr)}.io{grid-template-columns:minmax(0,1fr)}}
+.ex-grid .ex{margin:0;max-width:none}
 
 /* кнопки */
 button.btn{border:1px solid var(--line);border-radius:7px;padding:6px 13px;min-height:38px;background:#fff;color:var(--green);font-weight:700;cursor:pointer}

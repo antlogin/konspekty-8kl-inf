@@ -125,7 +125,7 @@ async function postJSON(ep, obj, opts) {
   opts = opts || {};
   const body = JSON.stringify(obj);
   const ctl = new AbortController();
-  const timer = setTimeout(() => ctl.abort(), opts.timeout || 20000);
+  const timer = setTimeout(() => ctl.abort(), opts.timeout || 45000);   // скрипт Google ждёт очереди до 20 с и пишет таблицы
   try {
     const res = await fetch(ep.url, {
       method: 'POST', body: body, signal: ctl.signal, redirect: 'follow',
@@ -143,26 +143,32 @@ function envelope(ep, attemptId, events) {
   base.meta = T.meta[attemptId] || (S && S.attemptId === attemptId ? makeMeta() : {});
   return base;
 }
-async function flushEndpoint(ep, opts) {
+function flushEndpoint(ep, opts) {
+  opts = opts || {};
+  // уже идёт отправка: с wait — дождаться её и отправить остаток очереди, без wait — не дублировать
+  if (T.sending[ep.name]) return opts.wait ? T.sending[ep.name].then(() => flushEndpoint(ep, opts)) : T.sending[ep.name];
   const q = T.queues[ep.name];
-  if (!q || !q.length || T.sending[ep.name]) return;
-  T.sending[ep.name] = true;
-  setSync('sending');
-  try {
-    while (q.length) {
-      const a = q[0].a, batch = [];
-      for (const it of q) { if (it.a !== a || batch.length >= 25) break; batch.push(it); }
-      let ok = false;
-      try {
-        const r = await postJSON(ep, envelope(ep, a, batch.map(i => i.e)), opts);
-        ok = !!(r && r.ok === true);
-      } catch (e) { ok = false; }
-      if (!ok) { setSync('fail'); return; }
-      q.splice(0, batch.length);        // пакет удаляется только после HTTP 200 и ok: true
-      saveTele();
-    }
-    setSync('ok');
-  } finally { T.sending[ep.name] = false; }
+  if (!q || !q.length) return Promise.resolve();
+  const run = (async () => {
+    setSync('sending');
+    try {
+      while (q.length) {
+        const a = q[0].a, batch = [];
+        for (const it of q) { if (it.a !== a || batch.length >= 25) break; batch.push(it); }
+        let ok = false;
+        try {
+          const r = await postJSON(ep, envelope(ep, a, batch.map(i => i.e)), opts);
+          ok = !!(r && r.ok === true);
+        } catch (e) { ok = false; }
+        if (!ok) { setSync('fail'); return; }
+        q.splice(0, batch.length);        // пакет удаляется только после HTTP 200 и ok: true
+        saveTele();
+      }
+      setSync('ok');
+    } finally { T.sending[ep.name] = null; }
+  })();
+  T.sending[ep.name] = run;
+  return run;
 }
 async function flush(reason, opts) {
   const eps = liveEndpoints();

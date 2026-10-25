@@ -100,15 +100,22 @@ async function finishLesson() {
   $('#finish-sum').textContent = 'Решено задач практикума: ' + n + ' из ' + CFG.practiceTaskIds.length + '. Время занятия: ' + Math.round((S.finishedAt - S.startedAt) / 60000) + ' мин.';
   flushStorageSync();
   if (!liveEndpoints().length) { setSentMark('bad', 'Сервер учителя не подключён. Архив с результатами сохраняется кнопкой «Сохранить работу».'); return; }
-  setSentMark('', 'Отправка…');
-  await flush('finish');
+  setSentMark('', 'Ответы отправляются… Не закрывайте страницу.');
+  const t0 = Date.now();
+  // пакет завершения самый тяжёлый: ответ ждётся до 90 с, затем повторы каждые 10 с; об ошибке сообщается через 3 мин
+  await flush('finish', { wait: true, timeout: 90000 });
+  while (!checkSent(false) && Date.now() - t0 < 180000) {
+    await new Promise(r => setTimeout(r, 10000));
+    await flush('finish-retry', { wait: true, timeout: 90000 });
+  }
   checkSent(true);
 }
 function checkSent(final) {
-  if (finishSeq == null) return;
+  if (finishSeq == null) return true;
   const still = liveEndpoints().some(ep => (T.queues[ep.name] || []).some(it => it.a === S.attemptId && it.e.seq === finishSeq));
-  if (!still) { setSentMark('ok', '✓ Ответы переданы учителю'); finishSeq = null; }
-  else if (final) setSentMark('bad', 'Не удалось передать ответы. Архив с результатами сохраняется кнопкой «Сохранить работу»; передача будет повторяться автоматически.');
+  if (!still) { setSentMark('ok', '✓ Ответы переданы учителю'); finishSeq = null; return true; }
+  if (final) setSentMark('bad', 'Нет связи с сервером учителя. Отправка повторится, пока страница открыта; для надёжности сохраните работу кнопкой «Сохранить работу».');
+  return false;
 }
 
 /* ---------- сервер: проверка слова, снимки ---------- */
