@@ -45,7 +45,8 @@ function build(id) {
     '<meta name="material:version" content="' + course.materialVersion + '">\n' +
     '<meta name="catalog:title" content="' + esc(L.title) + '">\n<meta name="catalog:type" content="lesson">\n' +
     '<meta name="catalog:topic" content="' + esc(L.catalog.topic) + '">\n<meta name="catalog:description" content="' + esc(L.catalog.description) + '">\n' +
-    '<meta name="catalog:tags" content="' + esc(L.catalog.tags) + '">\n<style>\n' + rd('engine', 'css', 'style.css') + '</style>\n</head>\n<body class="locked">\n';
+    '<meta name="catalog:tags" content="' + esc(L.catalog.tags) + '">\n' +
+    (L.catalog.number != null ? '<meta name="catalog:number" content="' + esc(String(L.catalog.number)) + '">\n' : '') + '<style>\n' + rd('engine', 'css', 'style.css') + '</style>\n</head>\n<body class="locked">\n';
 
   const jsFiles = fs.readdirSync(path.join(root, 'engine', 'js')).filter(f => /^\d\d_.*\.js$/.test(f) && f !== '00_trap.js').sort();
   const app = jsFiles.map(f => rd('engine', 'js', f)).join('\n');
