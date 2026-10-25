@@ -4,17 +4,17 @@
 
 ## Что брать
 
-Только собранные файлы `K<N>/K<N>_*.html` (по одному на урок):
+Только собранные HTML (по одному на урок). Номеров уроков в названиях файлов нет: папка и файл называются по теме.
 
 | Урок | Файл |
 |---|---|
-| К1 | `K1/K1_Algoritmy_i_ispolniteli.html` |
-| К2 | `K2/K2_Sposoby_zapisi_algoritmov.html` |
-| К3 | `K3/K3_Ispolnitel_Cherepakha.html` |
+| Первая программа на Python | `Pervaya_programma/Pervaya_programma.html` (раньше `K1/K1_Algoritmy_i_ispolniteli.html`; изменилось только название) |
+| Величины и присваивание | `Velichiny_i_prisvaivanie/Velichiny_i_prisvaivanie.html` |
+| Черепаха | `K3/K3_Ispolnitel_Cherepakha.html` — перенесена в конец курса, пока не публиковать |
 
 Скачивать целиком: архивом ветки (`https://github.com/antlogin/konspekty-8kl-inf/archive/refs/heads/claude/affectionate-lovelace-yc6y43.zip`, после слияния PR — `…/refs/heads/main.zip`), через `git clone` или кнопкой «Download raw file» на GitHub. Из окна просмотра в приложении Claude файл скачивается обрезанным (около 1,1 МБ).
 
-Не публиковать: `K<N>/LOCAL_metodichka_K<N>.md` (служебное, `LOCAL_` с подчёркиванием не синхронизируется), `apps-script/`, `engine/`, `lessons/`, `tools/`, `course.json`, `AUTHORING.md`.
+Не публиковать: `LOCAL_metodichka_*.md` (служебное, `LOCAL_` с подчёркиванием не синхронизируется), `apps-script/`, `engine/`, `lessons/`, `tools/`, `course.json`, `AUTHORING.md`.
 
 ## Что уже настроено
 

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Способы записи алгоритмов. Величины и присваивание</title>
+<title>Первая программа на Python</title>
 <meta name="material:specification" content="HTML Material Specification Learn-it 4.3">
 <meta name="material:version" content="2026-10-18.1">
-<meta name="catalog:title" content="Способы записи алгоритмов. Величины и присваивание">
+<meta name="catalog:title" content="Первая программа на Python">
 <meta name="catalog:type" content="lesson">
-<meta name="catalog:topic" content="Способы записи алгоритмов; блок-схемы; величины и переменные; команда присваивания; трассировка; виды ошибок">
-<meta name="catalog:description" content="Словесная, графическая (блок-схема) и программная запись алгоритма. Обозначения блок-схем по ГОСТ 19.701. Константы и переменные: имя, тип (int, float, str), значение. Команда присваивания, трассировочная таблица. Синтаксические, логические ошибки и ошибки выполнения. Комментарии.">
-<meta name="catalog:tags" content="информатика,8 класс,способы записи алгоритмов,блок-схема,переменные,присваивание,трассировка,Python,print">
+<meta name="catalog:topic" content="Понятие алгоритма; исполнитель; свойства алгоритмов; первая программа на Python">
+<meta name="catalog:description" content="Понятие алгоритма, исполнитель (среда, система команд, режимы работы), свойства алгоритмов: дискретность, понятность, определённость, результативность, массовость. Первая программа на языке Python с командой print().">
+<meta name="catalog:tags" content="информатика,8 класс,алгоритм,исполнитель,свойства алгоритмов,Python,print,блок-схема">
 <style>
 :root{--green:#123d32;--green2:#1d5a49;--paper:#ffffff;--bg:#edf2ee;--ink:#14201c;--muted:#61716b;--accent:#ffb000;--ok:#238b57;--bad:#c8413a;--line:#d7e0dc;
 --material-max:1120px;--pale:#f6faf7;--info-bg:#fff6dc;--info-line:#f0d58b;--sel-bg:#fff3cf;--sel-line:#d19a00;--ok-bg:#e5f6ed;--bad-bg:#fff0ef;
@@ -325,7 +325,7 @@ body.locked nav.menu,body.locked main{display:none}
 <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
   <div class="gate-card">
     <h2 id="gate-title">Вход в конспект</h2>
-    <p class="sub">Способы записи алгоритмов. Величины и присваивание</p>
+    <p class="sub">Первая программа на Python</p>
     <form id="gate-form" autocomplete="off" novalidate>
       <div id="gate-word-box">
         <label for="g-word">Кодовое слово группы</label>
@@ -356,11 +356,11 @@ body.locked nav.menu,body.locked main{display:none}
 </div>
 
 <header class="top"><div class="wrap head">
-  <div class="eyebrow">Информатика · 8 класс · К2 · 40 минут</div>
-  <h1>Способы записи алгоритмов. Величины и присваивание</h1>
-  <p class="lead">Словесная, графическая и программная запись алгоритма; блок-схемы по ГОСТ 19.701; величины (константы и переменные), их имя, тип и значение; команда присваивания, трассировочная таблица и виды ошибок.</p>
+  <div class="eyebrow">Информатика · 8 класс · К1 · 40 минут</div>
+  <h1>Первая программа на Python</h1>
+  <p class="lead">Понятие алгоритма, исполнитель, свойства алгоритмов и первая программа на языке Python.</p>
   <div class="meta">
-    <span class="badge">§ 3.2–3.3 учебника Л. Л. Босовой</span>
+    <span class="badge">§ 3.1 учебника Л. Л. Босовой</span>
     <span class="chip" id="chip-student" hidden></span>
     <span class="chip" id="chip-sync" hidden></span>
     <span class="chip" id="chip-student" hidden></span>
@@ -387,9 +387,9 @@ body.locked nav.menu,body.locked main{display:none}
     <div class="route">
       <div class="route-lesson">
         <ul class="route-list">
-          <li><span class="time">3&nbsp;мин</span><span><b>Повторение.</b> Три вопроса по теме К1: вывод программы, свойства алгоритмов, система команд исполнителя.</span></li>
-          <li><span class="time">7&nbsp;мин</span><span><b>Теория.</b> Способы записи алгоритмов и блок-схемы; величины: имя, тип, значение; команда присваивания и трассировочная таблица.</span></li>
-          <li><span class="time">5&nbsp;мин</span><span><b>Разбор кода.</b> Программа с переменными и три задания к ней.</span></li>
+          <li><span class="time">3&nbsp;мин</span><span><b>Повторение.</b> Житейское понимание алгоритма: три вопроса с мгновенной проверкой.</span></li>
+          <li><span class="time">7&nbsp;мин</span><span><b>Теория.</b> Понятие алгоритма, исполнитель, свойства алгоритмов; блок-схема и программа на Python.</span></li>
+          <li><span class="time">5&nbsp;мин</span><span><b>Разбор кода.</b> Готовая программа с командой <code>print()</code> и три задания к ней.</span></li>
           <li><span class="time">15–18&nbsp;мин</span><span><b>Практикум.</b> Три обязательные задачи и две задачи со звёздочкой (★) с автоматической проверкой.</span></li>
           <li><span class="time">3&nbsp;мин</span><span><b>Итог.</b> Вывод, задания «Проверить себя», завершение занятия.</span></li>
         </ul>
@@ -398,8 +398,8 @@ body.locked nav.menu,body.locked main{display:none}
   </div>
   <div class="card goal">
     <h3>Цель занятия</h3>
-    <p style="margin:0;max-width:680px">Усвоить способы записи алгоритмов и обозначения блок-схем, понятия величины (константы и переменной) и команды присваивания; научиться составлять по блок-схеме линейную программу с переменными и находить ошибки разных видов.</p>
-    <div class="note route-goal"><b>Планируемый результат.</b> По блок-схеме составляется программа на Python с переменными; различаются имя и значение переменной; выполняется трассировка последовательности присваиваний; по сообщению Python определяется вид ошибки и строка с ней.</div>
+    <p style="margin:0;max-width:680px">Усвоить понятия «алгоритм» и «исполнитель», научиться определять свойства алгоритмов и записывать первую программу на языке Python для исполнителя-компьютера.</p>
+    <div class="note route-goal"><b>Планируемый результат.</b> Формулируется определение алгоритма; для заданного исполнителя называются среда и система команд; в описании действий определяется нарушенное свойство алгоритма; составляется и запускается программа из команд <code>print()</code>.</div>
   </div>
   <div class="card noprint">
     <h3>Порядок работы</h3>
@@ -407,14 +407,14 @@ body.locked nav.menu,body.locked main{display:none}
       <div class="panel"><h4>Песочница</h4><p>Программа записывается в редакторе и запускается кнопкой «Запустить» или клавишами <b>Ctrl</b>+<b>Enter</b>. Клавиша <b>Tab</b> вставляет отступ из четырёх пробелов; для выхода из редактора с клавиатуры нажимается <b>Esc</b>, затем <b>Tab</b>.</p></div>
       <div class="panel"><h4>Сохранение</h4><p>Работа сохраняется автоматически: после перезагрузки страницы предлагается продолжить. Кнопка «Сохранить работу» в части «Итог» скачивает zip-архив с результатами.</p></div>
     </div>
-    <p class="small muted" style="margin:10px 0 0;max-width:680px">Шаги не блокируются: к любой части занятия можно перейти через меню в шапке. Предыдущий конспект: <a href="../K1/K1_Algoritmy_i_ispolniteli.html">К1. Алгоритмы и исполнители. Свойства алгоритмов</a>.</p>
+    <p class="small muted" style="margin:10px 0 0;max-width:680px">Шаги не блокируются: к любой части занятия можно перейти через меню в шапке.</p>
   </div>
 </section>
 
 <!-- ===================== 2. ПОВТОРЕНИЕ ===================== -->
 <section class="page" id="page-review" data-part="review" aria-labelledby="h-review">
   <h2 id="h-review" tabindex="-1">Повторение</h2>
-  <p class="lede">Три вопроса по теме предыдущего конспекта. Проверка выполняется сразу после выбора ответа; ответ можно изменить.</p>
+  <p class="lede">Три вопроса на житейское понимание алгоритма. Проверка выполняется сразу после выбора ответа; ответ можно изменить.</p>
   <div class="qs" data-qgroup="review"></div>
 </section>
 
@@ -423,108 +423,87 @@ body.locked nav.menu,body.locked main{display:none}
   <h2 id="h-theory" tabindex="-1">Теория</h2>
 
   <div class="step" id="step-1">
-    <h3>Шаг 1. Способы записи алгоритмов. Блок-схемы</h3>
+    <h3>Шаг 1. Понятие алгоритма</h3>
     <div class="prose">
-      <p>Один и тот же алгоритм записывается по-разному. Словесная запись (на естественном языке) понятна человеку без подготовки, но допускает неоднозначные толкования. Графическая запись — блок-схема (англ. <i>flowchart</i>) — наглядно показывает порядок шагов. Запись на языке программирования (программа) предназначена для компьютера и неоднозначности не допускает.</p>
-      <p>Блок-схема строится из блоков по ГОСТ&nbsp;19.701 (международный аналог — ISO&nbsp;5807). Блоки соединяются стрелками; основное направление — сверху вниз. Алгоритм, в котором шаги выполняются один за другим без ветвлений и повторений, называется линейным.</p>
-      <p>Комментарий (англ. <i>comment</i>) — пояснение для человека в тексте программы. Он начинается со знака <code>#</code> и продолжается до конца строки; интерпретатор его пропускает. В блок-схеме комментарий отдельного блока не образует.</p>
+      <p>В повседневной жизни многие действия выполняются по правилам: рецепт определяет порядок приготовления блюда, инструкция описывает работу с прибором, правила дорожного движения задают порядок перехода улицы. Такие правила называют алгоритмами.</p>
+      <p>Слово «алгоритм» (англ. <i>algorithm</i>) происходит от латинской формы имени среднеазиатского учёного аль-Хорезми, жившего в IX&nbsp;веке. Он описал правила выполнения арифметических действий в десятичной системе счисления.</p>
+      <p>Алгоритм составляется для исполнителя. Алгоритм, записанный на языке программирования (англ. <i>programming language</i>), называется программой. Компьютер выполняет программы. В курсе используется язык Python; команда <code>print()</code> выводит текст на экран, а сам текст записывается в кавычках.</p>
     </div>
-    <div class="tbl-wrap" style="margin:10px 0">
-      <table class="tbl stack">
-        <thead><tr><th>Блок</th><th>Название</th><th>Назначение</th><th>В Python</th></tr></thead>
-        <tbody>
-          <tr><td data-l="Блок"><div class="flow-fig flow-mini" role="img" aria-label="Овал" data-flow="start:Начало"></div></td><td data-l="Название">Терминатор (овал)</td><td data-l="Назначение">начало и конец алгоритма</td><td data-l="В Python">первая и последняя строки программы</td></tr>
-          <tr><td data-l="Блок"><div class="flow-fig flow-mini" role="img" aria-label="Параллелограмм" data-flow="io:Вывод"></div></td><td data-l="Название">Ввод и вывод (параллелограмм)</td><td data-l="Назначение">вывод данных на экран, ввод с клавиатуры</td><td data-l="В Python"><code>print("Бар")</code></td></tr>
-          <tr><td data-l="Блок"><div class="flow-fig flow-mini" role="img" aria-label="Прямоугольник" data-flow="proc:x := 5"></div></td><td data-l="Название">Процесс (прямоугольник)</td><td data-l="Назначение">присваивание, вычисление</td><td data-l="В Python"><code>x = 5</code></td></tr>
-          <tr><td data-l="Блок"><div class="flow-fig flow-mini" role="img" aria-label="Ромб" data-flow="cond:Условие"></div></td><td data-l="Название">Решение (ромб)</td><td data-l="Назначение">проверка условия, выбор пути</td><td data-l="В Python">ветвление (в следующих конспектах)</td></tr>
-        </tbody>
-      </table>
+    <div class="grid2" style="margin:10px 0">
+      <div class="defn"><p><span class="term">Алгоритм</span> — понятное и точное предписание исполнителю совершить последовательность действий, приводящих от исходных данных к искомому результату.</p></div>
+      <div class="panel"><h4>Пример: рецепт</h4><p>Исходные данные — продукты. Последовательность действий — шаги рецепта. Искомый результат — готовое блюдо.</p></div>
     </div>
     <div class="fig-pair">
-      <div class="fig-box"><h4>Словесная запись</h4>
-        <ol class="prop-list">
-          <li>Вывести название порта: Бар.</li>
-          <li>Вывести номер причала: 3.</li>
-          <li>Вывести время рейса: 14:30.</li>
-        </ol>
-        <h4 style="margin-top:12px">Программа на Python</h4>
-<pre class="code py">print("Порт: Бар")
-print("Причал: 3")
-print("Рейс: 14:30")</pre>
-      </div>
       <div class="fig-box"><h4>Блок-схема</h4>
-        <div class="flow-fig" role="img" aria-label="Блок-схема: начало, три блока вывода, конец" data-flow="start:Начало|io:Вывод: «Порт: Бар»|io:Вывод: «Причал: 3»|io:Вывод: «Рейс: 14:30»|end:Конец"></div>
+        <div class="flow-fig" role="img" aria-label="Блок-схема: начало, вывод первой строки, вывод второй строки, конец" data-flow="start:Начало|io:Вывод: «Добро пожаловать в Котор!»|io:Вывод: «Начинается урок информатики.»|end:Конец"></div>
+      </div>
+      <div class="fig-box"><h4>Программа на Python</h4>
+<pre class="code py">print("Добро пожаловать в Котор!")
+print("Начинается урок информатики.")</pre>
+        <p class="legend">Блок-схема и программа описывают один и тот же алгоритм: две строки выводятся по порядку.</p>
       </div>
     </div>
+    <p class="legend" style="max-width:680px">Обозначения блок-схемы (ГОСТ&nbsp;19.701): овал — начало и конец; параллелограмм — ввод и вывод данных; прямоугольник — действие; ромб — условие (в этом конспекте не используется).</p>
     <div class="sbx" data-task="th1"></div>
   </div>
 
   <div class="step" id="step-2">
-    <h3>Шаг 2. Величины: имя, тип, значение</h3>
+    <h3>Шаг 2. Исполнитель</h3>
     <div class="prose">
-      <p>Алгоритм работает с величинами (данными). Величина, значение которой не меняется, называется константой: <code>7</code>, <code>"Будва"</code>. Величина, значение которой может меняться при выполнении алгоритма, называется переменной (англ. <i>variable</i>). У переменной есть имя, тип и значение.</p>
-      <p>Имя переменной в Python состоит из латинских букв, цифр и знака подчёркивания и не начинается с цифры: <code>price</code>, <code>city_2</code>. Большие и малые буквы различаются: <code>Price</code> и <code>price</code> — разные имена. Тип определяет, какие значения хранятся и какие действия с ними допустимы: <code>int</code> — целое число, <code>float</code> — дробное число (через точку: <code>2.5</code>), <code>str</code> — строка (текст в кавычках). Тип значения сообщает функция <code>type()</code>.</p>
-      <p>Имя без кавычек обозначает значение переменной, текст в кавычках выводится как есть. В команде <code>print()</code> через запятую перечисляется несколько значений; между ними при выводе ставится пробел.</p>
+      <p>Исполнитель (англ. <i>executor</i>) — объект, способный выполнять определённый набор команд. Исполнителем может быть человек, животное или технический объект: повар выполняет рецепт, банкомат — запросы владельца карты, компьютер — программу.</p>
+      <p>Исполнитель характеризуется средой, системой команд и режимами работы. Среда (англ. <i>environment</i>) — обстановка, в которой действует исполнитель. Система команд исполнителя (СКИ; англ. <i>instruction set</i>) — полный перечень команд, которые исполнитель умеет выполнять. Команда, не входящая в этот перечень, не выполняется.</p>
+      <p>Формальный исполнитель выполняет команды строго по записи, не вникая в смысл и не исправляя ошибки. Результат определяется только порядком и содержанием команд.</p>
+    </div>
+    <div class="tbl-wrap" style="margin:10px 0">
+      <table class="tbl stack">
+        <thead><tr><th>Исполнитель</th><th>Среда</th><th>Система команд</th><th>Пример команды</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Исполнитель">Повар</td><td data-l="Среда">кухня, продукты, посуда</td><td data-l="Система команд">действия из рецепта</td><td data-l="Пример команды">«нарезать овощи»</td></tr>
+          <tr><td data-l="Исполнитель">Банкомат</td><td data-l="Среда">карта, клавиатура, экран, отсек для купюр</td><td data-l="Система команд">запрос баланса, снятие наличных, возврат карты</td><td data-l="Пример команды">«выдать 50&nbsp;евро»</td></tr>
+          <tr><td data-l="Исполнитель">Компьютер с Python</td><td data-l="Среда">окно вывода, память компьютера</td><td data-l="Система команд">команды языка Python</td><td data-l="Пример команды"><code>print("Здравствуйте!")</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid2" style="margin:10px 0">
+      <div class="panel"><h4>Непосредственное управление</h4><p>Исполнитель получает и выполняет команды по одной. Каждая команда выполняется сразу после подачи. Пример: диспетчер по радио диктует водителю маршрут шаг за шагом.</p></div>
+      <div class="panel"><h4>Программное управление</h4><p>Исполнитель получает всю последовательность команд (программу) и выполняет её самостоятельно. Пример: навигатор с маршрутом, заданным целиком. Программа на Python выполняется в этом режиме: команды исполняются сверху вниз.</p></div>
     </div>
     <div class="fig-pair">
-      <div class="fig-box"><h4>Программа</h4>
-<pre class="code py">city = "Будва"      # str
-price = 7           # int
-print("Рейс до", city)
-print("city")
-print("Цена:", price, "евро")</pre>
+      <div class="fig-box"><h4>Блок-схема</h4>
+        <div class="flow-fig" role="img" aria-label="Блок-схема: начало, три команды вывода, конец" data-flow="start:Начало|io:Вывод: «Включить плиту»|io:Вывод: «Поставить чайник на плиту»|io:Вывод: «Налить воду в чайник»|end:Конец"></div>
       </div>
-      <div class="fig-box"><h4>Вывод</h4>
-<pre class="sample">Рейс до Будва
-city
-Цена: 7 евро</pre>
-        <p class="legend">Во второй строке вывода — слово city: в кавычках имя переменной становится обычным текстом.</p>
+      <div class="fig-box"><h4>Программа на Python</h4>
+<pre class="code py">print("Включить плиту")
+print("Поставить чайник на плиту")
+print("Налить воду в чайник")</pre>
+        <p class="legend">Исполнитель выводит команды в записанном порядке, даже если этот порядок не приводит к нужному результату.</p>
       </div>
     </div>
     <div class="sbx" data-task="th2"></div>
   </div>
 
   <div class="step" id="step-3">
-    <h3>Шаг 3. Команда присваивания. Трассировка</h3>
-    <div class="prose">
-      <p>Команда присваивания записывает значение в переменную. В блок-схеме и школьном алгоритмическом языке она обозначается знаком <code>:=</code>, в Python — знаком <code>=</code>: <code>a = 5</code>. Слева — имя переменной, справа — выражение. Сначала вычисляется правая часть, затем результат записывается в переменную; прежнее значение при этом теряется.</p>
-      <p>Поэтому запись <code>n = n + 3</code> — не уравнение, а команда: взять текущее значение <code>n</code>, прибавить 3 и записать результат в <code>n</code>. Команда <code>b = a</code> копирует значение: последующее изменение <code>a</code> на <code>b</code> не влияет.</p>
-      <p>Значения переменных при выполнении программы удобно отслеживать трассировочной таблицей: строка таблицы — команда, столбец — переменная. Если переменная используется раньше, чем ей присвоено значение, Python останавливается с ошибкой NameError.</p>
+    <h3>Шаг 3. Свойства алгоритмов</h3>
+    <p class="lede">Не каждая последовательность действий является алгоритмом. Алгоритм обладает пятью свойствами.</p>
+    <div class="props">
+      <div class="prop"><h4>1. Понятность <span>(англ. comprehensibility)</span></h4><p>Алгоритм состоит только из команд, входящих в систему команд исполнителя.</p><p class="bad"><b>Нарушение:</b> банкомату предписано «приготовить кофе».</p></div>
+      <div class="prop"><h4>2. Дискретность <span>(англ. discreteness)</span></h4><p>Процесс выполнения разбивается на отдельные шаги; следующий шаг выполняется после завершения предыдущего.</p><p class="bad"><b>Нарушение:</b> предписание «приготовить обед» без разбиения на отдельные команды.</p></div>
+      <div class="prop"><h4>3. Определённость <span>(англ. definiteness)</span></h4><p>Каждая команда понимается однозначно; результат не зависит от произвола исполнителя.</p><p class="bad"><b>Нарушение:</b> команда «подождать немного» — длительность не задана.</p></div>
+      <div class="prop"><h4>4. Результативность <span>(англ. effectiveness)</span></h4><p>За конечное число шагов алгоритм приводит к результату или сообщает, что решения нет.</p><p class="bad"><b>Нарушение:</b> предписание «записывать подряд все натуральные числа» — выполнение не заканчивается.</p></div>
+      <div class="prop"><h4>5. Массовость <span>(англ. generality)</span></h4><p>Алгоритм применим к целому классу задач, различающихся исходными данными. Правило сложения столбиком подходит для любой пары натуральных чисел.</p><p class="bad"><b>Нарушение:</b> инструкция «купить билет Подгорица — Котор на 14:00» пригодна для единственного набора данных.</p></div>
+      <div class="prop accent"><h4>Программа на Python</h4><p>Программа из команд <code>print()</code> — тоже алгоритм: команды выполняются по одной (дискретность), каждая понимается однозначно (определённость), выполнение заканчивается после последней команды (результативность).</p></div>
     </div>
     <div class="fig-pair">
-      <div class="fig-box"><h4>Блок-схема и программа</h4>
-        <div class="flow-fig" role="img" aria-label="Блок-схема: начало; a := 5; b := a + 2; a := 8; b := b + a; вывод a, b; конец" data-flow="start:Начало|proc:a := 5|proc:b := a + 2|proc:a := 8|proc:b := b + a|io:Вывод: a, b|end:Конец"></div>
-<pre class="code py">a = 5
-b = a + 2
-a = 8
-b = b + a
-print(a, b)</pre>
+      <div class="fig-box"><h4>Блок-схема</h4>
+        <div class="flow-fig" role="img" aria-label="Блок-схема: начало, четыре команды вывода, конец" data-flow="start:Начало|io:Вывод: «1. Вскипятить воду»|io:Вывод: «2. Положить в чашку пакетик чая»|io:Вывод: «3. Залить пакетик кипятком»|io:Вывод: «4. Подождать 3 минуты»|end:Конец"></div>
       </div>
-      <div class="fig-box"><h4>Трассировочная таблица</h4>
-        <div class="tbl-wrap">
-          <table class="tbl stack">
-            <thead><tr><th>Команда</th><th>a</th><th>b</th></tr></thead>
-            <tbody>
-              <tr><td data-l="Команда"><code>a = 5</code></td><td data-l="a">5</td><td data-l="b">—</td></tr>
-              <tr><td data-l="Команда"><code>b = a + 2</code></td><td data-l="a">5</td><td data-l="b">7</td></tr>
-              <tr><td data-l="Команда"><code>a = 8</code></td><td data-l="a">8</td><td data-l="b">7</td></tr>
-              <tr><td data-l="Команда"><code>b = b + a</code></td><td data-l="a">8</td><td data-l="b">15</td></tr>
-              <tr><td data-l="Команда"><code>print(a, b)</code></td><td data-l="a" colspan="2">вывод: 8 15</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="legend">Изменение <code>a</code> в третьей строке не меняет <code>b</code>: значение 7 уже записано.</p>
+      <div class="fig-box"><h4>Программа на Python</h4>
+<pre class="code py">print("1. Вскипятить воду")
+print("2. Положить в чашку пакетик чая")
+print("3. Залить пакетик кипятком")
+print("4. Подождать 3 минуты")</pre>
+        <p class="legend">Алгоритм обладает свойствами: шаги отдельные, каждый однозначен («3 минуты», а не «немного»), выполнение конечно.</p>
       </div>
-    </div>
-    <div class="tbl-wrap" style="margin:10px 0">
-      <table class="tbl stack">
-        <thead><tr><th>Вид ошибки</th><th>Когда обнаруживается</th><th>Пример</th></tr></thead>
-        <tbody>
-          <tr><td data-l="Вид ошибки"><b>Синтаксическая</b> (SyntaxError)</td><td data-l="Когда обнаруживается">до запуска: программа не выполняется совсем</td><td data-l="Пример">не закрыта кавычка или скобка: <code>print("Бар)</code></td></tr>
-          <tr><td data-l="Вид ошибки"><b>Ошибка выполнения</b> (NameError и др.)</td><td data-l="Когда обнаруживается">при выполнении: программа останавливается на строке с ошибкой</td><td data-l="Пример">имя с опечаткой или без значения: <code>print(prise)</code></td></tr>
-          <tr><td data-l="Вид ошибки"><b>Логическая</b></td><td data-l="Когда обнаруживается">сообщения нет: программа выводит не то</td><td data-l="Пример">имя в кавычках: <code>print("price")</code></td></tr>
-        </tbody>
-      </table>
     </div>
     <div class="sbx" data-task="th3"></div>
   </div>
@@ -537,27 +516,22 @@ print(a, b)</pre>
     <h3>Готовая программа</h3>
     <div class="grid2">
       <div>
-<pre class="code py"># Билет на автобус
-city = "Будва"
-price = 7          # цена в евро
-print("Рейс: Подгорица -", city)
-print("Цена:", price, "евро")
-price = price + 2  # цена в сезон
-print("Цена в сезон:", price, "евро")</pre>
+<pre class="code py">print("Маршрут: Подгорица - Котор")
+print("Отправление: 08:15")
+print()
+print("Прибытие: 09:40")</pre>
       </div>
       <div class="tbl-wrap">
         <table class="tbl stack">
-          <thead><tr><th>Строка</th><th>Что происходит</th></tr></thead>
+          <thead><tr><th>Строка</th><th>Что делает</th></tr></thead>
           <tbody>
-            <tr><td data-l="Строка">1</td><td data-l="Что происходит">Комментарий: пропускается.</td></tr>
-            <tr><td data-l="Строка">2, 3</td><td data-l="Что происходит">Присваивание: в <code>city</code> записывается строка, в <code>price</code> — целое число.</td></tr>
-            <tr><td data-l="Строка">4, 5</td><td data-l="Что происходит">Вывод нескольких значений через запятую: текст в кавычках и значения переменных.</td></tr>
-            <tr><td data-l="Строка">6</td><td data-l="Что происходит">Новое значение <code>price</code> вычисляется из старого.</td></tr>
-            <tr><td data-l="Строка">7</td><td data-l="Что происходит">Выводится значение <code>price</code> после строки 6.</td></tr>
+            <tr><td data-l="Строка">1, 2, 4</td><td data-l="Что делает">Команда <code>print()</code> выводит текст из кавычек и переходит на новую строку.</td></tr>
+            <tr><td data-l="Строка">3</td><td data-l="Что делает">Команда <code>print()</code> без текста выводит пустую строку.</td></tr>
           </tbody>
         </table>
       </div>
     </div>
+    <p class="legend" style="max-width:680px">Команды выполняются сверху вниз, каждая один раз. Текст записывается в кавычках внутри круглых скобок. Команда начинается с первого символа строки: лишний пробел слева вызывает ошибку.</p>
   </div>
 
   <div class="task" id="task-d1">
@@ -586,19 +560,19 @@ print("Цена в сезон:", price, "евро")</pre>
   <div class="card summary" id="vyvod">
     <h3>Вывод</h3>
     <ul>
-      <li><b>Способы записи алгоритма:</b> словесный, графический (блок-схема), на языке программирования. Блок-схема читается сверху вниз: овал — начало и конец; параллелограмм — ввод и вывод; прямоугольник — действие (присваивание); ромб — условие.</li>
-      <li><b>Величина</b> — константа или переменная. У переменной есть имя, тип (<code>int</code>, <code>float</code>, <code>str</code>) и значение. Имя без кавычек обозначает значение, в кавычках — обычный текст.</li>
-      <li><b>Присваивание</b> (<code>:=</code> в блок-схеме, <code>=</code> в Python): сначала вычисляется правая часть, затем результат записывается в переменную, прежнее значение теряется. Значения отслеживаются трассировочной таблицей.</li>
-      <li><b>Ошибки:</b> синтаксическая — программа не запускается; ошибка выполнения — останавливается на строке; логическая — работает, но выводит не то. Комментарий <code>#</code> пропускается при выполнении.</li>
+      <li><b>Алгоритм</b> — понятное и точное предписание исполнителю совершить последовательность действий, приводящих от исходных данных к искомому результату.</li>
+      <li><b>Исполнитель</b> — объект, способный выполнять определённый набор команд. Характеристики исполнителя: среда, система команд (СКИ), режимы работы — непосредственное и программное управление.</li>
+      <li><b>Программа</b> — алгоритм, записанный на языке программирования. Команда Python <code>print("текст")</code> выводит строку; <code>print()</code> выводит пустую строку. Команды выполняются сверху вниз.</li>
     </ul>
     <div class="tbl-wrap">
       <table class="tbl stack">
-        <thead><tr><th>Блок-схема</th><th>Программа на Python</th></tr></thead>
+        <thead><tr><th>Свойство</th><th>Содержание</th><th>Нарушение</th></tr></thead>
         <tbody>
-          <tr><td data-l="Блок-схема">прямоугольник «x := 5»</td><td data-l="Программа на Python"><code>x = 5</code></td></tr>
-          <tr><td data-l="Блок-схема">прямоугольник «n := n + 3»</td><td data-l="Программа на Python"><code>n = n + 3</code></td></tr>
-          <tr><td data-l="Блок-схема">параллелограмм «Вывод: "Цена:", price»</td><td data-l="Программа на Python"><code>print("Цена:", price)</code></td></tr>
-          <tr><td data-l="Блок-схема">параллелограмм «Вывод: пустая строка»</td><td data-l="Программа на Python"><code>print()</code></td></tr>
+          <tr><td data-l="Свойство"><b>Понятность</b></td><td data-l="Содержание">команды входят в СКИ исполнителя</td><td data-l="Нарушение">команда вне системы команд</td></tr>
+          <tr><td data-l="Свойство"><b>Дискретность</b></td><td data-l="Содержание">процесс разбит на отдельные шаги</td><td data-l="Нарушение">действие без разбиения на шаги</td></tr>
+          <tr><td data-l="Свойство"><b>Определённость</b></td><td data-l="Содержание">каждая команда понимается однозначно</td><td data-l="Нарушение">«подождать немного»</td></tr>
+          <tr><td data-l="Свойство"><b>Результативность</b></td><td data-l="Содержание">результат получен за конечное число шагов</td><td data-l="Нарушение">выполнение никогда не заканчивается</td></tr>
+          <tr><td data-l="Свойство"><b>Массовость</b></td><td data-l="Содержание">алгоритм применим к любым исходным данным из класса задач</td><td data-l="Нарушение">алгоритм годится для единственного набора данных</td></tr>
         </tbody>
       </table>
     </div>
@@ -1711,13 +1685,13 @@ Sk.builtinFiles={"files":{"src/builtin/sys.js":"var $builtinmodule=function(){va
 const TURTLE_TRACE_PY = "# Замена модуля turtle для автопроверки: рисунок не отображается, каждый нарисованный отрезок\n# выводится строкой «@@SEG x1 y1 x2 y2 цвет толщина». Страница отбирает такие строки из вывода.\nimport math\n\nclass Turtle:\n    def __init__(self):\n        self._x = 0.0\n        self._y = 0.0\n        self._h = 0.0\n        self._down = True\n        self._c = \"black\"\n        self._w = 1\n    def _seg(self, x1, y1, x2, y2):\n        if abs(x1 - x2) < 0.0001 and abs(y1 - y2) < 0.0001:\n            return\n        print(\"@@SEG %s %s %s %s %s %s\" % (round(x1, 2), round(y1, 2), round(x2, 2), round(y2, 2), self._c, self._w))\n    def _move(self, x, y):\n        if self._down:\n            self._seg(self._x, self._y, x, y)\n        self._x = x\n        self._y = y\n    def forward(self, d):\n        r = math.radians(self._h)\n        self._move(self._x + d * math.cos(r), self._y + d * math.sin(r))\n    def backward(self, d):\n        self.forward(-d)\n    def left(self, a):\n        self._h = (self._h + a) % 360\n    def right(self, a):\n        self._h = (self._h - a) % 360\n    def penup(self):\n        self._down = False\n    def pendown(self):\n        self._down = True\n    def isdown(self):\n        return self._down\n    def goto(self, x, y=None):\n        if y is None:\n            y = x[1]\n            x = x[0]\n        self._move(x, y)\n    def setx(self, x):\n        self._move(x, self._y)\n    def sety(self, y):\n        self._move(self._x, y)\n    def setheading(self, a):\n        self._h = a % 360\n    def home(self):\n        self._move(0.0, 0.0)\n        self._h = 0.0\n    def pencolor(self, *c):\n        if len(c) == 0:\n            return self._c\n        self._c = str(c[0]) if len(c) == 1 else \"rgb\" + str(c)\n    def color(self, *c):\n        if len(c) == 0:\n            return self._c\n        self._c = str(c[0]) if len(c) >= 1 and not isinstance(c[0], (int, float)) else \"rgb\" + str(c)\n    def pensize(self, w=None):\n        if w is None:\n            return self._w\n        self._w = w\n    def position(self):\n        return (self._x, self._y)\n    def xcor(self):\n        return self._x\n    def ycor(self):\n        return self._y\n    def heading(self):\n        return self._h\n    def circle(self, r, extent=None, steps=None):\n        if extent is None:\n            extent = 360\n        n = steps if steps else 36\n        part = extent / float(n)\n        side = 2 * abs(r) * math.sin(math.radians(part / 2))\n        sign = 1 if r > 0 else -1\n        self.left(sign * part / 2)\n        for i in range(n):\n            self.forward(side)\n            self.left(sign * part)\n        self.right(sign * part / 2)\n    def dot(self, size=None, *c):\n        pass\n    def speed(self, s=None):\n        pass\n    def hideturtle(self):\n        pass\n    def showturtle(self):\n        pass\n    def shape(self, s=None):\n        pass\n    def fillcolor(self, *c):\n        pass\n    def begin_fill(self):\n        pass\n    def end_fill(self):\n        pass\n    def write(self, *a, **k):\n        pass\n    def clear(self):\n        pass\n    def reset(self):\n        self.home()\n    def stamp(self):\n        pass\n    def delay(self, d=None):\n        pass\n    def tracer(self, *a):\n        pass\n    def update(self):\n        pass\n    fd = forward\n    bk = backward\n    back = backward\n    lt = left\n    rt = right\n    pu = penup\n    up = penup\n    pd = pendown\n    down = pendown\n    setpos = goto\n    setposition = goto\n    seth = setheading\n    pos = position\n    width = pensize\n    ht = hideturtle\n    st = showturtle\n\nclass Screen:\n    def bgcolor(self, *c):\n        pass\n    def title(self, t):\n        pass\n    def tracer(self, *a):\n        pass\n    def update(self):\n        pass\n    def setup(self, *a):\n        pass\n    def exitonclick(self):\n        pass\n    def mainloop(self):\n        pass\n    def listen(self):\n        pass\n    def delay(self, d=None):\n        pass\n\n_t = Turtle()\nforward = _t.forward\nfd = _t.forward\nbackward = _t.backward\nback = _t.backward\nbk = _t.backward\nleft = _t.left\nlt = _t.left\nright = _t.right\nrt = _t.right\npenup = _t.penup\npu = _t.penup\nup = _t.penup\npendown = _t.pendown\npd = _t.pendown\ndown = _t.pendown\nisdown = _t.isdown\ngoto = _t.goto\nsetpos = _t.goto\nsetposition = _t.goto\nsetx = _t.setx\nsety = _t.sety\nsetheading = _t.setheading\nseth = _t.setheading\nhome = _t.home\npencolor = _t.pencolor\ncolor = _t.color\npensize = _t.pensize\nwidth = _t.pensize\nposition = _t.position\npos = _t.position\nxcor = _t.xcor\nycor = _t.ycor\nheading = _t.heading\ncircle = _t.circle\ndot = _t.dot\nspeed = _t.speed\nhideturtle = _t.hideturtle\nht = _t.hideturtle\nshowturtle = _t.showturtle\nst = _t.showturtle\nshape = _t.shape\nfillcolor = _t.fillcolor\nbegin_fill = _t.begin_fill\nend_fill = _t.end_fill\nwrite = _t.write\nclear = _t.clear\nreset = _t.reset\nstamp = _t.stamp\ntracer = _t.tracer\nupdate = _t.update\n\ndef Pen():\n    return Turtle()\n\ndef bgcolor(*c):\n    pass\n\ndef title(t):\n    pass\n\ndef setup(*a):\n    pass\n\ndef done():\n    pass\n\ndef mainloop():\n    pass\n\ndef exitonclick():\n    pass\n\ndef listen():\n    pass\n";
 </script>
 <script id="telemetry-config">
-/* ===== НАСТРОЙКИ (создаются сборкой из course.json и lessons/K2/lesson.json) =========
+/* ===== НАСТРОЙКИ (создаются сборкой из course.json и lessons/K1/lesson.json) =========
    Адрес веб-приложения Apps Script и адрес сайта курса задаются в course.json. */
 const TELEMETRY_CONFIG = {
   "schemaVersion": 1,
   "eventVersion": 1,
-  "trainerId": "informatics-8-k02-lesson",
-  "trainerVersion": "2.0.0",
+  "trainerId": "informatics-8-k01-lesson",
+  "trainerVersion": "1.0.0",
   "subjectId": "informatics",
   "courseId": "informatics-8-algorithms-python",
   "schoolId": null,
@@ -1736,8 +1710,8 @@ const TELEMETRY_CONFIG = {
   "flushIntervalMs": 30000,
   "courseTitle": "Информатика 8",
   "courseUrl": "https://info-8-class.learn-it.app/",
-  "lessonId": "K2",
-  "lessonTitle": "К2 Способы записи алгоритмов. Величины и присваивание",
+  "lessonId": "K1",
+  "lessonTitle": "К1 Алгоритмы и исполнители. Свойства алгоритмов",
   "practiceTaskIds": [
     "p1",
     "p2",
@@ -1748,188 +1722,176 @@ const TELEMETRY_CONFIG = {
 };
 </script>
 <script id="lesson-data">
-/* К2. Данные урока: задачи и вопросы (формат — AUTHORING.md, раздел 5).
-   Python: print() с несколькими аргументами, комментарии #, переменные, присваивание, int/float/str, сложение и вычитание чисел. */
-const NO_DIGITS_IN_PRINT = { forbid: 'print\\s*\\([^\\n]*\\d', flags: '', text: 'Числа в командах print() не записываются: значения берутся из переменных.', hint: 'Вместо числа в команду <code>print()</code> записывается имя переменной без кавычек.' };
-
+/* ===== ДАННЫЕ УРОКА: задачи и вопросы ========================================
+   Задача описывается данными: условие, заготовка, тесты (input — вводимые строки,
+   expected — ожидаемый вывод; hidden: true скрывает тест от ученика), автоматические
+   подсказки и лестница из трёх подсказок. Эталонные решения — только в методичке. */
 const TASKS = {
-  th1: { kind: 'free', title: 'Песочница: программа по блок-схеме', rows: 6,
-    statement: '<p><b>Порядок работы.</b> 1. Сопоставить блок-схему и программу: каждому блоку вывода соответствует одна команда <code>print()</code>. 2. Предсказать вывод и запустить программу (<b>Ctrl</b>+<b>Enter</b>). 3. Добавить первой строкой комментарий с названием программы, а в конец — команду, которая выводит «Хорошего дня!» после пустой строки.</p>',
-    starter: 'print("Порт: Бар")\nprint("Причал: 3")\nprint("Рейс: 14:30")\n' },
-  th2: { kind: 'free', title: 'Песочница: переменные и их значения', rows: 8,
-    statement: '<p><b>Порядок работы.</b> 1. Предсказать вывод: в каких строках выводится имя переменной, а в каких — её значение. 2. Запустить программу. 3. Изменить значение переменной <code>city</code> на <code>"Котор"</code> и запустить снова: изменятся обе строки, где используется эта переменная.</p>',
-    starter: 'city = "Будва"\nprice = 7\nprint(city)\nprint("city")\nprint("Рейс до", city)\nprint("Цена:", price, "евро")\nprint(type(price), type(city))\n' },
-  th3: { kind: 'free', title: 'Песочница: присваивание и трассировка', rows: 8,
-    statement: '<p><b>Порядок работы.</b> 1. Заполнить на бумаге трассировочную таблицу для этой программы и предсказать вывод. 2. Запустить программу и сравнить. 3. Поменять местами строки 1 и 2 и запустить: прочитать сообщение об ошибке и объяснить его.</p>',
-    starter: 'a = 5\nb = a + 2\na = 8\nb = b + a\nprint("a =", a)\nprint("b =", b)\n' },
+  th1: { kind: 'free', title: 'Песочница: первая программа', rows: 5,
+    statement: '<p><b>Порядок работы.</b> 1. Предсказать вывод программы. 2. Запустить программу (кнопка «Запустить» или <b>Ctrl</b>+<b>Enter</b>). 3. Сравнить результат с предсказанием. Затем добавить в конец третью команду <code>print()</code> с любым текстом и запустить программу снова.</p>',
+    starter: 'print("Добро пожаловать в Котор!")\nprint("Начинается урок информатики.")\n' },
+  th2: { kind: 'free', title: 'Песочница: порядок команд', rows: 5,
+    statement: '<p><b>Порядок работы.</b> 1. Предсказать вывод программы. 2. Запустить программу. 3. Изменить порядок команд так, чтобы действия с чайником выполнялись в разумной последовательности, и запустить программу снова.</p>',
+    starter: 'print("Включить плиту")\nprint("Поставить чайник на плиту")\nprint("Налить воду в чайник")\n' },
+  th3: { kind: 'free', title: 'Песочница: свойства алгоритма', rows: 6,
+    statement: '<p><b>Порядок работы.</b> 1. Запустить программу. 2. Добавить пятую команду <code>print()</code> с шагом «5. Вынуть пакетик из чашки». 3. Запустить программу и убедиться, что шаги выводятся по порядку.</p>',
+    starter: 'print("1. Вскипятить воду")\nprint("2. Положить в чашку пакетик чая")\nprint("3. Залить пакетик кипятком")\nprint("4. Подождать 3 минуты")\n' },
 
-  d2: { kind: 'check', practice: false, title: 'Задание 2. Измените одно значение', rows: 8,
-    statement: '<p>Цена билета выросла: в программе изменить <b>только одно число</b> так, чтобы обычная цена стала 8&nbsp;евро. Цена в сезон должна пересчитаться сама. Нажать «Проверить».</p>',
-    starter: '# Билет на автобус\ncity = "Будва"\nprice = 7          # цена в евро\nprint("Рейс: Подгорица -", city)\nprint("Цена:", price, "евро")\nprice = price + 2  # цена в сезон\nprint("Цена в сезон:", price, "евро")\n',
-    tests: [{ input: [], expected: 'Рейс: Подгорица - Будва\nЦена: 8 евро\nЦена в сезон: 10 евро' }],
-    rules: [NO_DIGITS_IN_PRINT,
-      { need: 'price\\s*=\\s*price\\s*\\+\\s*2', flags: '', text: 'Строка с пересчётом цены в сезон (price = price + 2) должна остаться без изменений.', hint: 'Изменяется только число в строке 3: <code>price = 8</code>.' }],
+  d2: { kind: 'check', practice: false, title: 'Задание 2. Измените одно значение', rows: 6,
+    statement: '<p>В программе изменить время прибытия на <b>10:05</b>. Остальной вывод остаётся прежним. После изменения нажать «Проверить».</p>',
+    starter: 'print("Маршрут: Подгорица - Котор")\nprint("Отправление: 08:15")\nprint()\nprint("Прибытие: 09:40")\n',
+    tests: [{ input: [], expected: 'Маршрут: Подгорица - Котор\nОтправление: 08:15\n\nПрибытие: 10:05' }],
     ladder: [
-      'Обычная цена задаётся в одной строке программы: там, где переменной <code>price</code> присваивается первое значение.',
-      'Цена в сезон вычисляется из обычной цены командой <code>price = price + 2</code>, поэтому её менять не требуется.',
-      'Строка 3 должна принять вид <code>price = 8          # цена в евро</code>.'
+      'Время прибытия записано в последней команде программы, в кавычках.',
+      'Менять требуется только цифры времени внутри кавычек: остальной текст и команды остаются прежними.',
+      'Последняя команда должна принять вид <code>print("Прибытие: 10:05")</code>.'
     ],
-    autoHints: [{ re: 'price\\s*=\\s*7', text: 'Переменной <code>price</code> по-прежнему присваивается 7.' }] },
-  d3: { kind: 'check', practice: false, title: 'Задание 3. Найдите и исправьте ошибку', rows: 7,
-    statement: '<p>Программа должна вывести две строки, но останавливается с ошибкой. Запустить программу, прочитать сообщение: в нём указаны строка и имя, которое Python не нашёл. Исправить программу и нажать «Проверить».</p><div class="sample-label">Образец вывода</div><pre class="sample">Паром из Каменари\nЦена: 5 евро</pre>',
-    starter: '# Билет на паром\nport = "Каменари"\nprice = 5\nprint("Паром из", port)\nprint("Цена:", prise, "евро")\n',
-    tests: [{ input: [], expected: 'Паром из Каменари\nЦена: 5 евро' }],
-    rules: [NO_DIGITS_IN_PRINT],
+    autoHints: [
+      { re: '09:40', text: 'Время 09:40 всё ещё присутствует в программе. Требуется заменить его на 10:05.' },
+      { re: '08:15', absent: true, text: 'Время отправления не должно изменяться: 08:15 остаётся прежним.' }
+    ] },
+  d3: { kind: 'check', practice: false, title: 'Задание 3. Найдите и исправьте ошибку', rows: 6,
+    statement: '<p>Программа должна вывести три строки, но завершается ошибкой. Запустить программу, прочитать сообщение об ошибке, исправить программу и нажать «Проверить». Кнопка «Перейти к строке» в сообщении об ошибке переносит курсор к нужной строке.</p>',
+    starter: 'print("Расстояния от Подгорицы")\npritn("Котор: 90 км")\nprint("Будва: 65 км")\n',
+    tests: [{ input: [], expected: 'Расстояния от Подгорицы\nКотор: 90 км\nБудва: 65 км' }],
     ladder: [
-      'Сообщение NameError указывает на строку 5: имя, записанное в ней, нигде выше не задано.',
-      'Сравнить имя переменной в строке 3 и в строке 5: они различаются одной буквой.',
-      'Строка 5 должна принять вид <code>print("Цена:", price, "евро")</code>.'
+      'Сообщение об ошибке указывает номер строки и имя, которое Python не знает.',
+      'Имя команды записано с опечаткой: буквы переставлены.',
+      'Во второй строке вместо <code>pritn</code> требуется <code>print</code>.'
     ],
-    autoHints: [{ re: '"price"', text: 'Имя переменной в кавычках — это текст: выводится слово price, а не значение переменной.' }] },
+    autoHints: [
+      { re: 'pritn', text: 'Во второй строке имя команды записано неверно: <code>pritn</code>. Python знает только <code>print</code>.' }
+    ] },
 
-  p1: { kind: 'check', practice: true, title: 'Задача 1. Блок-схема в программу', rows: 8,
-    statement: '<p>Составить программу на Python по блок-схеме. Блок «Действие» с присваиванием записывается в Python знаком <code>=</code> (в блок-схеме — <code>:=</code>), блок вывода — командой <code>print()</code>.</p><div class="flow-fig" role="img" aria-label="Блок-схема: начало; port := «Бар»; pier := 3; time := «14:30»; вывод «Порт:», port; вывод «Причал:», pier; вывод «Отправление:», time; конец" data-flow="start:Начало|proc:port := &quot;Бар&quot;|proc:pier := 3|proc:time := &quot;14:30&quot;|io:Вывод: &quot;Порт:&quot;, port|io:Вывод: &quot;Причал:&quot;, pier|io:Вывод: &quot;Отправление:&quot;, time|end:Конец"></div><div class="sample-label">Образец вывода</div><pre class="sample">Порт: Бар\nПричал: 3\nОтправление: 14:30</pre>',
+  p1: { kind: 'check', practice: true, title: 'Задача 1. Три шага', rows: 7,
+    statement: '<p>Алгоритм запуска программы состоит из трёх команд. Составить программу на Python, которая выводит эти команды по порядку, каждую в отдельной строке.</p><div class="sample-label">Образец вывода</div><pre class="sample">Включить компьютер\nОткрыть редактор\nЗапустить программу</pre>',
     starter: '# Напишите программу под этой строкой\n',
-    tests: [{ input: [], expected: 'Порт: Бар\nПричал: 3\nОтправление: 14:30' }],
-    rules: [
-      { need: '^\\s*port\\s*=[^=]', flags: 'm', text: 'В программе требуются переменные из блок-схемы: port, pier, time.', hint: 'Первая команда программы: <code>port = "Бар"</code>.' },
-      { need: '^\\s*pier\\s*=[^=]', flags: 'm', text: 'В программе требуется переменная pier.', hint: 'Номер причала — число, кавычки не нужны: <code>pier = 3</code>.' },
-      { need: '^\\s*time\\s*=[^=]', flags: 'm', text: 'В программе требуется переменная time.', hint: 'Время — текст с двоеточием, поэтому записывается в кавычках: <code>time = "14:30"</code>.' },
-      { forbid: 'print\\s*\\([^\\n]*("Бар"|\\d)', flags: '', text: 'В командах print() значения берутся из переменных, а не записываются заново.', hint: 'Например: <code>print("Порт:", port)</code>.' }],
+    tests: [{ input: [], expected: 'Включить компьютер\nОткрыть редактор\nЗапустить программу' }],
     ladder: [
-      'Сначала три присваивания (прямоугольники), затем три команды вывода (параллелограммы) — в порядке стрелок.',
-      'В блоке вывода через запятую перечислены текст в кавычках и имя переменной. В Python так же: <code>print("Порт:", port)</code>; пробел между ними Python ставит сам.',
-      'Число 3 записывается без кавычек, «Бар» и «14:30» — в кавычках, потому что это текст.'
+      'Каждая команда <code>print()</code> выводит одну строку. Для трёх строк нужны три команды, записанные одна под другой.',
+      'Текст для вывода записывается в кавычках внутри скобок: <code>print("текст")</code>. Регистр букв и знаки препинания учитываются.',
+      'Первая команда: <code>print("Включить компьютер")</code>. Две остальные записываются аналогично, в порядке, заданном образцом.'
     ],
     autoHints: [
-      { re: ':=', text: 'Знак <code>:=</code> используется в блок-схеме; в Python присваивание записывается знаком <code>=</code>.' },
-      { re: 'print\\s*\\(\\s*"[^"]*(port|pier|time)', text: 'Имя переменной внутри кавычек выводится как текст. Имя записывается после запятой, без кавычек.' }
+      { re: 'print\\s+["\']', text: 'После <code>print</code> требуются круглые скобки: <code>print("текст")</code>.' },
+      { countLt: { re: 'print\\s*\\(', n: 3 }, text: 'Для трёх строк вывода требуются три команды <code>print()</code>.' }
     ] },
-  p2: { kind: 'check', practice: true, title: 'Задача 2. Три ошибки разных видов', rows: 8,
-    statement: '<p>Программа должна вывести три строки по образцу, но содержит три ошибки: <b>синтаксическую</b> (программа не запускается), <b>ошибку выполнения</b> (программа останавливается на середине) и <b>логическую</b> (программа работает, но выводит не то). Запускать программу после каждого исправления и сравнивать вывод с образцом.</p><div class="sample-label">Образец вывода</div><pre class="sample">Рейс до Котор\nМест: 40\nОтправление: 09:15</pre>',
-    starter: '# Визитка рейса\ncity = "Котор"\nseats = 40\nprint("Рейс до", "city")\npront("Мест:", seats)\nprint("Отправление: 09:15)\n',
-    tests: [{ input: [], expected: 'Рейс до Котор\nМест: 40\nОтправление: 09:15' }],
-    rules: [{ forbid: 'Котор[\\s\\S]*Котор', flags: '', text: 'Название города записывается в программе один раз — в переменной city.', hint: 'В строке 4 вместо текста <code>"city"</code> записывается имя переменной без кавычек.' }],
+  p2: { kind: 'check', practice: true, title: 'Задача 2. Маршрутный лист', rows: 8,
+    statement: '<p>Составить программу, которая выводит маршрутный лист: три строки с данными, пустую строку и заключительную фразу. Пустая строка выводится командой <code>print()</code> без текста в скобках.</p><div class="sample-label">Образец вывода</div><pre class="sample">Маршрут: Подгорица - Бар\nРасстояние: 60 км\nТранспорт: автобус\n\nСчастливого пути!</pre>',
+    starter: '# Напишите программу под этой строкой\n',
+    tests: [{ input: [], expected: 'Маршрут: Подгорица - Бар\nРасстояние: 60 км\nТранспорт: автобус\n\nСчастливого пути!' }],
     ladder: [
-      'Синтаксическая ошибка находится до запуска: в строке 6 не закрыта кавычка. Python сообщает о ней первой, хотя строка последняя.',
-      'После исправления программа запускается и останавливается на строке 5 (NameError): имя команды вывода записано с опечаткой.',
-      'Логическая ошибка в строке 4: вместо значения переменной выводится слово city. Строка должна принять вид <code>print("Рейс до", city)</code>.'
+      'Вывод состоит из пяти строк, среди которых одна пустая. Пустая строка выводится командой <code>print()</code> без текста.',
+      'Нужны пять команд <code>print()</code>: три с данными маршрута, одна пустая и одна с заключительной фразой.',
+      'Порядок команд: три команды с данными, затем <code>print()</code>, затем <code>print("Счастливого пути!")</code>.'
     ],
     autoHints: [
-      { re: 'pront', text: 'В программе осталось имя <code>pront</code>: Python знает только <code>print</code>.' },
-      { re: '"city"', text: 'Выводится текст «city», а не значение переменной: имя переменной записывается без кавычек.' }
+      { re: 'print\\s*\\(\\s*(""|\'\')?\\s*\\)', absent: true, text: 'Пустая строка выводится командой <code>print()</code> без текста в скобках. В программе такой команды нет.' },
+      { re: 'print\\s+["\']', text: 'После <code>print</code> требуются круглые скобки: <code>print("текст")</code>.' }
     ] },
-  p3: { kind: 'check', practice: true, title: 'Задача 3. Чек покупки', rows: 9,
-    statement: '<p>В киоске на набережной Будвы вода стоит 2&nbsp;евро, сэндвич — 4&nbsp;евро. Составить программу: цены записать в переменные <code>water</code> и <code>sandwich</code>, общую стоимость вычислить в переменной <code>total</code> из этих двух переменных. Числа в командах <code>print()</code> не записывать.</p><div class="sample-label">Образец вывода</div><pre class="sample">Вода: 2 евро\nСэндвич: 4 евро\nИтого: 6 евро</pre>',
-    starter: '',
-    tests: [{ input: [], expected: 'Вода: 2 евро\nСэндвич: 4 евро\nИтого: 6 евро' }],
-    rules: [
-      { need: '^\\s*water\\s*=\\s*2\\s*$', flags: 'm', text: 'Цена воды записывается в переменную water: water = 2.', hint: 'Первая строка: <code>water = 2</code>.' },
-      { need: '^\\s*sandwich\\s*=\\s*4\\s*$', flags: 'm', text: 'Цена сэндвича записывается в переменную sandwich: sandwich = 4.', hint: '<code>sandwich = 4</code>.' },
-      { need: 'total\\s*=\\s*(water\\s*\\+\\s*sandwich|sandwich\\s*\\+\\s*water)', flags: '', text: 'Общая стоимость вычисляется из переменных: total = water + sandwich.', hint: 'В правой части присваивания записываются имена переменных, а не числа: <code>total = water + sandwich</code>.' },
-      NO_DIGITS_IN_PRINT],
+  p3: { kind: 'check', practice: true, title: 'Задача 3. Рамка', rows: 7,
+    statement: '<p>Составить программу, которая выводит слово Python в рамке из символов <code>+</code>, <code>-</code> и <code>|</code>. Вывод состоит из трёх строк; число пробелов и символов совпадает с образцом.</p><div class="sample-label">Образец вывода</div><pre class="sample">+--------+\n| Python |\n+--------+</pre>',
+    starter: '# Напишите программу под этой строкой\n',
+    tests: [{ input: [], expected: '+--------+\n| Python |\n+--------+' }],
     ladder: [
-      'Программа из двух частей: сначала три присваивания (water, sandwich, total), затем три команды вывода.',
-      'Сумма вычисляется в правой части присваивания: <code>total = water + sandwich</code>. Python сначала вычисляет правую часть, затем записывает результат в переменную.',
-      'Строка вывода: <code>print("Вода:", water, "евро")</code>; остальные две — так же.'
+      'Вывод состоит из трёх строк, поэтому нужны три команды <code>print()</code>. Символы рамки — часть текста и записываются в кавычках.',
+      'Верхняя и нижняя строки одинаковы: знак «+», восемь знаков «-», знак «+». Всего 10 символов.',
+      'Средняя строка состоит из знака «|», пробела, слова Python, пробела и знака «|»: тоже 10 символов.'
     ],
-    autoHints: [{ re: 'total\\s*=\\s*\\d', text: 'Общая стоимость должна вычисляться из переменных, а не записываться готовым числом.' }] },
-  p4: { kind: 'check', practice: true, star: true, title: 'Задача 4★. Пассажиры автобуса', rows: 10,
-    statement: '<p>Автобус выезжает из Бара с 12 пассажирами (переменная <code>n</code>). В Петроваце выходят 5 человек, в Будве входят 8. После каждой остановки значение <code>n</code> изменяется присваиванием вида <code>n = n - …</code> или <code>n = n + …</code> и выводится. Числа в командах <code>print()</code> не записывать.</p><div class="sample-label">Образец вывода</div><pre class="sample">Бар: 12\nПетровац: 7\nБудва: 15</pre>',
-    starter: 'n = 12\nprint("Бар:", n)\n',
-    tests: [{ input: [], expected: 'Бар: 12\nПетровац: 7\nБудва: 15' }],
-    rules: [
-      { need: 'n\\s*=\\s*n\\s*-\\s*5', flags: '', text: 'После Петроваца значение изменяется командой n = n - 5.', hint: 'Новое значение <code>n</code> вычисляется из старого: <code>n = n - 5</code>.' },
-      { need: 'n\\s*=\\s*n\\s*\\+\\s*8', flags: '', text: 'После Будвы значение изменяется командой n = n + 8.', hint: '<code>n = n + 8</code>.' },
-      NO_DIGITS_IN_PRINT],
+    autoHints: [
+      { re: 'print\\s+["\']', text: 'После <code>print</code> требуются круглые скобки: <code>print("текст")</code>.' }
+    ] },
+  p4: { kind: 'check', practice: true, star: true, title: 'Задача 4★. Билет', rows: 7,
+    statement: '<p>Составить программу, которая выводит данные билета. В первой строке название маршрута заключено в двойные кавычки; кавычки входят в вывод.</p><div class="sample-label">Образец вывода</div><pre class="sample">Билет: "Подгорица - Котор"\nЦена: 7 евро\nОтправление: 08:15</pre>',
+    starter: '# Напишите программу под этой строкой\n',
+    tests: [{ input: [], expected: 'Билет: "Подгорица - Котор"\nЦена: 7 евро\nОтправление: 08:15' }],
     ladder: [
-      'Команда <code>n = n - 5</code> берёт текущее значение <code>n</code>, вычитает 5 и записывает результат обратно в <code>n</code>.',
-      'Порядок: присваивание, затем вывод; присваивание, затем вывод. Если поменять их местами, выведется старое значение.',
-      'После заготовки дописываются четыре строки: <code>n = n - 5</code>, <code>print("Петровац:", n)</code>, <code>n = n + 8</code>, <code>print("Будва:", n)</code>.'
+      'Двойная кавычка внутри текста прерывает строку. Весь текст можно заключить в одинарные кавычки: <code>print(\'текст\')</code>; двойные кавычки внутри становятся обычными символами.',
+      'Первая строка вывода записывается так: внешние кавычки одинарные, название маршрута внутри них — в двойных.',
+      'Первая команда: <code>print(\'Билет: "Подгорица - Котор"\')</code>. Две остальные команды записываются обычным образом.'
     ],
-    autoHints: [{ re: 'n\\s*=\\s*(7|15)\\b', text: 'Значение записано готовым числом. Требуется вычислить его из предыдущего значения n.' }] },
-  p5: { kind: 'check', practice: true, star: true, title: 'Задача 5★. Обмен значений', rows: 9,
-    statement: '<p>Переменной <code>a</code> присвоено «Котор», переменной <code>b</code> — «Будва». Дописать команды присваивания так, чтобы переменные <b>обменялись значениями</b>. Названия городов заново не записывать, последние две строки не менять. Подсказка: при обмене значений двух стаканов с водой требуется третий, пустой.</p><div class="sample-label">Образец вывода</div><pre class="sample">a = Будва\nb = Котор</pre>',
-    starter: 'a = "Котор"\nb = "Будва"\n# Допишите команды под этой строкой\n\nprint("a =", a)\nprint("b =", b)\n',
-    tests: [{ input: [], expected: 'a = Будва\nb = Котор' }],
-    rules: [
-      { forbid: '(Котор|Будва)[\\s\\S]*(Котор|Будва)[\\s\\S]*(Котор|Будва)', flags: '', text: 'Названия городов записываются только в первых двух строках.', hint: 'Значения переносятся между переменными присваиванием, например <code>c = a</code>.' },
-      { need: 'print\\(\\s*"a =",\\s*a\\s*\\)\\s*\\n\\s*print\\(\\s*"b =",\\s*b\\s*\\)\\s*$', flags: '', text: 'Последние две строки программы остаются без изменений: print("a =", a) и print("b =", b).', hint: 'Обмен выполняется присваиваниями до команд вывода; сами команды вывода не меняются.' }],
+    autoHints: [
+      { outputLacks: '"', text: 'В выводе отсутствуют двойные кавычки, а в образце они есть. Текст с двойными кавычками внутри заключается в одинарные кавычки.' }
+    ] },
+  p5: { kind: 'check', practice: true, star: true, title: 'Задача 5★. Ёлочка', rows: 8,
+    statement: '<p>Составить программу, которая выводит ёлочку высотой 4 строки. Звёздочки выровнены по центру пробелами слева; пробелов в конце строк нет.</p><div class="sample-label">Образец вывода</div><pre class="sample">   *\n  ***\n *****\n*******</pre>',
+    starter: '# Напишите программу под этой строкой\n',
+    tests: [{ input: [], expected: '   *\n  ***\n *****\n*******' }],
     ladder: [
-      'Команда <code>a = b</code> стирает старое значение <code>a</code>. Поэтому сначала значение <code>a</code> сохраняется в третьей переменной.',
-      'Порядок: сохранить <code>a</code> в <code>c</code>, затем записать в <code>a</code> значение <code>b</code>, затем записать в <code>b</code> сохранённое значение.',
-      'Три строки: <code>c = a</code>, <code>a = b</code>, <code>b = c</code>.'
+      'Пробелы слева — часть вывода и записываются внутри кавычек: <code>print("   *")</code> выводит три пробела и звёздочку.',
+      'Число звёздочек в строках: 1, 3, 5, 7. Число пробелов слева уменьшается на один в каждой следующей строке: 3, 2, 1, 0.',
+      'Последняя строка не содержит пробелов: <code>print("*******")</code>. Первая строка: три пробела и одна звёздочка.'
     ],
-    autoHints: [{ re: '(^|\\n)\\s*a\\s*=\\s*b\\s*\\n\\s*b\\s*=\\s*a\\s*(\\n|$)', text: 'После <code>a = b</code> в обеих переменных «Будва»: старое значение <code>a</code> потеряно. Требуется третья переменная.' }] }
+    autoHints: [] }
 };
 
+/* Вопросы: options[].ok — верный вариант. Порядок перемешивается детерминированно (зерно — id). */
 const QUESTIONS = {
   r1: { group: 'review', mode: 'instant', num: 'Вопрос 1 из 3',
+    text: 'Инструкция по заварке чая содержит шаги: «1. Положить в чашку пакетик чая. 2. Залить пакетик кипятком. 3. Вскипятить воду». Какое утверждение об этой инструкции верно?',
+    options: [
+      { id: 'a', ok: true, text: 'Порядок шагов нарушен: воду требуется вскипятить до заливки пакетика.' },
+      { id: 'b', text: 'Инструкция верна: порядок шагов не влияет на результат.' },
+      { id: 'c', text: 'Инструкция неполна только потому, что не указано количество сахара.' },
+      { id: 'd', text: 'Инструкцию нельзя выполнить, так как в ней слишком мало шагов.' }
+    ],
+    explain: 'Результат зависит от порядка действий: шаг 3 должен выполняться первым.' },
+  r2: { group: 'review', mode: 'instant', num: 'Вопрос 2 из 3',
+    text: 'Какой из перечисленных документов задаёт последовательность действий, приводящую к определённому результату?',
+    options: [
+      { id: 'a', text: 'Меню кафе' },
+      { id: 'b', ok: true, text: 'Рецепт приготовления блюда' },
+      { id: 'c', text: 'Список покупок' },
+      { id: 'd', text: 'Расписание автобусов' }
+    ],
+    explain: 'Рецепт указывает, какие действия и в каком порядке приводят к готовому блюду. Остальные документы только перечисляют сведения.' },
+  r3: { group: 'review', mode: 'instant', num: 'Вопрос 3 из 3',
+    text: 'Турист получил инструкцию: «Идите по набережной до отеля, затем поверните, куда нужно, и идите к причалу». Какая особенность делает эту инструкцию неудобной для выполнения?',
+    options: [
+      { id: 'a', text: 'В инструкции не указана длина маршрута в километрах.' },
+      { id: 'b', text: 'Действия в инструкции перечислены не по порядку.' },
+      { id: 'c', ok: true, text: 'Указание «куда нужно» допускает разные толкования.' },
+      { id: 'd', text: 'В инструкции не названа конечная цель маршрута.' }
+    ],
+    explain: 'Инструкция должна быть однозначной: направление поворота не задано, поэтому разные люди выполнят её по-разному.' },
+  d1: { group: 'code', mode: 'check', num: '',
+    text: 'Определить, что выведет программа из раздела «Готовая программа». Пустая строка в вариантах отмечена пометкой.',
+    code: 'print("Маршрут: Подгорица - Котор")\nprint("Отправление: 08:15")\nprint()\nprint("Прибытие: 09:40")',
+    options: [
+      { id: 'a', pre: 'Маршрут: Подгорица - Котор\nОтправление: 08:15\nПрибытие: 09:40' },
+      { id: 'b', ok: true, pre: 'Маршрут: Подгорица - Котор\nОтправление: 08:15\n\nПрибытие: 09:40' },
+      { id: 'c', pre: 'Маршрут: Подгорица - Котор Отправление: 08:15 Прибытие: 09:40' },
+      { id: 'd', pre: 'Маршрут: Подгорица - Котор\nОтправление: 08:15\nПрибытие: 09:40\n' }
+    ],
+    explain: 'Команда print() без текста выводит пустую строку; она стоит третьей, поэтому пустая строка расположена между отправлением и прибытием.' },
+  s1: { group: 'selfcheck', mode: 'reveal', num: 'Задание 1',
+    text: 'Шаг алгоритма записан так: «Подождать немного». Какое свойство алгоритма нарушено?',
+    options: [
+      { id: 'a', text: 'Дискретность' },
+      { id: 'b', ok: true, text: 'Определённость' },
+      { id: 'c', text: 'Результативность' },
+      { id: 'd', text: 'Массовость' }
+    ],
+    explain: 'Длительность ожидания не задана, команда допускает разные толкования. Нарушена определённость.' },
+  s2: { group: 'selfcheck', mode: 'reveal', num: 'Задание 2',
+    text: 'Правило сложения столбиком подходит для любой пары натуральных чисел. Какое свойство алгоритма это иллюстрирует?',
+    options: [
+      { id: 'a', text: 'Понятность' },
+      { id: 'b', text: 'Дискретность' },
+      { id: 'c', ok: true, text: 'Массовость' },
+      { id: 'd', text: 'Результативность' }
+    ],
+    explain: 'Алгоритм применим к целому классу задач, различающихся исходными данными. Это массовость.' },
+  s3: { group: 'selfcheck', mode: 'reveal', num: 'Задание 3',
     text: 'Что выведет программа?',
     code: 'print("Старт")\nprint()\nprint("Финиш")',
     options: [
       { id: 'a', pre: 'Старт\nФиниш' },
-      { id: 'b', ok: true, pre: 'Старт\n\nФиниш' },
-      { id: 'c', pre: 'Финиш\n\nСтарт' },
+      { id: 'b', pre: 'Финиш\n\nСтарт' },
+      { id: 'c', ok: true, pre: 'Старт\n\nФиниш' },
       { id: 'd', pre: 'Старт Финиш' }
     ],
-    explain: 'Команды выполняются сверху вниз; команда print() без текста выводит пустую строку.' },
-  r2: { group: 'review', mode: 'instant', num: 'Вопрос 2 из 3',
-    text: 'Правило сложения столбиком подходит для любой пары натуральных чисел. Какое свойство алгоритма это иллюстрирует?',
-    options: [
-      { id: 'a', text: 'Дискретность' },
-      { id: 'b', text: 'Результативность' },
-      { id: 'c', ok: true, text: 'Массовость' },
-      { id: 'd', text: 'Понятность' }
-    ],
-    explain: 'Алгоритм применим к целому классу задач, различающихся исходными данными: это массовость.' },
-  r3: { group: 'review', mode: 'instant', num: 'Вопрос 3 из 3',
-    text: 'Что называется системой команд исполнителя?',
-    options: [
-      { id: 'a', text: 'Обстановка, в которой действует исполнитель' },
-      { id: 'b', ok: true, text: 'Полный перечень команд, которые исполнитель умеет выполнять' },
-      { id: 'c', text: 'Порядок, в котором исполнитель выполняет свои команды' },
-      { id: 'd', text: 'Набор исходных данных для решения задачи' }
-    ],
-    explain: 'Система команд исполнителя — перечень всех команд, доступных исполнителю. Обстановка называется средой.' },
-  d1: { group: 'code', mode: 'check', num: '',
-    text: 'Определить, что выведет программа из раздела «Готовая программа».',
-    code: '# Билет на автобус\ncity = "Будва"\nprice = 7          # цена в евро\nprint("Рейс: Подгорица -", city)\nprint("Цена:", price, "евро")\nprice = price + 2  # цена в сезон\nprint("Цена в сезон:", price, "евро")',
-    options: [
-      { id: 'a', pre: 'Рейс: Подгорица - city\nЦена: price евро\nЦена в сезон: price евро' },
-      { id: 'b', ok: true, pre: 'Рейс: Подгорица - Будва\nЦена: 7 евро\nЦена в сезон: 9 евро' },
-      { id: 'c', pre: 'Рейс: Подгорица - Будва\nЦена: 9 евро\nЦена в сезон: 9 евро' },
-      { id: 'd', pre: 'Рейс: Подгорица - Будва\nЦена: 7 евро\nЦена в сезон: 7 евро' }
-    ],
-    explain: 'Команды выполняются сверху вниз. Строка 5 выводит значение price в этот момент — 7; затем price = price + 2 записывает в переменную 9, и строка 7 выводит уже 9.' },
-  s1: { group: 'selfcheck', mode: 'reveal', num: 'Задание 1',
-    text: 'В блок-схеме записано «x := 10». Каким блоком это обозначается и как записывается в Python?',
-    options: [
-      { id: 'a', text: 'Параллелограмм; print(10)' },
-      { id: 'b', ok: true, text: 'Прямоугольник; x = 10' },
-      { id: 'c', text: 'Ромб; x == 10' },
-      { id: 'd', text: 'Прямоугольник; x := 10' }
-    ],
-    explain: 'Присваивание — действие (процесс), обозначается прямоугольником. В блок-схеме и школьном алгоритмическом языке пишется «:=», в Python — «=».' },
-  s2: { group: 'selfcheck', mode: 'reveal', num: 'Задание 2',
-    text: 'Что выведет программа?',
-    code: 'a = 5\nb = a\na = 8\nprint(a, b)',
-    options: [
-      { id: 'a', text: '8 8' },
-      { id: 'b', text: '5 5' },
-      { id: 'c', ok: true, text: '8 5' },
-      { id: 'd', text: 'a b' }
-    ],
-    explain: 'Команда b = a копирует значение 5. Последующее присваивание a = 8 изменяет только a; b остаётся равной 5.' },
-  s3: { group: 'selfcheck', mode: 'reveal', num: 'Задание 3',
-    text: 'Какое имя переменной допустимо в Python?',
-    options: [
-      { id: 'a', text: '2city' },
-      { id: 'b', text: 'my city' },
-      { id: 'c', text: 'my-city' },
-      { id: 'd', ok: true, text: 'city_2' }
-    ],
-    explain: 'Имя состоит из латинских букв, цифр и знака подчёркивания и не начинается с цифры. Пробел и дефис в имени недопустимы.' }
+    explain: 'Команды выполняются сверху вниз. Команда print() без текста выводит пустую строку между словами.' }
 };
 
 </script>

@@ -69,5 +69,30 @@
    "a = \"Котор\"\nb = \"Будва\"\nprint(\"a =\", b)\nprint(\"b =\", a)\n",
    "a = \"Котор\"\nb = \"Будва\"\nc = a\nb = c\na = b\nprint(\"a =\", a)\nprint(\"b =\", b)\n"
   ]
+ },
+ "p6": {
+  "ref": "x = 1\nx = x + x\nx = x + 1\nx = x + x\nx = x + x\nx = x + x\nx = x + 1\nx = x + x\nx = x + x\nprint(x)\n",
+  "wrong": [
+   "x = 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nprint(x)\n",
+   "x = 1\nx = 100\nprint(x)\n",
+   "x = 1\nx = x + x\nx = x + x\nx = x + x\nx = x + x\nx = x + x\nx = x + x\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nx = x - 28\nprint(x)\n",
+   "x = 1\nx = x + x\nx = x + 1\nx = x + x\nx = x + 1\nx = x + x\nx = x + x\nx = x + x\nx = x + x\nx = x + 1\nx = x + 1\nx = x + 1\nx = x + 1\nprint(x)\n",
+   "x = 1\nx = x * 100\nprint(x)\n",
+   "x = 1\nx = x + x\nx = x + 1\nx = x + x\nx = x + x\nx = x + x\nx = x + 1\nx = x + x\nprint(x)\n"
+  ]
+ },
+ "p7": {
+  "ref": "a = 17\nb = 5\n# Три команды под этой строкой\na = a + b\nb = a - b\na = a - b\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+  "alt": [
+   "a = 17\nb = 5\n# Три команды под этой строкой\nb = a + b\na = b - a\nb = b - a\nprint(\"a =\", a)\nprint(\"b =\", b)\n"
+  ],
+  "wrong": [
+   "a = 17\nb = 5\n# Три команды под этой строкой\nc = a\na = b\nb = c\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+   "a = 17\nb = 5\n# Три команды под этой строкой\na, b = b, a\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+   "a = 17\nb = 5\n# Три команды под этой строкой\na = 5\nb = 17\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+   "a = 17\nb = 5\n# Три команды под этой строкой\na = a + b\nb = a - b\na = b - a\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+   "a = 17\nb = 5\n# Три команды под этой строкой\na = b\nb = a\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+   "a = 17\nb = 5\nprint(\"a =\", b)\nprint(\"b =\", a)\n"
+  ]
  }
 }
