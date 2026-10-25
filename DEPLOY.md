@@ -9,7 +9,7 @@
 | Урок | Файл |
 |---|---|
 | Первая программа на Python | `Pervaya_programma/Pervaya_programma.html` (раньше `K1/K1_Algoritmy_i_ispolniteli.html`; изменилось только название) |
-| Величины и присваивание | `Velichiny_i_prisvaivanie/Velichiny_i_prisvaivanie.html` |
+| Переменные, ввод и арифметика | `Peremennye_vvod_arifmetika/Peremennye_vvod_arifmetika.html` |
 | Черепаха | `K3/K3_Ispolnitel_Cherepakha.html` — перенесена в конец курса, пока не публиковать |
 
 Скачивать целиком: архивом ветки (`https://github.com/antlogin/konspekty-8kl-inf/archive/refs/heads/claude/affectionate-lovelace-yc6y43.zip`, после слияния PR — `…/refs/heads/main.zip`), через `git clone` или кнопкой «Download raw file» на GitHub. Из окна просмотра в приложении Claude файл скачивается обрезанным (около 1,1 МБ).
