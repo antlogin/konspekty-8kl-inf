@@ -10,7 +10,7 @@
 | Компас, ср | 28.10.2026 |
 | Компас, пт | 30.10.2026 |
 
-Файлы: `Peremennye_vvod_arifmetika/Peremennye_vvod_arifmetika.html`, `Peremennye_vvod_arifmetika/LOCAL_metodichka_Peremennye_vvod_arifmetika.md`. Исходники: `lessons/K2/` (правила — `AUTHORING.md`). В таблицах на Диске урок подписан кодом «К2».
+Файлы: `02_Peremennye_vvod_arifmetika/Peremennye_vvod_arifmetika.html`, `02_Peremennye_vvod_arifmetika/LOCAL_metodichka_Peremennye_vvod_arifmetika.md`. Исходники: `lessons/K2/` (правила — `AUTHORING.md`). В таблицах на Диске урок подписан кодом «К2».
 
 ## 1. Настройки
 

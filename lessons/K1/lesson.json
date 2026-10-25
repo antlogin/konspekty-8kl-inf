@@ -3,7 +3,7 @@
   "title": "Первая программа на Python",
   "lessonTitle": "К1 Алгоритмы и исполнители. Свойства алгоритмов",
   "outName": "Pervaya_programma",
-  "outDir": "Pervaya_programma",
+  "outDir": "01_Pervaya_programma",
   "eyebrow": "Информатика · 8 класс · К1 · 40 минут",
   "lead": "Понятие алгоритма, исполнитель, свойства алгоритмов и первая программа на языке Python.",
   "badges": ["§ 3.1 учебника Л. Л. Босовой"],
