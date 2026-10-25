@@ -22,7 +22,7 @@ function chromium() {
 async function verify(browser, id) {
   const L = JSON.parse(fs.readFileSync(path.join(root, 'lessons', id, 'lesson.json'), 'utf8'));
   const sols = JSON.parse(fs.readFileSync(path.join(root, 'lessons', id, 'solutions.json'), 'utf8'));
-  const file = path.join(root, L.id, L.outName + '.html');
+  const file = path.join(root, L.outDir || L.id, L.outName + '.html');
   const problems = [];
   const bad = m => { problems.push(m); console.log('  ✗ ' + m); };
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });

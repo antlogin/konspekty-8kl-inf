@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* Сборка конспекта: node tools/build.js K1 [K2 …]   или   node tools/build.js --all
    Склеивает engine/ (оформление, движок) + lessons/<id>/ (содержание) + Skulpt из vendor/ в один автономный HTML:
-   <id>/<outName>.html и <id>/LOCAL_metodichka_<id>.md. Зависимостей нет (Node ≥ 18). */
+   <outDir>/<outName>.html и <outDir>/LOCAL_metodichka_<outName>.md (без outDir — по-старому: <id>/…, LOCAL_metodichka_<id>.md). Зависимостей нет (Node ≥ 18). */
 const fs = require('fs'), path = require('path');
 const root = path.resolve(__dirname, '..');
 const rd = (...p) => fs.readFileSync(path.join(root, ...p), 'utf8');
@@ -45,7 +45,8 @@ function build(id) {
     '<meta name="material:version" content="' + course.materialVersion + '">\n' +
     '<meta name="catalog:title" content="' + esc(L.title) + '">\n<meta name="catalog:type" content="lesson">\n' +
     '<meta name="catalog:topic" content="' + esc(L.catalog.topic) + '">\n<meta name="catalog:description" content="' + esc(L.catalog.description) + '">\n' +
-    '<meta name="catalog:tags" content="' + esc(L.catalog.tags) + '">\n<style>\n' + rd('engine', 'css', 'style.css') + '</style>\n</head>\n<body class="locked">\n';
+    '<meta name="catalog:tags" content="' + esc(L.catalog.tags) + '">\n' +
+    (L.catalog.number != null ? '<meta name="catalog:number" content="' + esc(String(L.catalog.number)) + '">\n' : '') + '<style>\n' + rd('engine', 'css', 'style.css') + '</style>\n</head>\n<body class="locked">\n';
 
   const jsFiles = fs.readdirSync(path.join(root, 'engine', 'js')).filter(f => /^\d\d_.*\.js$/.test(f) && f !== '00_trap.js').sort();
   const app = jsFiles.map(f => rd('engine', 'js', f)).join('\n');
@@ -58,12 +59,12 @@ function build(id) {
     '<script id="lesson-data">\n' + rd(dir, 'data.js') + '\n</script>\n' +
     '<script id="lesson-app">\n' + app + '\n</script>\n</body>\n</html>\n';
 
-  const outDir = path.join(root, L.id);
+  const outDir = path.join(root, L.outDir || L.id);
   fs.mkdirSync(outDir, { recursive: true });
   const out = path.join(outDir, L.outName + '.html');
   fs.writeFileSync(out, html);
   if (fs.existsSync(path.join(root, dir, 'methodichka.md')))
-    fs.copyFileSync(path.join(root, dir, 'methodichka.md'), path.join(outDir, 'LOCAL_metodichka_' + L.id + '.md'));
+    fs.copyFileSync(path.join(root, dir, 'methodichka.md'), path.join(outDir, 'LOCAL_metodichka_' + (L.outDir ? L.outName : L.id) + '.md'));
   console.log(path.relative(root, out) + '  ' + (Buffer.byteLength(html) / 1048576).toFixed(2) + ' МБ');
 }
 

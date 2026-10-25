@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Алгоритмы и исполнители. Свойства алгоритмов</title>
+<title>Первая программа на Python</title>
 <meta name="material:specification" content="HTML Material Specification Learn-it 4.3">
 <meta name="material:version" content="2026-10-18.1">
-<meta name="catalog:title" content="Алгоритмы и исполнители. Свойства алгоритмов">
+<meta name="catalog:title" content="Первая программа на Python">
 <meta name="catalog:type" content="lesson">
 <meta name="catalog:topic" content="Понятие алгоритма; исполнитель; свойства алгоритмов; первая программа на Python">
 <meta name="catalog:description" content="Понятие алгоритма, исполнитель (среда, система команд, режимы работы), свойства алгоритмов: дискретность, понятность, определённость, результативность, массовость. Первая программа на языке Python с командой print().">
 <meta name="catalog:tags" content="информатика,8 класс,алгоритм,исполнитель,свойства алгоритмов,Python,print,блок-схема">
+<meta name="catalog:number" content="1">
 <style>
 :root{--green:#123d32;--green2:#1d5a49;--paper:#ffffff;--bg:#edf2ee;--ink:#14201c;--muted:#61716b;--accent:#ffb000;--ok:#238b57;--bad:#c8413a;--line:#d7e0dc;
 --material-max:1120px;--pale:#f6faf7;--info-bg:#fff6dc;--info-line:#f0d58b;--sel-bg:#fff3cf;--sel-line:#d19a00;--ok-bg:#e5f6ed;--bad-bg:#fff0ef;
@@ -114,6 +115,14 @@ pre{font-family:var(--mono)}
 .t-bi{color:var(--bi)}
 pre.sample{margin:6px 0 0;background:#f4f7f5;border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:var(--code-fs);line-height:var(--lh);white-space:pre;overflow-x:auto}
 .sample-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:8px}
+.io{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:12px;max-width:560px}
+.io pre.sample{min-height:2.4em}
+.ex{background:#fbfcfb;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:8px 12px;margin:10px 0;max-width:680px}
+.ex>b:first-child{display:block;margin-bottom:4px}
+.ex pre{margin:6px 0 0}
+.ex-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:10px 0}
+@media (max-width:760px){.ex-grid{grid-template-columns:minmax(0,1fr)}.io{grid-template-columns:minmax(0,1fr)}}
+.ex-grid .ex{margin:0;max-width:none}
 
 /* кнопки */
 button.btn{border:1px solid var(--line);border-radius:7px;padding:6px 13px;min-height:38px;background:#fff;color:var(--green);font-weight:700;cursor:pointer}
@@ -325,7 +334,7 @@ body.locked nav.menu,body.locked main{display:none}
 <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
   <div class="gate-card">
     <h2 id="gate-title">Вход в конспект</h2>
-    <p class="sub">Алгоритмы и исполнители. Свойства алгоритмов</p>
+    <p class="sub">Первая программа на Python</p>
     <form id="gate-form" autocomplete="off" novalidate>
       <div id="gate-word-box">
         <label for="g-word">Кодовое слово группы</label>
@@ -357,7 +366,7 @@ body.locked nav.menu,body.locked main{display:none}
 
 <header class="top"><div class="wrap head">
   <div class="eyebrow">Информатика · 8 класс · К1 · 40 минут</div>
-  <h1>Алгоритмы и исполнители. Свойства алгоритмов</h1>
+  <h1>Первая программа на Python</h1>
   <p class="lead">Понятие алгоритма, исполнитель, свойства алгоритмов и первая программа на языке Python.</p>
   <div class="meta">
     <span class="badge">§ 3.1 учебника Л. Л. Босовой</span>
@@ -585,7 +594,7 @@ print("Прибытие: 09:40")</pre>
 
   <div class="finish-box noprint" id="finish-box">
     <b>Завершение занятия</b>
-    <p class="small muted" style="margin:4px 0 0;max-width:680px">Кнопка «Завершить занятие» передаёт результаты учителю. Кнопка «Сохранить работу» скачивает zip-архив с результатами и доступна всегда.</p>
+    <p class="small muted" style="margin:4px 0 0;max-width:680px">Кнопка «Завершить занятие» передаёт результаты учителю. Кнопка «Сохранить работу» скачивает zip-архив с результатами.</p>
     <div class="actions">
       <button class="btn accent" type="button" id="btn-finish">Завершить занятие</button>
       <button class="btn" type="button" id="btn-save">Сохранить работу</button>
@@ -2023,7 +2032,7 @@ async function postJSON(ep, obj, opts) {
   opts = opts || {};
   const body = JSON.stringify(obj);
   const ctl = new AbortController();
-  const timer = setTimeout(() => ctl.abort(), opts.timeout || 20000);
+  const timer = setTimeout(() => ctl.abort(), opts.timeout || 45000);   // скрипт Google ждёт очереди до 20 с и пишет таблицы
   try {
     const res = await fetch(ep.url, {
       method: 'POST', body: body, signal: ctl.signal, redirect: 'follow',
@@ -2041,26 +2050,32 @@ function envelope(ep, attemptId, events) {
   base.meta = T.meta[attemptId] || (S && S.attemptId === attemptId ? makeMeta() : {});
   return base;
 }
-async function flushEndpoint(ep, opts) {
+function flushEndpoint(ep, opts) {
+  opts = opts || {};
+  // уже идёт отправка: с wait — дождаться её и отправить остаток очереди, без wait — не дублировать
+  if (T.sending[ep.name]) return opts.wait ? T.sending[ep.name].then(() => flushEndpoint(ep, opts)) : T.sending[ep.name];
   const q = T.queues[ep.name];
-  if (!q || !q.length || T.sending[ep.name]) return;
-  T.sending[ep.name] = true;
-  setSync('sending');
-  try {
-    while (q.length) {
-      const a = q[0].a, batch = [];
-      for (const it of q) { if (it.a !== a || batch.length >= 25) break; batch.push(it); }
-      let ok = false;
-      try {
-        const r = await postJSON(ep, envelope(ep, a, batch.map(i => i.e)), opts);
-        ok = !!(r && r.ok === true);
-      } catch (e) { ok = false; }
-      if (!ok) { setSync('fail'); return; }
-      q.splice(0, batch.length);        // пакет удаляется только после HTTP 200 и ok: true
-      saveTele();
-    }
-    setSync('ok');
-  } finally { T.sending[ep.name] = false; }
+  if (!q || !q.length) return Promise.resolve();
+  const run = (async () => {
+    setSync('sending');
+    try {
+      while (q.length) {
+        const a = q[0].a, batch = [];
+        for (const it of q) { if (it.a !== a || batch.length >= 25) break; batch.push(it); }
+        let ok = false;
+        try {
+          const r = await postJSON(ep, envelope(ep, a, batch.map(i => i.e)), opts);
+          ok = !!(r && r.ok === true);
+        } catch (e) { ok = false; }
+        if (!ok) { setSync('fail'); return; }
+        q.splice(0, batch.length);        // пакет удаляется только после HTTP 200 и ok: true
+        saveTele();
+      }
+      setSync('ok');
+    } finally { T.sending[ep.name] = null; }
+  })();
+  T.sending[ep.name] = run;
+  return run;
 }
 async function flush(reason, opts) {
   const eps = liveEndpoints();
@@ -3027,15 +3042,22 @@ async function finishLesson() {
   $('#finish-sum').textContent = 'Решено задач практикума: ' + n + ' из ' + CFG.practiceTaskIds.length + '. Время занятия: ' + Math.round((S.finishedAt - S.startedAt) / 60000) + ' мин.';
   flushStorageSync();
   if (!liveEndpoints().length) { setSentMark('bad', 'Сервер учителя не подключён. Архив с результатами сохраняется кнопкой «Сохранить работу».'); return; }
-  setSentMark('', 'Отправка…');
-  await flush('finish');
+  setSentMark('', 'Ответы отправляются… Не закрывайте страницу.');
+  const t0 = Date.now();
+  // пакет завершения самый тяжёлый: ответ ждётся до 90 с, затем повторы каждые 10 с; об ошибке сообщается через 3 мин
+  await flush('finish', { wait: true, timeout: 90000 });
+  while (!checkSent(false) && Date.now() - t0 < 180000) {
+    await new Promise(r => setTimeout(r, 10000));
+    await flush('finish-retry', { wait: true, timeout: 90000 });
+  }
   checkSent(true);
 }
 function checkSent(final) {
-  if (finishSeq == null) return;
+  if (finishSeq == null) return true;
   const still = liveEndpoints().some(ep => (T.queues[ep.name] || []).some(it => it.a === S.attemptId && it.e.seq === finishSeq));
-  if (!still) { setSentMark('ok', '✓ Ответы переданы учителю'); finishSeq = null; }
-  else if (final) setSentMark('bad', 'Не удалось передать ответы. Архив с результатами сохраняется кнопкой «Сохранить работу»; передача будет повторяться автоматически.');
+  if (!still) { setSentMark('ok', '✓ Ответы переданы учителю'); finishSeq = null; return true; }
+  if (final) setSentMark('bad', 'Нет связи с сервером учителя. Отправка повторится, пока страница открыта; для надёжности сохраните работу кнопкой «Сохранить работу».');
+  return false;
 }
 
 /* ---------- сервер: проверка слова, снимки ---------- */

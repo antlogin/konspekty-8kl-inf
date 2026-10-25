@@ -1,73 +1,99 @@
 {
  "d2": {
-  "ref": "# Расписание парома\nprint(\"Паром: Каменари - Лепетане\")\nprint(\"Отправление: 10:30\")   # время отправления\nprint()\nprint(\"Хорошего дня!\")\n",
+  "ref": "# Покупка билетов на паром\nprice = int(input())    # цена одного билета, евро\ncount = int(input())    # количество билетов\ntotal = price * count + 2\nprint(\"Билетов:\", count)\nprint(\"К оплате:\", total, \"евро\")\n",
+  "alt": [
+   "# Покупка билетов на паром\nprice = int(input())    # цена одного билета, евро\ncount = int(input())    # количество билетов\ntotal = 2 + price * count\nprint(\"Билетов:\", count)\nprint(\"К оплате:\", total, \"евро\")\n"
+  ],
   "wrong": [
-   "# Расписание парома\nprint(\"Паром: Каменари - Лепетане\")\nprint(\"Отправление: 10:00\")   # время отправления\nprint()\nprint(\"Хорошего дня!\")",
-   "print(\"Паром: Каменари - Лепетане\")\nprint(\"Отправление: 10:30\")\nprint()\nprint(\"Хорошего дня!\")",
-   "# Расписание парома\nprint(\"Паром: Каменари - Лепетане\")\nprint(\"Отправление: 10:3\")   # время отправления\nprint()\nprint(\"Хорошего дня!\")",
-   "# Расписание парома\nprint(\"Паром: Каменари - Лепетане\")\nprint(\"Отправление: 10:30\")   # время отправления\nprint(\"Хорошего дня!\")"
+   "# Покупка билетов на паром\nprice = int(input())    # цена одного билета, евро\ncount = int(input())    # количество билетов\ntotal = price * count\nprint(\"Билетов:\", count)\nprint(\"К оплате:\", total, \"евро\")\n",
+   "# Покупка билетов на паром\nprice = int(input())    # цена одного билета, евро\ncount = int(input())    # количество билетов\ntotal = (price + 2) * count\nprint(\"Билетов:\", count)\nprint(\"К оплате:\", total, \"евро\")\n",
+   "# Покупка билетов на паром\nprice = int(input())    # цена одного билета, евро\ncount = int(input())    # количество билетов\ntotal = 14\nprint(\"Билетов:\", count)\nprint(\"К оплате:\", total, \"евро\")\n",
+   "# Покупка билетов на паром\nprice = int(input())    # цена одного билета, евро\ncount = int(input())    # количество билетов\ntotal = price * (count + 2)\nprint(\"Билетов:\", count)\nprint(\"К оплате:\", total, \"евро\")\n"
   ]
  },
  "d3": {
-  "ref": "# Остановки маршрута\nprint(\"Бар\")\nprint(\"Будва\")\nprint(\"Котор\")\n",
+  "ref": "# Покупка билетов на паром\nprice = int(input())\ncount = int(input())\ntotal = price * count\nprint(\"Билетов:\", count)\nprint(\"К оплате:\", total, \"евро\")\n",
   "wrong": [
-   "# Остановки маршрута\nprint(\"Бар\"\nprint(\"Будва\")\nprint(\"Котор\")",
-   "# Остановки маршрута\nprint(\"Будва\")\nprint(\"Котор\")",
-   "# Остановки маршрута\nprint(\"Бар\")\nprint(\"Будва\")\nprint(\"Котор\"",
-   "print Бар\nprint(\"Будва\")\nprint(\"Котор\")"
+   "# Покупка билетов на паром\nprice = int(input())\ncount = input()\ntotal = price * count\nprint(\"Билетов:\", count)\nprint(\"К оплате:\", total, \"евро\")\n",
+   "# Покупка билетов на паром\nprice = int(input())\ncount = 3\ntotal = price * count\nprint(\"Билетов:\", count)\nprint(\"К оплате:\", total, \"евро\")\n",
+   "# Покупка билетов на паром\nprice = int(input())\ncount = int(input()) + 0\ntotal = price + count\nprint(\"Билетов:\", count)\nprint(\"К оплате:\", total, \"евро\")\n",
+   "# Покупка билетов на паром\nprice = int(input())\ncount = float(input())\ntotal = price * count\nprint(\"Билетов:\", count)\nprint(\"К оплате:\", total, \"евро\")\n"
   ]
  },
  "p1": {
-  "ref": "print(\"Рейс: Бар - Улцинь\")\nprint(\"Отправление: 08:30\")\nprint(\"Прибытие: 09:10\")\n",
+  "ref": "adults = int(input())\nkids = int(input())\ntotal = adults * 10 + kids * 5\nprint(\"Стоимость:\", total, \"евро\")\n",
   "wrong": [
-   "print(\"Рейс: Бар - Улцинь\")\nprint(\"Прибытие: 09:10\")\nprint(\"Отправление: 08:30\")",
-   "print(\"Вывод: Рейс: Бар - Улцинь\")\nprint(\"Вывод: Отправление: 08:30\")\nprint(\"Вывод: Прибытие: 09:10\")",
-   "print(\"Рейс: Бар - Улцинь\")\nprint(\"Отправление: 08:30\")",
-   "print \"Рейс: Бар - Улцинь\"\nprint \"Отправление: 08:30\"\nprint \"Прибытие: 09:10\"",
-   "# Напишите программу под этой строкой\n"
+   "adults = input()\nkids = input()\ntotal = adults * 10 + kids * 5\nprint(\"Стоимость:\", total, \"евро\")\n",
+   "print(\"Стоимость: 35 евро\")\n",
+   "adults = int(input())\nkids = int(input())\ntotal = (adults + kids) * 10\nprint(\"Стоимость:\", total, \"евро\")\n",
+   "adults = int(input())\nkids = int(input())\ntotal := adults * 10 + kids * 5\nprint(\"Стоимость:\", total, \"евро\")\n",
+   "adults = int(input())\nkids = int(input())\ntotal = adults * 10 + kids * 5\nprint(\"Стоимость:\", \"total\", \"евро\")\n"
   ]
  },
  "p2": {
-  "ref": "# Визитка рейса\nprint(\"Рейс: Бар - Будва\")\nprint(\"Отправление: 12:00\")\nprint(\"Класс: 2\")\nprint()\nprint(\"Приятного пути!\")\n",
+  "ref": "# Поездка на такси\nkm = int(input())\ntotal = km * 2 + 3\nprint(\"Расстояние:\", km, \"км\")\nprint(\"К оплате:\", total, \"евро\")\n",
   "alt": [
-   "\n# Визитка рейса\nprint(\"Рейс: Бар - Будва\")\nprint(\"Отправление: 12:00\")\nprint(\"Класс: 2\")\nprint()\nprint(\"Приятного пути!\")\n"
+   "# Поездка на такси\nkm = int(input())\ntotal = 3 + 2 * km\nprint(\"Расстояние:\", km, \"км\")\nprint(\"К оплате:\", total, \"евро\")\n"
   ],
   "wrong": [
-   "print(\"Рейс: Бар - Будва\")\nprint(\"Отправление: 12:00\")\nprint(\"Класс: 2\")\nprint()\nprint(\"Приятного пути!\")",
-   "print(\"Рейс: Бар - Будва\")\n# Визитка рейса\nprint(\"Отправление: 12:00\")\nprint(\"Класс: 2\")\nprint()\nprint(\"Приятного пути!\")",
-   "print(\"# Визитка рейса\")\nprint(\"Рейс: Бар - Будва\")\nprint(\"Отправление: 12:00\")\nprint(\"Класс: 2\")\nprint()\nprint(\"Приятного пути!\")",
-   "# Визитка рейса\nprint(\"Рейс: Бар - Будва\")\nprint(\"Отправление: 12:00\")\nprint(\"Класс: 2\")\nprint(\"Приятного пути!\")",
-   "# Визитка рейса\nprint(\"Рейс: Бар - Будва\")\nprint(\"Отправление: 12:00\")\nprint()\nprint(\"Приятного пути!\")"
+   "# Поездка на такси\nkm = input()\ntotal = (km + 3) * 2\nprint(\"Расстояние:\", km, \"км\")\nprint(\"К оплате:\" total, \"евро\")\n",
+   "# Поездка на такси\nkm = int(input())\ntotal = (km + 3) * 2\nprint(\"Расстояние:\", km, \"км\")\nprint(\"К оплате:\", total, \"евро\")\n",
+   "# Поездка на такси\nkm = input()\ntotal = km * 2 + 3\nprint(\"Расстояние:\", km, \"км\")\nprint(\"К оплате:\", total, \"евро\")\n",
+   "# Поездка на такси\nkm = int(input())\ntotal = km * 2 + 3\nprint(\"Расстояние:\", km, \"км\")\nprint(\"К оплате:\" total, \"евро\")\n"
   ]
  },
  "p3": {
-  "ref": "# Остановки маршрута\nprint(\"Список остановок\")\nprint(\"Бар\")\nprint(\"Будва\")\nprint(\"Улцинь\")\n",
+  "ref": "h = int(input())\nm = int(input())\ntotal = h * 60 + m\nprint(\"Всего минут:\", total)\n",
   "wrong": [
-   "# Остановки маршрута\nprint(\"Список остановок)\nprint(\"Бар\")\npront(\"Будва\")\nprint(\"Улцинь\")",
-   "# Остановки маршрута\nprint(\"Список остановок\")\nprint(\"Бар\")\npront(\"Будва\")\nprint(\"Улцинь\")",
-   "# Остановки маршрута\nprint(\"Список остановок)\nprint(\"Бар\")\nprint(\"Будва\")\nprint(\"Улцинь\")",
-   "# Остановки маршрута\nprint(\"Список остановок\")\nprint(\"Бар\")\nprint(\"Улцинь\")"
+   "h = int(input())\nm = int(input())\nprint(\"Всего минут:\", h + m)\n",
+   "h = int(input())\nm = int(input())\nprint(\"Всего минут:\", (h + m) * 60)\n",
+   "print(\"Всего минут: 135\")\n",
+   "h = int(input())\nm = int(input())\nprint(\"Всего минут:\", h * 100 + m)\n"
   ]
  },
  "p4": {
-  "ref": "print(\"Бар\")\n# print(\"Будва\")\nprint(\"Котор\")\n# print(\"Херцег-Нови\")\nprint(\"Тиват\")\n",
-  "alt": [
-   "print(\"Бар\")\n#print(\"Будва\")\nprint(\"Котор\")\n  # print(\"Херцег-Нови\")\nprint(\"Тиват\")\n"
-  ],
+  "ref": "bill = int(input())\nn = int(input())\neach = (bill + 10) / n\nprint(\"Каждый платит:\", each, \"евро\")\n",
   "wrong": [
-   "print(\"Бар\")\nprint(\"Котор\")\nprint(\"Тиват\")",
-   "print(\"Бар\")\n# print(\"Будва\")\nprint(\"Котор\")\nprint(\"Херцег-Нови\")\nprint(\"Тиват\")",
-   "# print(\"Бар\")\n# print(\"Будва\")\nprint(\"Котор\")\nprint(\"Херцег-Нови\")\nprint(\"Тиват\")",
-   "print(\"Бар\")\nprint(\"Будва\")\nprint(\"Котор\")\nprint(\"Херцег-Нови\")\nprint(\"Тиват\")"
+   "bill = int(input())\nn = int(input())\neach = bill + 10 / n\nprint(\"Каждый платит:\", each, \"евро\")\n",
+   "bill = int(input())\nn = int(input())\neach = bill / n\nprint(\"Каждый платит:\", each, \"евро\")\n",
+   "bill = int(input())\nn = int(input())\neach = (bill + 10) // n\nprint(\"Каждый платит:\", each, \"евро\")\n",
+   "print(\"Каждый платит: 20.0 евро\")\n"
   ]
  },
  "p5": {
-  "ref": "# Расписание в рамке\nprint(\"+---------------+\")\nprint(\"| Бар     08:30 |\")\nprint(\"| Будва   09:15 |\")\nprint(\"| Котор   10:00 |\")\nprint(\"+---------------+\")\n",
+  "ref": "n = int(input())\nout = int(input())\nnew = int(input())\nprint(\"Бар:\", n)\nn = n - out\nprint(\"Петровац:\", n)\nn = n + new\nprint(\"Будва:\", n)\n",
   "wrong": [
-   "print(\"+---------------+\")\nprint(\"| Бар     08:30 |\")\nprint(\"| Будва   09:15 |\")\nprint(\"| Котор   10:00 |\")\nprint(\"+---------------+\")",
-   "# рамка\nprint(\"+---------------+\")\nprint(\"| Бар 08:30 |\")\nprint(\"| Будва 09:15 |\")\nprint(\"| Котор 10:00 |\")\nprint(\"+---------------+\")",
-   "# рамка\nprint(\"+--------------+\")\nprint(\"| Бар     08:30 |\")\nprint(\"| Будва   09:15 |\")\nprint(\"| Котор   10:00 |\")\nprint(\"+--------------+\")",
-   "# рамка\nprint(\"+---------------+\")\nprint(\"| Бар     08:30 |\")\nprint(\"| Будва   09:15 |\")\nprint(\"| Котор   10:00 |\")"
+   "n = int(input())\nout = int(input())\nnew = int(input())\nprint(\"Бар:\", n)\nprint(\"Петровац:\", n - out)\nprint(\"Будва:\", n - out + new)\n",
+   "n = int(input())\nout = int(input())\nnew = int(input())\nprint(\"Бар:\", n)\nprint(\"Петровац:\", n)\nn = n - out\nprint(\"Будва:\", n)\nn = n + new\n",
+   "n = int(input())\nout = int(input())\nnew = int(input())\nprint(\"Бар:\", n)\nn = n - out\nprint(\"Петровац:\", n)\nn = n + new\nprint(\"Будва:\", 15)\n",
+   "n = int(input())\nout = int(input())\nnew = int(input())\nprint(\"Бар:\", n)\nn - out\nprint(\"Петровац:\", n)\nn + new\nprint(\"Будва:\", n)\n"
+  ]
+ },
+ "p6": {
+  "ref": "x = int(input())\nx2 = x * x\nx4 = x2 * x2\nx7 = x4 * x2 * x\nprint(x7)\n",
+  "alt": [
+   "x = int(input())\nx2 = x * x\nx3 = x2 * x\nx6 = x3 * x3\nprint(x6 * x)\n"
+  ],
+  "wrong": [
+   "x = int(input())\nprint(x * x * x * x * x * x * x)\n",
+   "x = int(input())\nprint(x ** 7)\n",
+   "x = int(input())\nx2 = x * x\nx4 = x2 * x2\nprint(x4 * x2)\n",
+   "x = int(input())\nprint(128)\n",
+   "x = int(input())\nx2 = x * x\nx4 = x2 * x2\nx8 = x4 * x4\nprint(x8 / x)\n"
+  ]
+ },
+ "p7": {
+  "ref": "a = int(input())\nb = int(input())\n# Три команды под этой строкой\na = a + b\nb = a - b\na = a - b\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+  "alt": [
+   "a = int(input())\nb = int(input())\n# Три команды под этой строкой\nb = a + b\na = b - a\nb = b - a\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+   "a = int(input())\nb = int(input())\n# Три команды под этой строкой\na = a - b\nb = a + b\na = b - a\nprint(\"a =\", a)\nprint(\"b =\", b)\n"
+  ],
+  "wrong": [
+   "a = int(input())\nb = int(input())\n# Три команды под этой строкой\nc = a\na = b\nb = c\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+   "a = int(input())\nb = int(input())\n# Три команды под этой строкой\na, b = b, a\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+   "a = int(input())\nb = int(input())\n# Три команды под этой строкой\na = b\nb = a\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+   "a = int(input())\nb = int(input())\n# Три команды под этой строкой\na = a + b\nb = a - b\na = b - a\nprint(\"a =\", a)\nprint(\"b =\", b)\n",
+   "a = int(input())\nb = int(input())\nprint(\"a =\", b)\nprint(\"b =\", a)\n"
   ]
  }
 }
