@@ -1,0 +1,113 @@
+{
+ "d2": {
+  "ref": "# Цена в центах: перевод в евро и центы\nprice = int(input()) * 3\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nprint(euro, \"евро\", cent, \"центов\")\n",
+  "alt": [
+   "# Цена в центах: перевод в евро и центы\nprice = 3 * int(input())\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nprint(euro, \"евро\", cent, \"центов\")\n"
+  ],
+  "wrong": [
+   "# Цена в центах: перевод в евро и центы\nprice = int(input())    # цена в центах\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nprint(euro, \"евро\", cent, \"центов\")\n",
+   "# Цена в центах: перевод в евро и центы\nprice = int(input())    # цена в центах\neuro = price // 100 * 3\ncent = price % 100      # оставшиеся центы\nprint(euro, \"евро\", cent, \"центов\")\n",
+   "# Цена в центах: перевод в евро и центы\nprice = int(input()) + 3\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nprint(euro, \"евро\", cent, \"центов\")\n",
+   "# Цена в центах: перевод в евро и центы\nprice = int(input()) * 3 / 1\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nprint(euro, \"евро\", cent, \"центов\")\n",
+   "# Цена в центах: перевод в евро и центы\nprice = int(input())    # цена в центах\neuro = 37\ncent = price % 100      # оставшиеся центы\nprint(euro, \"евро\", cent, \"центов\")\n"
+  ]
+ },
+ "d3": {
+  "ref": "# Цена в центах: перевод в евро и центы\nprice = int(input())\neuro = price // 100\ncent = price % 100\nprint(euro, \"евро\", cent, \"центов\")\n",
+  "alt": [
+   "# Цена в центах: перевод в евро и центы\nprice = int(input())\neuro = int(price / 100)\ncent = price % 100\nprint(euro, \"евро\", cent, \"центов\")\n"
+  ],
+  "wrong": [
+   "# Цена в центах: перевод в евро и центы\nprice = int(input())\neuro = price / 100\ncent = price % 100\nprint(euro, \"евро\", cent, \"центов\")\n",
+   "# Цена в центах: перевод в евро и центы\nprice = int(input())\neuro = round(price / 100)\ncent = price % 100\nprint(euro, \"евро\", cent, \"центов\")\n",
+   "# Цена в центах: перевод в евро и центы\nprice = int(input())\neuro = price % 100\ncent = price % 100\nprint(euro, \"евро\", cent, \"центов\")\n",
+   "# Цена в центах: перевод в евро и центы\nprice = int(input())\neuro = price // 10\ncent = price % 100\nprint(euro, \"евро\", cent, \"центов\")\n"
+  ]
+ },
+ "p1": {
+  "ref": "t = int(input())\nm = t // 60\ns = t % 60\nprint(m, \"мин\", s, \"с\")\n",
+  "alt": [
+   "t = int(input())\nprint(t // 60, \"мин\", t % 60, \"с\")\n"
+  ],
+  "wrong": [
+   "t = int(input())\nm = t / 60\ns = t % 60\nprint(m, \"мин\", s, \"с\")\n",
+   "t = int(input())\nm = t % 60\ns = t // 60\nprint(m, \"мин\", s, \"с\")\n",
+   "t = input()\nm = t // 60\ns = t % 60\nprint(m, \"мин\", s, \"с\")\n",
+   "print(\"2 мин 10 с\")\n",
+   "t = int(input())\nm = t // 60\ns = t % 60\nprint(m, \"мин\", s, \"сек\")\n"
+  ]
+ },
+ "p2": {
+  "ref": "n = int(input())\na = n // 100    # сотни\nb = n // 10 % 10\nc = n % 10\nprint(\"Сумма цифр:\", a + b + c)\n",
+  "alt": [
+   "n = int(input())\na = n // 100    # сотни\nb = n % 100 // 10\nc = n % 10\nprint(\"Сумма цифр:\", a + b + c)\n"
+  ],
+  "wrong": [
+   "n = int(input())\na = n // 100    # сотни\nb = n // 10\nc = n % 10\nprint(\"Сумма цифр:\", a + b + c)\n",
+   "n = int(input())\na = n // 100    # сотни\nb = n % 100\nc = n % 10\nprint(\"Сумма цифр:\", a + b + c)\n",
+   "n = int(input())\na = n // 100    # сотни\nb = n // 10 % 10\nc = n % 10\nprint(\"Сумма цифр:\", a, b, c)\n",
+   "n = int(input())\na = n // 100    # сотни\nb = n / 10 % 10\nc = n % 10\nprint(\"Сумма цифр:\", a + b + c)\n"
+  ]
+ },
+ "p3": {
+  "ref": "km = int(input())\nrate = float(input())\nfuel = round(km * rate / 100, 1)\nprint(\"Бензин:\", fuel, \"л\")\n",
+  "alt": [
+   "km = int(input())\nrate = float(input())\nprint(\"Бензин:\", round(rate / 100 * km, 1), \"л\")\n"
+  ],
+  "wrong": [
+   "km = int(input())\nrate = int(input())\nfuel = round(km * rate / 100, 1)\nprint(\"Бензин:\", fuel, \"л\")\n",
+   "km = int(input())\nrate = float(input())\nfuel = km * rate // 100\nprint(\"Бензин:\", fuel, \"л\")\n",
+   "km = int(input())\nrate = float(input())\nfuel = round(km * rate / 100)\nprint(\"Бензин:\", fuel, \"л\")\n",
+   "km = int(input())\nrate = float(input())\nfuel = round(km / rate, 1)\nprint(\"Бензин:\", fuel, \"л\")\n"
+  ]
+ },
+ "p4": {
+  "ref": "h = int(input())\nm = int(input())\nd = int(input())\nt = (h * 60 + m + d) % 1440\nprint(\"Прибытие:\", t // 60, \"ч\", t % 60, \"мин\")\n",
+  "alt": [
+   "h = int(input())\nm = int(input())\nd = int(input())\nt = h * 60 + m + d\nprint(\"Прибытие:\", t // 60 % 24, \"ч\", t % 60, \"мин\")\n"
+  ],
+  "wrong": [
+   "h = int(input())\nm = int(input())\nd = int(input())\nt = h * 60 + m + d\nprint(\"Прибытие:\", t // 60, \"ч\", t % 60, \"мин\")\n",
+   "h = int(input())\nm = int(input())\nd = int(input())\nprint(\"Прибытие:\", h + d // 60, \"ч\", m + d % 60, \"мин\")\n",
+   "h = int(input())\nm = int(input())\nd = int(input())\nt = (h * 60 + m + d) % 1440\nprint(\"Прибытие:\", t % 60, \"ч\", t // 60, \"мин\")\n",
+   "h = int(input())\nm = int(input())\nd = int(input())\nt = (h * 60 + m + d) % 24\nprint(\"Прибытие:\", t // 60, \"ч\", t % 60, \"мин\")\n"
+  ]
+ },
+ "p5": {
+  "ref": "n = int(input())\na = n // 100\nb = n // 10 % 10\nc = n % 10\nprint(c * 100 + b * 10 + a)\n",
+  "alt": [
+   "n = int(input())\nprint(n % 10 * 100 + n // 10 % 10 * 10 + n // 100)\n"
+  ],
+  "wrong": [
+   "n = int(input())\na = n // 100\nb = n // 10 % 10\nc = n % 10\nprint(c, b, a)\n",
+   "n = int(input())\na = n // 100\nb = n // 10 % 10\nc = n % 10\nprint(str(c) + str(b) + str(a))\n",
+   "n = int(input())\na = n // 100\nb = n // 10 % 10\nc = n % 10\nprint(a * 100 + b * 10 + c)\n",
+   "n = int(input())\na = n // 100\nb = n // 10\nc = n % 10\nprint(c * 100 + b * 10 + a)\n"
+  ]
+ },
+ "p6": {
+  "ref": "n = int(input())\nprint((n + 7) // 8)\n",
+  "alt": [
+   "n = int(input())\nprint((n - 1) // 8 + 1)\n",
+   "n = int(input())\nprint(-(-n // 8))\n"
+  ],
+  "wrong": [
+   "n = int(input())\nprint(n // 8 + 1)\n",
+   "n = int(input())\nprint(n // 8)\n",
+   "n = int(input())\nprint(round(n / 8))\n",
+   "n = int(input())\nif n % 8 == 0:\n    print(n // 8)\nelse:\n    print(n // 8 + 1)\n"
+  ]
+ },
+ "p7": {
+  "ref": "k = int(input())    # этажей в доме\nn = int(input())    # номер квартиры\nprint(\"Подъезд:\", (n - 1) // (4 * k) + 1)\nprint(\"Этаж:\", (n - 1) % (4 * k) // 4 + 1)\n",
+  "alt": [
+   "k = int(input())    # этажей в доме\nn = int(input())    # номер квартиры\nq = n - 1\nper = 4 * k\nprint(\"Подъезд:\", q // per + 1)\nprint(\"Этаж:\", q % per // 4 + 1)\n"
+  ],
+  "wrong": [
+   "k = int(input())    # этажей в доме\nn = int(input())    # номер квартиры\nprint(\"Подъезд:\", n // (4 * k) + 1)\nprint(\"Этаж:\", n % (4 * k) // 4 + 1)\n",
+   "k = int(input())    # этажей в доме\nn = int(input())    # номер квартиры\nprint(\"Подъезд:\", (n - 1) // (4 * k) + 1)\nprint(\"Этаж:\", (n - 1) // 4 + 1)\n",
+   "k = int(input())    # этажей в доме\nn = int(input())    # номер квартиры\nprint(\"Подъезд:\", (n - 1) // k + 1)\nprint(\"Этаж:\", (n - 1) % k + 1)\n",
+   "k = int(input())    # этажей в доме\nn = int(input())    # номер квартиры\nprint(\"Подъезд:\", (n - 1) // (4 * k))\nprint(\"Этаж:\", (n - 1) % (4 * k) // 4)\n"
+  ]
+ }
+}
