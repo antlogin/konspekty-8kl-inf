@@ -1,0 +1,258 @@
+<!-- ===================== 1. ПЛАН ЗАНЯТИЯ ===================== -->
+<section class="page print-page" id="page-plan" data-part="plan" aria-labelledby="h-plan">
+  <div class="card" id="route">
+    <h2 id="h-plan" tabindex="-1">План занятия</h2>
+    <div class="route">
+      <div class="route-lesson">
+        <ul class="route-list">
+          <li><span class="time">3&nbsp;мин</span><span><b>Повторение.</b> Три вопроса по теме предыдущего занятия: присваивание, ввод строки, порядок действий.</span></li>
+          <li><span class="time">7&nbsp;мин</span><span><b>Теория.</b> Целочисленное деление и остаток; цифры числа; типы данных и их преобразование.</span></li>
+          <li><span class="time">5&nbsp;мин</span><span><b>Разбор кода.</b> Программа перевода центов в евро и центы и три задания к ней.</span></li>
+          <li><span class="time">15–18&nbsp;мин</span><span><b>Практикум.</b> Три обязательные задачи, две задачи со звёздочкой (★) и две олимпиадные (★★) с автоматической проверкой.</span></li>
+          <li><span class="time">3&nbsp;мин</span><span><b>Итог.</b> Вывод, задания «Проверить себя», завершение занятия.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card goal">
+    <h3>Цель занятия</h3>
+    <ul style="margin:0;max-width:680px">
+      <li>освоить операции целочисленного деления <code>//</code> и остатка <code>%</code>;</li>
+      <li>научиться выделять цифры числа;</li>
+      <li>различать типы данных <code>int</code>, <code>float</code>, <code>str</code> и преобразовывать значения из одного типа в другой.</li>
+    </ul>
+    <div class="note route-goal"><b>Планируемый результат.</b>
+      <ul style="margin:6px 0 0">
+        <li>величина переводится в другие единицы: секунды — в минуты и секунды, центы — в евро и центы;</li>
+        <li>из трёхзначного числа выделяются сотни, десятки и единицы, вычисляется сумма цифр;</li>
+        <li>по записи значения определяется его тип; вещественное число вводится функцией <code>float()</code>;</li>
+        <li>для каждой операции определяется тип результата.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card noprint">
+    <h3>Порядок работы</h3>
+    <div class="grid2">
+      <div class="panel"><h4>Песочница</h4><p>Программа записывается в редакторе и запускается кнопкой «Запустить» или клавишами <b>Ctrl</b>+<b>Enter</b>. Если программа ждёт ввода, в окне вывода появляется поле: значение вводится и подтверждается клавишей <b>Enter</b>.</p></div>
+      <div class="panel"><h4>Сохранение</h4><p>Работа сохраняется автоматически: после перезагрузки страницы предлагается продолжить. Кнопка «Сохранить работу» в части «Итог» скачивает zip-архив с результатами.</p></div>
+    </div>
+    <p class="small muted" style="margin:10px 0 0;max-width:680px">Шаги не блокируются: к любой части занятия можно перейти через меню в шапке. Предыдущий конспект: <a href="../02_Peremennye_vvod_arifmetika/Peremennye_vvod_arifmetika.html">Переменные, ввод и арифметика</a>.</p>
+  </div>
+</section>
+
+<!-- ===================== 2. ПОВТОРЕНИЕ ===================== -->
+<section class="page" id="page-review" data-part="review" aria-labelledby="h-review">
+  <h2 id="h-review" tabindex="-1">Повторение</h2>
+  <p class="lede">Три вопроса по теме предыдущего конспекта. Проверка выполняется сразу после выбора ответа; ответ можно изменить.</p>
+  <div class="qs" data-qgroup="review"></div>
+</section>
+
+<!-- ===================== 3. ТЕОРИЯ ===================== -->
+<section class="page print-page" id="page-theory" data-part="theory" aria-labelledby="h-theory">
+  <h2 id="h-theory" tabindex="-1">Теория</h2>
+
+  <div class="step" id="step-1">
+    <h3>Шаг 1. Целочисленное деление и остаток</h3>
+    <div class="prose">
+      <p>Деление с остатком знакомо по начальной школе: 17&nbsp;: 5 = 3 (остаток 2). В Python для него есть две операции. <b>Целочисленное деление</b> (англ. <i>floor division</i>) <code>//</code> даёт целую часть частного: <code>17 // 5</code> равно 3. <b>Остаток от деления</b> (англ. <i>remainder</i>) <code>%</code> даёт остаток: <code>17 % 5</code> равно 2.</p>
+      <p>Результаты связаны равенством: делимое = делитель · частное + остаток, то есть 17 = 5 · 3 + 2. Остаток всегда меньше делителя. Если остаток равен 0, число делится нацело.</p>
+      <p>Операции <code>//</code> и <code>%</code> выполняются в том же порядке, что умножение и деление: раньше сложения и вычитания. В блок-схеме и школьном алгоритмическом языке они записываются словами <b>div</b> и <b>mod</b>: <code>m := t div 60</code>, <code>s := t mod 60</code>.</p>
+    </div>
+    <div class="tbl-wrap" style="margin:10px 0">
+      <table class="tbl stack">
+        <thead><tr><th>Выражение</th><th>Результат</th><th>Пояснение</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Выражение"><code>17 // 5</code></td><td data-l="Результат">3</td><td data-l="Пояснение">5 помещается в 17 три раза</td></tr>
+          <tr><td data-l="Выражение"><code>17 % 5</code></td><td data-l="Результат">2</td><td data-l="Пояснение">17 − 5 · 3 = 2</td></tr>
+          <tr><td data-l="Выражение"><code>4 // 5</code></td><td data-l="Результат">0</td><td data-l="Пояснение">делимое меньше делителя</td></tr>
+          <tr><td data-l="Выражение"><code>4 % 5</code></td><td data-l="Результат">4</td><td data-l="Пояснение">делимое целиком составляет остаток</td></tr>
+          <tr><td data-l="Выражение"><code>20 % 5</code></td><td data-l="Результат">0</td><td data-l="Пояснение">20 делится на 5 нацело</td></tr>
+          <tr><td data-l="Выражение"><code>10 - 7 // 2</code></td><td data-l="Результат">7</td><td data-l="Пояснение">сначала 7 // 2 = 3; со скобками <code>(10 - 7) // 2</code> = 1</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ex-grid">
+      <div class="ex"><b>Пример: чётность</b>
+<pre class="code py">print(8 % 2, 7 % 2)</pre>
+        <p class="legend">Вывод: <code>0 1</code>. Остаток от деления на 2 у чётного числа равен 0, у нечётного — 1.</p>
+      </div>
+      <div class="ex"><b>Пример: перевод единиц</b>
+<pre class="code py">print(250 // 100, 250 % 100)</pre>
+        <p class="legend">Вывод: <code>2 50</code>. 250 сантиметров — это 2 метра и 50 сантиметров.</p>
+      </div>
+    </div>
+    <div class="fig-pair">
+      <div class="fig-box"><h4>Блок-схема</h4>
+        <div class="flow-fig" role="img" aria-label="Блок-схема: начало; ввод t; m := t div 60; s := t mod 60; вывод m, s; конец" data-flow="start:Начало|io:Ввод: t|proc:m := t div 60|proc:s := t mod 60|io:Вывод: m, s|end:Конец"></div>
+      </div>
+      <div class="fig-box"><h4>Программа</h4>
+<pre class="code py">t = int(input())   # время в секундах
+m = t // 60        # полных минут
+s = t % 60         # оставшиеся секунды
+print(m, s)</pre>
+        <p class="legend">Для <code>t</code> = 130: <code>m</code> = 2, <code>s</code> = 10, вывод <code>2 10</code>. Проверка: 60 · 2 + 10 = 130.</p>
+      </div>
+    </div>
+    <div class="sbx" data-task="th1"></div>
+  </div>
+
+  <div class="step" id="step-2">
+    <h3>Шаг 2. Цифры числа</h3>
+    <div class="prose">
+      <p>Целочисленное деление на 10 отбрасывает последнюю цифру числа: <code>473 // 10</code> равно 47. Остаток от деления на 10 и есть последняя цифра: <code>473 % 10</code> равно 3. Так же работает деление на 100: <code>473 // 100</code> равно 4, <code>473 % 100</code> равно 73.</p>
+      <p>Для трёхзначного числа <code>n</code>: сотни — <code>n // 100</code>, десятки — <code>n // 10 % 10</code> (сначала отбрасывается последняя цифра, затем берётся последняя цифра результата), единицы — <code>n % 10</code>. Сумма цифр — сумма этих трёх значений.</p>
+    </div>
+    <div class="fig-pair">
+      <div class="fig-box"><h4>Программа</h4>
+<pre class="code py">n = int(input())
+a = n // 100        # сотни
+b = n // 10 % 10    # десятки
+c = n % 10          # единицы
+print(a + b + c)</pre>
+      </div>
+      <div class="fig-box"><h4>Трассировочная таблица для n = 473</h4>
+        <div class="tbl-wrap">
+          <table class="tbl stack">
+            <thead><tr><th>Команда</th><th>Вычисление</th><th>Результат</th></tr></thead>
+            <tbody>
+              <tr><td data-l="Команда"><code>a = n // 100</code></td><td data-l="Вычисление">473 // 100</td><td data-l="Результат"><code>a</code> = 4</td></tr>
+              <tr><td data-l="Команда"><code>b = n // 10 % 10</code></td><td data-l="Вычисление">473 // 10 = 47; 47 % 10</td><td data-l="Результат"><code>b</code> = 7</td></tr>
+              <tr><td data-l="Команда"><code>c = n % 10</code></td><td data-l="Вычисление">473 % 10</td><td data-l="Результат"><code>c</code> = 3</td></tr>
+              <tr><td data-l="Команда"><code>print(a + b + c)</code></td><td data-l="Вычисление">4 + 7 + 3</td><td data-l="Результат">вывод: 14</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="sbx" data-task="th2"></div>
+  </div>
+
+  <div class="step" id="step-3">
+    <h3>Шаг 3. Типы данных и их преобразование</h3>
+    <div class="prose">
+      <p><b>Тип данных</b> (англ. <i>data type</i>) определяет, какие значения хранит величина и какие операции с ней выполняются. В этом курсе используются три типа: <code>int</code> — <b>целые числа</b>, <code>float</code> — <b>вещественные числа</b> (с дробной частью), <code>str</code> — <b>строки</b> (текст). Тип значения выводит функция <code>type()</code>.</p>
+      <p>Тип результата зависит от операции. <code>+ - * // %</code> с двумя целыми числами дают целое число. Деление <code>/</code> всегда даёт вещественное число. Если в операции участвует вещественное число, результат тоже вещественный: <code>7.5 // 2</code> равно <code>3.0</code>.</p>
+      <p>Функции <code>int()</code>, <code>float()</code>, <code>str()</code> преобразуют значение в другой тип. Функция <code>int()</code> отбрасывает дробную часть, а не округляет. Округление выполняет функция <code>round()</code>. Вещественное число вводится так: <code>d = float(input())</code>; при вводе дробная часть отделяется точкой.</p>
+    </div>
+    <div class="tbl-wrap" style="margin:10px 0">
+      <table class="tbl stack">
+        <thead><tr><th>Тип</th><th>Значения</th><th>Примеры</th><th>Преобразование</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Тип"><code>int</code> — целое число</td><td data-l="Значения">целые числа</td><td data-l="Примеры"><code>5</code>, <code>-3</code>, <code>0</code></td><td data-l="Преобразование"><code>int("25")</code> → 25; <code>int(7.9)</code> → 7</td></tr>
+          <tr><td data-l="Тип"><code>float</code> — вещественное число</td><td data-l="Значения">числа с дробной частью</td><td data-l="Примеры"><code>2.5</code>, <code>3.0</code></td><td data-l="Преобразование"><code>float("2.5")</code> → 2.5; <code>float(3)</code> → 3.0</td></tr>
+          <tr><td data-l="Тип"><code>str</code> — строка</td><td data-l="Значения">текст в кавычках</td><td data-l="Примеры"><code>"Будва"</code>, <code>"25"</code></td><td data-l="Преобразование"><code>str(25)</code> → "25"</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ex-grid">
+      <div class="ex"><b>Пример: округление</b>
+<pre class="code py">print(int(7.9), round(7.9))
+print(round(3.14159, 2))</pre>
+        <p class="legend">Вывод: <code>7 8</code>, затем <code>3.14</code>. Второй аргумент <code>round()</code> — число знаков после точки.</p>
+      </div>
+      <div class="ex"><b>Пример: число и строка</b>
+<pre class="code py">print(int("25") + 5)
+print("25" + "5")
+print(str(25) + " евро")</pre>
+        <p class="legend">Вывод: <code>30</code>, <code>255</code>, <code>25 евро</code>. Строки при сложении склеиваются.</p>
+      </div>
+      <div class="ex"><b>Пример: ошибка преобразования</b>
+<pre class="code py">x = int("2.5")</pre>
+        <p class="legend">Ошибка выполнения ValueError: строка «2.5» не записывает целое число. Для дробных значений — <code>float()</code>.</p>
+      </div>
+    </div>
+    <div class="sbx" data-task="th3"></div>
+  </div>
+</section>
+
+<!-- ===================== 4. РАЗБОР КОДА ===================== -->
+<section class="page" id="page-code" data-part="code" aria-labelledby="h-code">
+  <h2 id="h-code" tabindex="-1">Разбор кода</h2>
+  <div class="card">
+    <h3>Готовая программа</h3>
+    <div class="grid2">
+      <div>
+<pre class="code py"># Цена в центах: перевод в евро и центы
+price = int(input())    # цена в центах
+euro = price // 100     # полных евро
+cent = price % 100      # оставшиеся центы
+print(euro, "евро", cent, "центов")</pre>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl stack">
+          <thead><tr><th>Строка</th><th>Что происходит</th></tr></thead>
+          <tbody>
+            <tr><td data-l="Строка">1</td><td data-l="Что происходит">Комментарий: пропускается.</td></tr>
+            <tr><td data-l="Строка">2</td><td data-l="Что происходит">Ввод цены в центах; введённая строка преобразуется в целое число.</td></tr>
+            <tr><td data-l="Строка">3</td><td data-l="Что происходит">В одном евро 100 центов: целочисленное деление на 100 даёт число полных евро.</td></tr>
+            <tr><td data-l="Строка">4</td><td data-l="Что происходит">Остаток от деления на 100 — центы, которые не составили целого евро.</td></tr>
+            <tr><td data-l="Строка">5</td><td data-l="Что происходит">Вывод значений и текста через запятую.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="task" id="task-d1">
+    <div class="task-head"><h3>Задание 1. Определите, что выведет программа</h3></div>
+    <div class="q-slot" data-q="d1"></div>
+  </div>
+  <div class="sbx" data-task="d2"></div>
+  <div class="sbx" data-task="d3"></div>
+</section>
+
+<!-- ===================== 5. ПРАКТИКУМ ===================== -->
+<section class="page" id="page-practice" data-part="practice" aria-labelledby="h-practice">
+  <h2 id="h-practice" tabindex="-1">Практикум</h2>
+  <p class="lede">Три обязательные задачи, две задачи со звёздочкой (★) и две олимпиадные задачи (★★) по возрастанию сложности. Каждое число вводится с новой строки. Задача проверяется автоматически на нескольких наборах входных данных, часть наборов скрыта; подсказки открываются по одной.</p>
+  <div class="progress-line"><b id="pr-count">Решено: 0 из 7</b><div class="progress-bar" aria-hidden="true"><span id="pr-bar"></span></div></div>
+  <div class="sbx" data-task="p1"></div>
+  <div class="sbx" data-task="p2"></div>
+  <div class="sbx" data-task="p3"></div>
+  <div class="sbx" data-task="p4"></div>
+  <div class="sbx" data-task="p5"></div>
+  <div class="sbx" data-task="p6"></div>
+  <div class="sbx" data-task="p7"></div>
+</section>
+
+<!-- ===================== 6. ИТОГ ===================== -->
+<section class="page print-page" id="page-summary" data-part="summary" aria-labelledby="h-summary">
+  <h2 id="h-summary" tabindex="-1">Итог</h2>
+  <div class="card summary" id="vyvod">
+    <h3>Вывод</h3>
+    <ul>
+      <li><b>Целочисленное деление</b> <code>//</code> даёт целую часть частного, <b>остаток</b> <code>%</code> — остаток: <code>17 // 5</code> = 3, <code>17 % 5</code> = 2. В блок-схеме — div и mod.</li>
+      <li><b>Перевод единиц:</b> <code>t // 60</code> — полные минуты, <code>t % 60</code> — оставшиеся секунды.</li>
+      <li><b>Цифры числа:</b> <code>n % 10</code> — последняя цифра, <code>n // 10</code> — число без последней цифры; для трёхзначного числа сотни <code>n // 100</code>, десятки <code>n // 10 % 10</code>, единицы <code>n % 10</code>.</li>
+      <li><b>Чётность:</b> <code>n % 2</code> равно 0 у чётного числа и 1 у нечётного.</li>
+      <li><b>Типы данных:</b> <code>int</code> — целое, <code>float</code> — вещественное, <code>str</code> — строка. Результат <code>/</code> всегда <code>float</code>; если в операции есть <code>float</code>, результат тоже <code>float</code>.</li>
+      <li><b>Преобразования:</b> <code>int()</code> отбрасывает дробную часть, <code>round()</code> округляет, <code>float(input())</code> вводит вещественное число, <code>str()</code> превращает число в строку.</li>
+    </ul>
+    <div class="tbl-wrap">
+      <table class="tbl stack">
+        <thead><tr><th>Блок-схема</th><th>Программа на Python</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Блок-схема"><div class="flow-fig flow-mini" role="img" aria-label="Прямоугольник: m := t div 60" data-flow="proc:m := t div 60"></div></td><td data-l="Программа на Python"><code>m = t // 60</code></td></tr>
+          <tr><td data-l="Блок-схема"><div class="flow-fig flow-mini" role="img" aria-label="Прямоугольник: s := t mod 60" data-flow="proc:s := t mod 60"></div></td><td data-l="Программа на Python"><code>s = t % 60</code></td></tr>
+          <tr><td data-l="Блок-схема"><div class="flow-fig flow-mini" role="img" aria-label="Параллелограмм: ввод d" data-flow="io:Ввод: d"></div></td><td data-l="Программа на Python"><code>d = float(input())</code> (вещественное число)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card noprint">
+    <h3>Проверить себя</h3>
+    <div class="selfcheck-grid" data-qgroup="selfcheck"></div>
+  </div>
+
+  <div class="finish-box noprint" id="finish-box">
+    <b>Завершение занятия</b>
+    <p class="small muted" style="margin:4px 0 0;max-width:680px">Кнопка «Завершить занятие» передаёт результаты учителю. Кнопка «Сохранить работу» скачивает zip-архив с результатами.</p>
+    <div class="actions">
+      <button class="btn accent" type="button" id="btn-finish">Завершить занятие</button>
+      <button class="btn" type="button" id="btn-save">Сохранить работу</button>
+    </div>
+    <p id="finish-sum" class="small" style="margin:8px 0 0"></p>
+    <div class="send-line"><span class="sent-mark" id="sent-mark" role="status" aria-live="polite"></span></div>
+  </div>
+</section>
