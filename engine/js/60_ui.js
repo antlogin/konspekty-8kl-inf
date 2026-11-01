@@ -135,8 +135,13 @@ function paintMenu() {
     b.classList.toggle('done', !!(S && S.done[p]));
   });
   const i = partOrder.indexOf(S.part);
-  $('#btn-prev').disabled = i <= 0;
-  $('#btn-next').disabled = i >= partOrder.length - 1;
+  // Learn-it 4.3.1: кнопки разделов называют соседний раздел («← Предыдущий раздел: …», «Следующий раздел: … →»)
+  const title = j => { const b = $('#menu button[data-part="' + partOrder[j] + '"]'); return b ? b.textContent.trim() : ''; };
+  const prev = $('#btn-prev'), next = $('#btn-next');
+  prev.hidden = i <= 0; next.hidden = i >= partOrder.length - 1;
+  prev.disabled = prev.hidden; next.disabled = next.hidden;
+  if (!prev.hidden) prev.textContent = '← Предыдущий раздел: ' + title(i - 1);
+  if (!next.hidden) next.textContent = 'Следующий раздел: ' + title(i + 1) + ' →';
 }
 function openPart(p, how) {
   how = how || {};

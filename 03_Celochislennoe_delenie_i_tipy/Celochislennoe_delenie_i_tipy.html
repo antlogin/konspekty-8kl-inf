@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Целочисленное деление и типы данных</title>
-<meta name="material:specification" content="HTML Material Specification Learn-it 4.3">
+<meta name="material:specification" content="HTML Material Specification Learn-it 4.3.2">
 <meta name="material:version" content="2026-10-18.1">
 <meta name="catalog:title" content="Целочисленное деление и типы данных">
 <meta name="catalog:type" content="lesson">
@@ -135,6 +135,14 @@ button.btn.accent:hover{background:#e9a200}
 button.btn.grey{background:#f1f3f2;color:#55615c;border-color:#d4dbd8;font-weight:400}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .pager{display:flex;justify-content:space-between;gap:10px;margin-top:6px}
+.pager #btn-next{margin-left:auto}
+.pager .btn{white-space:normal;text-align:left}
+.pager #btn-next{text-align:right}
+.send-line{margin-top:22px;text-align:center}
+.send-line .sent-mark{display:block;font-size:12.5px;font-weight:400;color:var(--muted)}
+.send-line .sent-mark:empty{display:none}
+.send-line .sent-mark.ok{color:var(--ok)}
+.send-line .sent-mark.bad{color:var(--bad)}
 
 /* вопросы */
 .q{border:1px solid var(--line);border-radius:9px;padding:13px;margin:0 0 12px;background:#fff}
@@ -642,16 +650,16 @@ print(euro, "евро", cent, "центов")</pre>
     <div class="actions">
       <button class="btn accent" type="button" id="btn-finish">Завершить занятие</button>
       <button class="btn" type="button" id="btn-save">Сохранить работу</button>
-      <span class="sent-mark" id="sent-mark" role="status" aria-live="polite"></span>
     </div>
     <p id="finish-sum" class="small" style="margin:8px 0 0"></p>
+    <div class="send-line"><span class="sent-mark" id="sent-mark" role="status" aria-live="polite"></span></div>
   </div>
 </section>
 
 
 <div class="pager noprint">
-  <button class="btn" type="button" id="btn-prev">Назад</button>
-  <button class="btn primary" type="button" id="btn-next">Далее</button>
+  <button class="btn" type="button" id="btn-prev">← Предыдущий раздел</button>
+  <button class="btn primary" type="button" id="btn-next">Следующий раздел →</button>
 </div>
 </main>
 
@@ -2985,8 +2993,13 @@ function paintMenu() {
     b.classList.toggle('done', !!(S && S.done[p]));
   });
   const i = partOrder.indexOf(S.part);
-  $('#btn-prev').disabled = i <= 0;
-  $('#btn-next').disabled = i >= partOrder.length - 1;
+  // Learn-it 4.3.1: кнопки разделов называют соседний раздел («← Предыдущий раздел: …», «Следующий раздел: … →»)
+  const title = j => { const b = $('#menu button[data-part="' + partOrder[j] + '"]'); return b ? b.textContent.trim() : ''; };
+  const prev = $('#btn-prev'), next = $('#btn-next');
+  prev.hidden = i <= 0; next.hidden = i >= partOrder.length - 1;
+  prev.disabled = prev.hidden; next.disabled = next.hidden;
+  if (!prev.hidden) prev.textContent = '← Предыдущий раздел: ' + title(i - 1);
+  if (!next.hidden) next.textContent = 'Следующий раздел: ' + title(i + 1) + ' →';
 }
 function openPart(p, how) {
   how = how || {};
