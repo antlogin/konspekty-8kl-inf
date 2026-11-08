@@ -1,6 +1,6 @@
 
 /* ---------- проверка вывода ---------- */
-const fold = s => String(s).replace(/ /g, ' ').replace(/[–—−]/g, '-');
+const fold = s => String(s).replace(/ /g, ' ').replace(/[–—−]/g, '-').replace(/ё/g, 'е').replace(/Ё/g, 'Е');   // тире и ё в выводе не требуются
 function normLines(text) {
   const a = fold(text).replace(/\r/g, '').split('\n').map(l => l.replace(/\s+$/, ''));
   while (a.length && a[a.length - 1] === '') a.pop();

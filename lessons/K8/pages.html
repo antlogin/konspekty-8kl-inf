@@ -1,0 +1,243 @@
+<!-- ===================== 1. ПЛАН ЗАНЯТИЯ ===================== -->
+<section class="page print-page" id="page-plan" data-part="plan" aria-labelledby="h-plan">
+  <div class="card" id="route">
+    <h2 id="h-plan" tabindex="-1">План занятия</h2>
+    <div class="route">
+      <div class="route-lesson">
+        <ul class="route-list">
+          <li><span class="time">5&nbsp;мин</span><span><b>Повторение.</b> Три вопроса и одно задание на целочисленное деление <code>//</code> и остаток <code>%</code>.</span></li>
+          <li><span class="time">8&nbsp;мин</span><span><b>Теория.</b> Условие и операции сравнения; полная форма ветвления в блок-схеме и на Python; большее из двух чисел.</span></li>
+          <li><span class="time">5&nbsp;мин</span><span><b>Разбор кода.</b> Программа выбора билета на паром и три задания к ней.</span></li>
+          <li><span class="time">15&nbsp;мин</span><span><b>Практикум.</b> Три обязательные задачи, две задачи со звёздочкой (★) и две олимпиадные (★★) с автоматической проверкой.</span></li>
+          <li><span class="time">3&nbsp;мин</span><span><b>Итог.</b> Вывод, задания «Проверить себя», завершение занятия.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card goal">
+    <h3>Цель занятия</h3>
+    <ul style="margin:0;max-width:680px">
+      <li>освоить алгоритмическую конструкцию «ветвление» в полной форме: блок-схему с условием и запись <code>if</code> / <code>else</code> на Python;</li>
+      <li>научиться записывать условия с операциями сравнения;</li>
+      <li>применять ветвление вместе с операциями <code>//</code> и <code>%</code>: проверка чётности и делимости.</li>
+    </ul>
+    <div class="note route-goal"><b>Планируемый результат.</b>
+      <ul style="margin:6px 0 0">
+        <li>для условия определяется, истинно оно или ложно при заданных значениях;</li>
+        <li>по блок-схеме с ветвлением составляется программа с <code>if</code> и <code>else</code>, команды ветвей записываются с отступом;</li>
+        <li>чётность числа проверяется условием <code>n % 2 == 0</code>, большее из двух чисел выбирается ветвлением;</li>
+        <li>готовая программа изменяется под новое условие задачи.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card noprint">
+    <h3>Порядок работы</h3>
+    <div class="grid2">
+      <div class="panel"><h4>Песочница</h4><p>Программа записывается в редакторе и запускается кнопкой «Запустить» или клавишами <b>Ctrl</b>+<b>Enter</b>. После строки с двоеточием редактор сам ставит отступ из четырёх пробелов; убирается отступ клавишами <b>Shift</b>+<b>Tab</b>. Если программа ждёт ввода, в окне вывода появляется поле: значение вводится и подтверждается клавишей <b>Enter</b>.</p></div>
+      <div class="panel"><h4>Сохранение</h4><p>Работа сохраняется автоматически: после перезагрузки страницы предлагается продолжить. Кнопка «Сохранить работу» в части «Итог» скачивает zip-архив с результатами.</p></div>
+    </div>
+    <p class="small muted" style="margin:10px 0 0;max-width:680px">Шаги не блокируются: к любой части занятия можно перейти через меню в шапке. Предыдущий конспект: <a href="../03_Celochislennoe_delenie_i_tipy/Celochislennoe_delenie_i_tipy.html">Целочисленное деление и типы данных</a>.</p>
+  </div>
+</section>
+
+<!-- ===================== 2. ПОВТОРЕНИЕ ===================== -->
+<section class="page" id="page-review" data-part="review" aria-labelledby="h-review">
+  <h2 id="h-review" tabindex="-1">Повторение</h2>
+  <p class="lede">Три вопроса и одно задание по теме предыдущего конспекта: целочисленное деление <code>//</code> и остаток <code>%</code>. Ответ на вопрос проверяется сразу после выбора; ответ можно изменить.</p>
+  <div class="qs" data-qgroup="review"></div>
+  <div class="sbx" data-task="w1"></div>
+</section>
+
+<!-- ===================== 3. ТЕОРИЯ ===================== -->
+<section class="page print-page" id="page-theory" data-part="theory" aria-labelledby="h-theory">
+  <h2 id="h-theory" tabindex="-1">Теория</h2>
+
+  <div class="step" id="step-1">
+    <h3>Шаг 1. Условие и операции сравнения</h3>
+    <div class="prose">
+      <p>До сих пор команды программы выполнялись одна за другой, сверху вниз: это <b>следование</b>. Часто действие зависит от данных: чётное число или нечётное, какое из двух чисел больше, хватает ли денег на покупку. Для таких задач служит <b>условие</b> (англ. <i>condition</i>) — высказывание, которое при данных значениях величин либо истинно, либо ложно.</p>
+      <p>Простое условие записывается с помощью <b>операций сравнения</b> (англ. <i>comparison operators</i>). Результат сравнения в Python — логическое значение: <code>True</code> (истина) или <code>False</code> (ложь). Например, <code>7 &gt; 3</code> равно <code>True</code>, а <code>7 == 3</code> равно <code>False</code>.</p>
+      <p>Сравнение на равенство записывается двумя знаками: <code>==</code>. Один знак <code>=</code> — это присваивание. Условие «число <code>n</code> чётное» записывается так: <code>n % 2 == 0</code> — остаток от деления на 2 равен нулю.</p>
+    </div>
+    <div class="tbl-wrap" style="margin:10px 0">
+      <table class="tbl stack">
+        <thead><tr><th>Математика</th><th>Python</th><th>Пример</th><th>Результат</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Математика">a &gt; b</td><td data-l="Python"><code>a &gt; b</code></td><td data-l="Пример"><code>7 &gt; 3</code></td><td data-l="Результат"><code>True</code></td></tr>
+          <tr><td data-l="Математика">a &lt; b</td><td data-l="Python"><code>a &lt; b</code></td><td data-l="Пример"><code>7 &lt; 3</code></td><td data-l="Результат"><code>False</code></td></tr>
+          <tr><td data-l="Математика">a ≥ b</td><td data-l="Python"><code>a &gt;= b</code></td><td data-l="Пример"><code>5 &gt;= 5</code></td><td data-l="Результат"><code>True</code></td></tr>
+          <tr><td data-l="Математика">a ≤ b</td><td data-l="Python"><code>a &lt;= b</code></td><td data-l="Пример"><code>6 &lt;= 5</code></td><td data-l="Результат"><code>False</code></td></tr>
+          <tr><td data-l="Математика">a = b</td><td data-l="Python"><code>a == b</code></td><td data-l="Пример"><code>8 % 2 == 0</code></td><td data-l="Результат"><code>True</code></td></tr>
+          <tr><td data-l="Математика">a ≠ b</td><td data-l="Python"><code>a != b</code></td><td data-l="Пример"><code>7 % 2 != 0</code></td><td data-l="Результат"><code>True</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sbx" data-task="th1"></div>
+  </div>
+
+  <div class="step" id="step-2">
+    <h3>Шаг 2. Полная форма ветвления</h3>
+    <div class="prose">
+      <p><b>Ветвление</b> (англ. <i>branching</i>) — алгоритмическая конструкция, в которой в зависимости от условия выполняется одна из двух серий команд. В блок-схеме условие записывается в <b>ромбе</b>. Из ромба выходят две линии: «да» — условие истинно, «нет» — условие ложно. В <b>полной форме</b> ветвления на каждой линии своя серия команд; после них линии сходятся, и алгоритм продолжается.</p>
+      <p>На школьном алгоритмическом языке полная форма записывается так: <b>если</b> &lt;условие&gt; <b>то</b> &lt;серия 1&gt; <b>иначе</b> &lt;серия 2&gt; <b>все</b>. В Python ей соответствуют ключевые слова <code>if</code> («если») и <code>else</code> («иначе»).</p>
+      <p>Правила записи: после условия и после <code>else</code> ставится двоеточие; команды каждой ветви записываются с <b>отступом</b> в четыре пробела; <code>else</code> стоит точно под <code>if</code>. Команда без отступа после ветвления выполняется в любом случае.</p>
+    </div>
+    <div class="fig-pair">
+      <div class="fig-box"><h4>Блок-схема</h4>
+        <div class="flow-fig" role="img" aria-label="Блок-схема: начало; ввод n; условие n mod 2 = 0; если да — вывод «Чётное», если нет — вывод «Нечётное»; линии сходятся; конец" data-flow="start:Начало|io:Ввод: n|branch:n mod 2 = 0?~~io:Вывод: «Чётное»~~io:Вывод: «Нечётное»|end:Конец"></div>
+      </div>
+      <div class="fig-box"><h4>Программа</h4>
+<pre class="code py">n = int(input())
+if n % 2 == 0:          # условие
+    print("Чётное")     # ветвь «да»
+else:
+    print("Нечётное")   # ветвь «нет»</pre>
+        <p class="legend">Для <code>n</code> = 8: условие 8 % 2 == 0 истинно, вывод <code>Чётное</code>. Для <code>n</code> = 7: 7 % 2 равно 1, условие ложно, выполняется ветвь <code>else</code>, вывод <code>Нечётное</code>.</p>
+      </div>
+    </div>
+    <div class="sbx" data-task="th2"></div>
+  </div>
+
+  <div class="step" id="step-3">
+    <h3>Шаг 3. Большее из двух чисел</h3>
+    <div class="prose">
+      <p>Вводятся два числа <code>a</code> и <code>b</code>. Если <code>a &gt; b</code>, большее число — <code>a</code>, иначе большее — <code>b</code>. Если числа равны, условие ложно и выбирается <code>b</code>: это то же самое значение. Результат записывается в переменную <code>m</code> и выводится после ветвления — одной командой для обеих ветвей.</p>
+      <p>В каждой ветви может быть несколько команд: все они записываются с одинаковым отступом. Пропущенное двоеточие — синтаксическая ошибка SyntaxError, пропущенный или лишний отступ — ошибка IndentationError.</p>
+    </div>
+    <div class="fig-pair">
+      <div class="fig-box"><h4>Блок-схема</h4>
+        <div class="flow-fig" role="img" aria-label="Блок-схема: начало; ввод a, b; условие a больше b; если да — m := a, если нет — m := b; линии сходятся; вывод m; конец" data-flow="start:Начало|io:Ввод: a, b|branch:a &gt; b?~~proc:m := a~~proc:m := b|io:Вывод: m|end:Конец"></div>
+      </div>
+      <div class="fig-box"><h4>Программа</h4>
+<pre class="code py">a = int(input())
+b = int(input())
+if a &gt; b:
+    m = a
+else:
+    m = b
+print("Большее:", m)</pre>
+        <div class="tbl-wrap">
+          <table class="tbl stack">
+            <thead><tr><th>Ввод</th><th>Условие <code>a &gt; b</code></th><th>Ветвь</th><th>Вывод</th></tr></thead>
+            <tbody>
+              <tr><td data-l="Ввод">5, 12</td><td data-l="Условие">5 &gt; 12 — ложно</td><td data-l="Ветвь"><code>m = b</code></td><td data-l="Вывод">Большее: 12</td></tr>
+              <tr><td data-l="Ввод">12, 5</td><td data-l="Условие">12 &gt; 5 — истинно</td><td data-l="Ветвь"><code>m = a</code></td><td data-l="Вывод">Большее: 12</td></tr>
+              <tr><td data-l="Ввод">7, 7</td><td data-l="Условие">7 &gt; 7 — ложно</td><td data-l="Ветвь"><code>m = b</code></td><td data-l="Вывод">Большее: 7</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="ex-grid">
+      <div class="ex"><b>Ошибка: нет двоеточия</b>
+<pre class="code py">if a &gt; b
+    m = a</pre>
+        <p class="legend">SyntaxError: после условия ставится двоеточие.</p>
+      </div>
+      <div class="ex"><b>Ошибка: нет отступа</b>
+<pre class="code py">if a &gt; b:
+m = a</pre>
+        <p class="legend">IndentationError: команда ветви записывается с отступом.</p>
+      </div>
+      <div class="ex"><b>Ошибка: присваивание в условии</b>
+<pre class="code py">if n % 2 = 0:</pre>
+        <p class="legend">SyntaxError: сравнение записывается знаком <code>==</code>.</p>
+      </div>
+    </div>
+    <div class="sbx" data-task="th3"></div>
+  </div>
+</section>
+
+<!-- ===================== 4. РАЗБОР КОДА ===================== -->
+<section class="page" id="page-code" data-part="code" aria-labelledby="h-code">
+  <h2 id="h-code" tabindex="-1">Разбор кода</h2>
+  <div class="card">
+    <h3>Готовая программа</h3>
+    <div class="grid2">
+      <div>
+<pre class="code py"># Паром Бар - Бари: стоимость билета
+age = int(input())       # возраст пассажира
+if age &lt; 12:
+    print("Детский билет: 25 евро")
+else:
+    print("Взрослый билет: 50 евро")
+print("Билет оформлен")</pre>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl stack">
+          <thead><tr><th>Строка</th><th>Что происходит</th></tr></thead>
+          <tbody>
+            <tr><td data-l="Строка">1</td><td data-l="Что происходит">Комментарий: пропускается.</td></tr>
+            <tr><td data-l="Строка">2</td><td data-l="Что происходит">Ввод возраста; введённая строка преобразуется в целое число.</td></tr>
+            <tr><td data-l="Строка">3</td><td data-l="Что происходит">Условие: возраст меньше 12 лет.</td></tr>
+            <tr><td data-l="Строка">4</td><td data-l="Что происходит">Ветвь «да»: выполняется, только если условие истинно.</td></tr>
+            <tr><td data-l="Строка">5–6</td><td data-l="Что происходит">Ветвь «нет»: выполняется, только если условие ложно.</td></tr>
+            <tr><td data-l="Строка">7</td><td data-l="Что происходит">Команда без отступа: выполняется после ветвления в любом случае.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="task" id="task-d1">
+    <div class="task-head"><h3>Задание 1. Определите, что выведет программа</h3></div>
+    <div class="q-slot" data-q="d1"></div>
+  </div>
+  <div class="sbx" data-task="d2"></div>
+  <div class="sbx" data-task="d3"></div>
+</section>
+
+<!-- ===================== 5. ПРАКТИКУМ ===================== -->
+<section class="page" id="page-practice" data-part="practice" aria-labelledby="h-practice">
+  <h2 id="h-practice" tabindex="-1">Практикум</h2>
+  <p class="lede">Три обязательные задачи, две задачи со звёздочкой (★) и две олимпиадные задачи (★★) по возрастанию сложности. Каждое число вводится с новой строки. Задача проверяется автоматически на нескольких наборах входных данных, часть наборов скрыта; подсказки открываются по одной.</p>
+  <div class="progress-line"><b id="pr-count">Решено: 0 из 7</b><div class="progress-bar" aria-hidden="true"><span id="pr-bar"></span></div></div>
+  <div class="sbx" data-task="p1"></div>
+  <div class="sbx" data-task="p2"></div>
+  <div class="sbx" data-task="p3"></div>
+  <div class="sbx" data-task="p4"></div>
+  <div class="sbx" data-task="p5"></div>
+  <div class="sbx" data-task="p6"></div>
+  <div class="sbx" data-task="p7"></div>
+</section>
+
+<!-- ===================== 6. ИТОГ ===================== -->
+<section class="page print-page" id="page-summary" data-part="summary" aria-labelledby="h-summary">
+  <h2 id="h-summary" tabindex="-1">Итог</h2>
+  <div class="card summary" id="vyvod">
+    <h3>Вывод</h3>
+    <ul>
+      <li><b>Условие</b> — высказывание, которое истинно или ложно. Простое условие записывается операциями сравнения: <code>&gt; &lt; &gt;= &lt;= == !=</code>. Равенство — <code>==</code>, присваивание — <code>=</code>.</li>
+      <li><b>Ветвление</b> — конструкция, в которой в зависимости от условия выполняется одна из двух серий команд. В блок-схеме условие записывается в ромбе с выходами «да» и «нет».</li>
+      <li><b>Полная форма</b> на Python: <code>if условие:</code>, команды ветви «да», <code>else:</code>, команды ветви «нет». После условия и после <code>else</code> — двоеточие, команды ветвей — с отступом в четыре пробела.</li>
+      <li><b>Чётность:</b> число <code>n</code> чётное, если <code>n % 2 == 0</code>; делится на <code>k</code> нацело, если <code>n % k == 0</code>.</li>
+      <li><b>Большее из двух:</b> если <code>a &gt; b</code>, то <code>m = a</code>, иначе <code>m = b</code>; вывод — после ветвления.</li>
+    </ul>
+    <div class="tbl-wrap">
+      <table class="tbl stack">
+        <thead><tr><th>Блок-схема</th><th>Программа на Python</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Блок-схема"><div class="flow-fig flow-mini" role="img" aria-label="Ромб: условие n mod 2 = 0" data-flow="cond:n mod 2 = 0?"></div></td><td data-l="Программа на Python"><code>if n % 2 == 0:</code></td></tr>
+          <tr><td data-l="Блок-схема">выход «нет» из ромба</td><td data-l="Программа на Python"><code>else:</code></td></tr>
+          <tr><td data-l="Блок-схема">если … то … иначе … все</td><td data-l="Программа на Python"><code>if …:</code> и <code>else:</code>, команды ветвей с отступом</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card noprint">
+    <h3>Проверить себя</h3>
+    <div class="selfcheck-grid" data-qgroup="selfcheck"></div>
+  </div>
+
+  <div class="finish-box noprint" id="finish-box">
+    <b>Завершение занятия</b>
+    <p class="small muted" style="margin:4px 0 0;max-width:680px">Кнопка «Завершить занятие» передаёт результаты учителю. Кнопка «Сохранить работу» скачивает zip-архив с результатами.</p>
+    <div class="actions">
+      <button class="btn accent" type="button" id="btn-finish">Завершить занятие</button>
+      <button class="btn" type="button" id="btn-save">Сохранить работу</button>
+    </div>
+    <p id="finish-sum" class="small" style="margin:8px 0 0"></p>
+    <div class="send-line"><span class="sent-mark" id="sent-mark" role="status" aria-live="polite"></span></div>
+  </div>
+</section>

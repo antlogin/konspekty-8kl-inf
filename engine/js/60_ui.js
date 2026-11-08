@@ -7,29 +7,61 @@ function wrapText(text, max) {
   if (cur) lines.push(cur);
   return lines;
 }
+/* Узлы через «|»: start, end, io, proc, cond (ромб без ветвей — обозначение).
+   Ветвление: branch:<условие>~~<ветвь «да»>~~<ветвь «нет»>, узлы ветви через «^» (тип:текст); пустая ветвь — неполная форма.
+   Ветвь «да» слева, «нет» справа (как в учебнике Босовой), после ветвей линии сходятся. */
+function parseFlowNode(s) {
+  const i = s.indexOf(':'), n = { type: s.slice(0, i), text: s.slice(i + 1) };
+  if (n.type === 'branch') {
+    const p = n.text.split('~~'), list = t => (t || '').trim() ? t.split('^').map(parseFlowNode) : [];
+    n.text = p[0]; n.yes = list(p[1]); n.no = list(p[2]);
+  }
+  return n;
+}
 function buildFlow(el) {
-  const nodes = el.dataset.flow.split('|').map(s => { const i = s.indexOf(':'); return { type: s.slice(0, i), text: s.slice(i + 1) }; });
+  const nodes = el.dataset.flow.split('|').map(parseFlowNode);
   const mini = el.classList.contains('flow-mini');       // компактный блок для таблиц-обозначений
-  const W = mini ? 170 : 340, cx = W / 2, gap = 24, id = 'fa' + (++flowSeq);
+  const wide = nodes.some(n => n.type === 'branch');
+  const W = mini ? 170 : (wide ? 460 : 340), cx = W / 2, gap = 24, id = 'fa' + (++flowSeq);
+  const S = 'stroke="#123d32" stroke-width="1.5"';
+  const line = (x1, y1, x2, y2, head) => '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" ' + S + (head ? ' marker-end="url(#' + id + ')"' : '') + '/>';
+  const label = (x, y, t, anchor) => '<text x="' + x + '" y="' + y + '" text-anchor="' + anchor + '">' + esc(t) + '</text>';
+  function shapeAt(n, ncx, y, w, maxc) {          // фигура с текстом; возвращает разметку и высоту
+    const lines = wrapText(n.text, maxc);
+    const h = n.type === 'branch' ? Math.max(50, lines.length * 17 + 28) : Math.max(38, lines.length * 17 + 16);
+    const x = ncx - w / 2;
+    let shape;
+    if (n.type === 'start' || n.type === 'end') shape = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + h / 2 + '" fill="#e5f1ec" ' + S + '/>';
+    else if (n.type === 'io') { const s = 14; shape = '<polygon points="' + (x + s) + ',' + y + ' ' + (x + w) + ',' + y + ' ' + (x + w - s) + ',' + (y + h) + ' ' + x + ',' + (y + h) + '" fill="#fff6dc" ' + S + '/>'; }
+    else if (n.type === 'cond' || n.type === 'branch') shape = '<polygon points="' + ncx + ',' + y + ' ' + (x + w) + ',' + (y + h / 2) + ' ' + ncx + ',' + (y + h) + ' ' + x + ',' + (y + h / 2) + '" fill="#fff" ' + S + '/>';
+    else shape = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="#fff" ' + S + '/>';
+    const ty = y + h / 2 - (lines.length - 1) * 8.5 + 4.5;
+    const txt = '<text x="' + ncx + '" text-anchor="middle">' + lines.map((l, i) => '<tspan x="' + ncx + '" y="' + (ty + i * 17) + '">' + esc(l) + '</tspan>').join('') + '</text>';
+    return { svg: shape + txt, h: h };
+  }
+  const widthOf = n => mini ? ((n.type === 'start' || n.type === 'end') ? 100 : 150) : ((n.type === 'start' || n.type === 'end') ? 130 : 280);
+  const charsOf = n => mini ? 14 : (n.type === 'io' ? 30 : 28);
   let y = 6, parts = [], prevBottom = null;
   nodes.forEach(n => {
-    const lines = wrapText(n.text, mini ? 14 : (n.type === 'io' ? 30 : 28));
-    const h = Math.max(38, lines.length * 17 + 16);
-    const w = mini ? ((n.type === 'start' || n.type === 'end') ? 100 : 150) : ((n.type === 'start' || n.type === 'end') ? 130 : 280);
-    const x = cx - w / 2;
-    if (prevBottom !== null) { parts.push('<line x1="' + cx + '" y1="' + prevBottom + '" x2="' + cx + '" y2="' + (y - 1) + '" stroke="#123d32" stroke-width="1.5" marker-end="url(#' + id + ')"/>'); }
-    let shape;
-    if (n.type === 'start' || n.type === 'end') shape = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + h / 2 + '" fill="#e5f1ec" stroke="#123d32" stroke-width="1.5"/>';
-    else if (n.type === 'io') { const s = 14; shape = '<polygon points="' + (x + s) + ',' + y + ' ' + (x + w) + ',' + y + ' ' + (x + w - s) + ',' + (y + h) + ' ' + x + ',' + (y + h) + '" fill="#fff6dc" stroke="#123d32" stroke-width="1.5"/>'; }
-    else if (n.type === 'cond') shape = '<polygon points="' + cx + ',' + y + ' ' + (x + w) + ',' + (y + h / 2) + ' ' + cx + ',' + (y + h) + ' ' + x + ',' + (y + h / 2) + '" fill="#fff" stroke="#123d32" stroke-width="1.5"/>';
-    else shape = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="#fff" stroke="#123d32" stroke-width="1.5"/>';
-    const ty = y + h / 2 - (lines.length - 1) * 8.5 + 4.5;
-    const txt = '<text x="' + cx + '" text-anchor="middle">' + lines.map((l, i) => '<tspan x="' + cx + '" y="' + (ty + i * 17) + '">' + esc(l) + '</tspan>').join('') + '</text>';
-    parts.push(shape + txt);
-    prevBottom = y + h; y += h + gap;
+    if (prevBottom !== null) parts.push(line(cx, prevBottom, cx, y - 1, true));
+    if (n.type !== 'branch') {
+      const r = shapeAt(n, cx, y, widthOf(n), charsOf(n));
+      parts.push(r.svg); prevBottom = y + r.h; y += r.h + gap; return;
+    }
+    const dw = 200, d = shapeAt(n, cx, y, dw, 18), midY = y + d.h / 2, lx = cx - 125, rx = cx + 125;
+    parts.push(d.svg, line(cx - dw / 2, midY, lx, midY), line(cx + dw / 2, midY, rx, midY),
+      label(cx - dw / 2 - 3, midY - 6, 'да', 'end'), label(cx + dw / 2 + 3, midY - 6, 'нет', 'start'));
+    const column = (list, ccx) => {
+      let top = midY, cy = y + d.h + gap;
+      list.forEach(b => { const r = shapeAt(b, ccx, cy, 190, b.type === 'io' ? 26 : 22); parts.push(line(ccx, top, ccx, cy - 1, true), r.svg); top = cy + r.h; cy += r.h + gap; });
+      return top;
+    };
+    const lb = column(n.yes, lx), rb = column(n.no, rx), mergeY = Math.max(lb, rb, y + d.h) + 16;
+    parts.push(line(lx, lb, lx, mergeY), line(rx, rb, rx, mergeY), line(lx, mergeY, rx, mergeY));
+    prevBottom = mergeY; y = mergeY + gap;
   });
   const H = y - gap + 8;
-  el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><marker id="' + id + '" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#123d32"/></marker></defs>' + parts.join('') + '</svg>';
+  el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"' + (wide ? ' style="max-width:' + W + 'px"' : '') + '><defs><marker id="' + id + '" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#123d32"/></marker></defs>' + parts.join('') + '</svg>';
 }
 
 /* ---------- вопросы с выбором ---------- */
