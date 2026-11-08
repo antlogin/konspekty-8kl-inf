@@ -1,0 +1,135 @@
+{
+ "w1": {
+  "ref": "# Время прибытия парома\nh = int(input())      # час отправления\nm = int(input())      # минута отправления\nd = int(input())      # время в пути в минутах\nt = (h * 60 + m + d) % 1440\nprint(\"Прибытие:\", t // 60, \"ч\", t % 60, \"мин\")\n",
+  "alt": [
+   "# Время прибытия парома\nh = int(input())      # час отправления\nm = int(input())      # минута отправления\nd = int(input())      # время в пути в минутах\nt = h * 60 + m + d    # минут от начала суток\nprint(\"Прибытие:\", t // 60 % 24, \"ч\", t % 60, \"мин\")\n",
+   "# Время прибытия парома\nh = int(input())      # час отправления\nm = int(input())      # минута отправления\nd = int(input())      # время в пути в минутах\nt = (h * 60 + m + d) % (24 * 60)\nprint(\"Прибытие:\", t // 60, \"ч\", t % 60, \"мин\")\n"
+  ],
+  "wrong": [
+   "# Время прибытия парома\nh = int(input())      # час отправления\nm = int(input())      # минута отправления\nd = int(input())      # время в пути в минутах\nt = h * 60 + m + d    # минут от начала суток\nprint(\"Прибытие:\", t // 60, \"ч\", t % 60, \"мин\")\n",
+   "# Время прибытия парома\nh = int(input())      # час отправления\nm = int(input())      # минута отправления\nd = int(input())      # время в пути в минутах\nt = h * 60 + m + d % 1440\nprint(\"Прибытие:\", t // 60, \"ч\", t % 60, \"мин\")\n",
+   "# Время прибытия парома\nh = int(input())      # час отправления\nm = int(input())      # минута отправления\nd = int(input())      # время в пути в минутах\nt = (h * 60 + m + d) % 24\nprint(\"Прибытие:\", t // 60, \"ч\", t % 60, \"мин\")\n",
+   "# Время прибытия парома\nh = int(input())      # час отправления\nm = int(input())      # минута отправления\nd = int(input())      # время в пути в минутах\nt = (h * 60 + m + d) % 60\nprint(\"Прибытие:\", t // 60, \"ч\", t % 60, \"мин\")\n",
+   "# Время прибытия парома\nh = int(input())      # час отправления\nm = int(input())      # минута отправления\nd = int(input())      # время в пути в минутах\nt = (h * 60 + m + d) // 1440\nprint(\"Прибытие:\", t // 60, \"ч\", t % 60, \"мин\")\n"
+  ]
+ },
+ "d2": {
+  "ref": "# Паром Бар - Бари: стоимость билета\nage = int(input())       # возраст пассажира\nif age <= 14:\n    print(\"Детский билет: 25 евро\")\nelse:\n    print(\"Взрослый билет: 50 евро\")\nprint(\"Билет оформлен\")\n",
+  "alt": [
+   "# Паром Бар - Бари: стоимость билета\nage = int(input())       # возраст пассажира\nif age < 15:\n    print(\"Детский билет: 25 евро\")\nelse:\n    print(\"Взрослый билет: 50 евро\")\nprint(\"Билет оформлен\")\n",
+   "# Паром Бар - Бари: стоимость билета\nage = int(input())       # возраст пассажира\nif 14 >= age:\n    print(\"Детский билет: 25 евро\")\nelse:\n    print(\"Взрослый билет: 50 евро\")\nprint(\"Билет оформлен\")\n"
+  ],
+  "wrong": [
+   "# Паром Бар - Бари: стоимость билета\nage = int(input())       # возраст пассажира\nif age < 12:\n    print(\"Детский билет: 25 евро\")\nelse:\n    print(\"Взрослый билет: 50 евро\")\nprint(\"Билет оформлен\")\n",
+   "# Паром Бар - Бари: стоимость билета\nage = int(input())       # возраст пассажира\nif age < 14:\n    print(\"Детский билет: 25 евро\")\nelse:\n    print(\"Взрослый билет: 50 евро\")\nprint(\"Билет оформлен\")\n",
+   "# Паром Бар - Бари: стоимость билета\nage = int(input())       # возраст пассажира\nif age <= 15:\n    print(\"Детский билет: 25 евро\")\nelse:\n    print(\"Взрослый билет: 50 евро\")\nprint(\"Билет оформлен\")\n",
+   "# Паром Бар - Бари: стоимость билета\nage = int(input())       # возраст пассажира\nif age > 14:\n    print(\"Детский билет: 25 евро\")\nelse:\n    print(\"Взрослый билет: 50 евро\")\nprint(\"Билет оформлен\")\n",
+   "# Паром Бар - Бари: стоимость билета\nage = int(input())       # возраст пассажира\nif age = 14:\n    print(\"Детский билет: 25 евро\")\nelse:\n    print(\"Взрослый билет: 50 евро\")\nprint(\"Билет оформлен\")\n"
+  ]
+ },
+ "d3": {
+  "ref": "# Проверка заряда телефона\ncharge = int(input())    # заряд в процентах\nif charge < 20:\n    print(\"Требуется зарядка\")\nelse:\n    print(\"Заряда достаточно\")\n",
+  "alt": [
+   "# Проверка заряда телефона\ncharge = int(input())    # заряд в процентах\nif charge <= 19:\n    print(\"Требуется зарядка\")\nelse:\n    print(\"Заряда достаточно\")\n",
+   "# Проверка заряда телефона\ncharge = int(input())    # заряд в процентах\nif charge >= 20:\n    print(\"Заряда достаточно\")\nelse:\n    print(\"Требуется зарядка\")\n"
+  ],
+  "wrong": [
+   "# Проверка заряда телефона\ncharge = int(input())    # заряд в процентах\nif charge > 20:\n    print(\"Требуется зарядка\")\nelse:\n    print(\"Заряда достаточно\")\n",
+   "# Проверка заряда телефона\ncharge = int(input())    # заряд в процентах\nif charge <= 20:\n    print(\"Требуется зарядка\")\nelse:\n    print(\"Заряда достаточно\")\n",
+   "# Проверка заряда телефона\ncharge = int(input())    # заряд в процентах\nif charge >= 20:\n    print(\"Требуется зарядка\")\nelse:\n    print(\"Заряда достаточно\")\n",
+   "# Проверка заряда телефона\ncharge = int(input())    # заряд в процентах\nif charge > 20:\n    print(\"Заряда достаточно\")\nelse:\n    print(\"Требуется зарядка\")\n",
+   "# Проверка заряда телефона\ncharge = int(input())    # заряд в процентах\nif charge = 20:\n    print(\"Требуется зарядка\")\nelse:\n    print(\"Заряда достаточно\")\n"
+  ]
+ },
+ "p1": {
+  "ref": "n = int(input())\nif n % 3 == 0:\n    print(\"Делится на 3\")\nelse:\n    print(\"Остаток:\", n % 3)\n",
+  "alt": [
+   "n = int(input())\nr = n % 3\nif r != 0:\n    print(\"Остаток:\", r)\nelse:\n    print(\"Делится на 3\")\n"
+  ],
+  "wrong": [
+   "n = int(input())\nif n % 3 = 0:\n    print(\"Делится на 3\")\nelse:\n    print(\"Остаток:\", n % 3)\n",
+   "n = int(input())\nif n % 2 == 0:\n    print(\"Делится на 3\")\nelse:\n    print(\"Остаток:\", n % 2)\n",
+   "n = int(input())\nif n // 3 == 0:\n    print(\"Делится на 3\")\nelse:\n    print(\"Остаток:\", n % 3)\n",
+   "n = int(input())\nif n % 3 == 0:\n    print(\"Делится на 3\")\nelse:\n    print(\"Остаток:\", n)\n",
+   "n = int(input())\nif n % 3 == 0:\n    print(\"Делится на 3\")\nprint(\"Остаток:\", n % 3)\n",
+   "n = int(input())\nif n % 3 == 0:\nprint(\"Делится на 3\")\nelse:\nprint(\"Остаток:\", n % 3)\n"
+  ]
+ },
+ "p2": {
+  "ref": "a = int(input())\nb = int(input())\nif a < b:\n    m = a\nelse:\n    m = b\nprint(\"Меньшее:\", m)\n",
+  "alt": [
+   "a = int(input())\nb = int(input())\nif a <= b:\n    m = a\nelse:\n    m = b\nprint(\"Меньшее:\", m)\n",
+   "a = int(input())\nb = int(input())\nif a > b:\n    m = b\nelse:\n    m = a\nprint(\"Меньшее:\", m)\n"
+  ],
+  "wrong": [
+   "a = int(input())\nb = int(input())\nif a > b:\n    m = a\nelse:\n    m = b\nprint(\"Большее:\", m)\n",
+   "a = int(input())\nb = int(input())\nif a > b:\n    m = a\nelse:\n    m = b\nprint(\"Меньшее:\", m)\n",
+   "a = int(input())\nb = int(input())\nif a < b:\n    m = a\nelse:\n    m = b\nprint(\"Большее:\", m)\n",
+   "a = int(input())\nb = int(input())\nprint(\"Меньшее:\", min(a, b))\n",
+   "a = int(input())\nb = int(input())\nif a < b\n    m = a\nelse:\n    m = b\nprint(\"Меньшее:\", m)\n"
+  ]
+ },
+ "p3": {
+  "ref": "price = int(input())    # цена в центах\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nif cent == 0:\n    print(\"Ровно\", euro, \"евро\")\nelse:\n    print(euro, \"евро\", cent, \"центов\")\n",
+  "alt": [
+   "price = int(input())    # цена в центах\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nif price % 100 != 0:\n    print(euro, \"евро\", cent, \"центов\")\nelse:\n    print(\"Ровно\", euro, \"евро\")\n"
+  ],
+  "wrong": [
+   "price = int(input())    # цена в центах\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nprint(euro, \"евро\", cent, \"центов\")\n",
+   "price = int(input())    # цена в центах\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nif euro == 0:\n    print(\"Ровно\", euro, \"евро\")\nelse:\n    print(euro, \"евро\", cent, \"центов\")\n",
+   "price = int(input())    # цена в центах\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nif cent == 0:\n    print(\"Ровно\", price, \"евро\")\nelse:\n    print(euro, \"евро\", cent, \"центов\")\n",
+   "price = int(input())    # цена в центах\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nif cent == 0:\n    print(\"Ровно\", euro, \"евро\")\nprint(euro, \"евро\", cent, \"центов\")\n",
+   "price = int(input())    # цена в центах\neuro = price // 100     # полных евро\ncent = price % 100      # оставшиеся центы\nif cent = 0:\n    print(\"Ровно\", euro, \"евро\")\nelse:\n    print(euro, \"евро\", cent, \"центов\")\n"
+  ]
+ },
+ "p4": {
+  "ref": "n = int(input())\nk = int(input())\nprint(\"Каждому:\", n // k)\nif n % k == 0:\n    print(\"Раздано поровну\")\nelse:\n    print(\"Остаётся:\", n % k)\n",
+  "alt": [
+   "n = int(input())\nk = int(input())\nif n % k == 0:\n    print(\"Каждому:\", n // k)\n    print(\"Раздано поровну\")\nelse:\n    print(\"Каждому:\", n // k)\n    print(\"Остается:\", n % k)\n"
+  ],
+  "wrong": [
+   "n = int(input())\nk = int(input())\nprint(\"Каждому:\", n / k)\nif n % k == 0:\n    print(\"Раздано поровну\")\nelse:\n    print(\"Остаётся:\", n % k)\n",
+   "n = int(input())\nk = int(input())\nprint(\"Каждому:\", n // k)\nif n % 2 == 0:\n    print(\"Раздано поровну\")\nelse:\n    print(\"Остаётся:\", n % k)\n",
+   "n = int(input())\nk = int(input())\nprint(\"Каждому:\", n // k)\nprint(\"Остаётся:\", n % k)\n",
+   "n = int(input())\nk = int(input())\nif n % k == 0:\n    print(\"Раздано поровну\")\nelse:\n    print(\"Каждому:\", n // k)\n    print(\"Остаётся:\", n % k)\n",
+   "k = int(input())\nn = int(input())\nprint(\"Каждому:\", n // k)\nif n % k == 0:\n    print(\"Раздано поровну\")\nelse:\n    print(\"Остаётся:\", n % k)\n"
+  ]
+ },
+ "p5": {
+  "ref": "h1 = int(input())\nm1 = int(input())\nh2 = int(input())\nm2 = int(input())\nt1 = h1 * 60 + m1\nt2 = h2 * 60 + m2\nif t2 > t1:\n    d = t2 - t1\nelse:\n    d = t2 - t1 + 1440\nprint(\"В пути:\", d // 60, \"ч\", d % 60, \"мин\")\n",
+  "alt": [
+   "h1 = int(input())\nm1 = int(input())\nh2 = int(input())\nm2 = int(input())\nt1 = h1 * 60 + m1\nt2 = h2 * 60 + m2\nif t2 < t1:\n    t2 = t2 + 1440\nelse:\n    t2 = t2\nd = t2 - t1\nprint(\"В пути:\", d // 60, \"ч\", d % 60, \"мин\")\n"
+  ],
+  "wrong": [
+   "h1 = int(input())\nm1 = int(input())\nh2 = int(input())\nm2 = int(input())\nt1 = h1 * 60 + m1\nt2 = h2 * 60 + m2\nd = t2 - t1\nprint(\"В пути:\", d // 60, \"ч\", d % 60, \"мин\")\n",
+   "h1 = int(input())\nm1 = int(input())\nh2 = int(input())\nm2 = int(input())\nt1 = h1 * 60 + m1\nt2 = h2 * 60 + m2\nd = (t2 - t1) % 1440\nprint(\"В пути:\", d // 60, \"ч\", d % 60, \"мин\")\n",
+   "h1 = int(input())\nm1 = int(input())\nh2 = int(input())\nm2 = int(input())\nt1 = h1 * 60 + m1\nt2 = h2 * 60 + m2\nif t2 > t1:\n    d = t2 - t1\nelse:\n    d = t1 - t2\nprint(\"В пути:\", d // 60, \"ч\", d % 60, \"мин\")\n",
+   "h1 = int(input())\nm1 = int(input())\nh2 = int(input())\nm2 = int(input())\nif h2 > h1:\n    print(\"В пути:\", h2 - h1, \"ч\", m2 - m1, \"мин\")\nelse:\n    print(\"В пути:\", h2 - h1 + 24, \"ч\", m2 - m1, \"мин\")\n",
+   "h1 = int(input())\nm1 = int(input())\nh2 = int(input())\nm2 = int(input())\nt1 = h1 * 60 + m1\nt2 = h2 * 60 + m2\nif t2 > t1:\n    d = t2 - t1\nelse:\n    d = t2 - t1 + 1440\nprint(\"В пути:\", d / 60, \"ч\", d % 60, \"мин\")\n"
+  ]
+ },
+ "p6": {
+  "ref": "n = int(input())    # номер билета\na = n // 1000\nb = n % 1000\ns1 = a // 100 + a // 10 % 10 + a % 10\ns2 = b // 100 + b // 10 % 10 + b % 10\nif s1 == s2:\n    print(\"Счастливый\")\nelse:\n    print(\"Обычный\")\n",
+  "alt": [
+   "n = int(input())\ns1 = n // 100000 + n // 10000 % 10 + n // 1000 % 10\ns2 = n // 100 % 10 + n // 10 % 10 + n % 10\nif s1 != s2:\n    print(\"Обычный\")\nelse:\n    print(\"Счастливый\")\n"
+  ],
+  "wrong": [
+   "n = int(input())    # номер билета\na = n // 1000\nb = n % 1000\nif a == b:\n    print(\"Счастливый\")\nelse:\n    print(\"Обычный\")\n",
+   "n = int(input())    # номер билета\na = n // 1000\nb = n % 1000\ns1 = a // 100 + a // 10 + a % 10\ns2 = b // 100 + b // 10 + b % 10\nif s1 == s2:\n    print(\"Счастливый\")\nelse:\n    print(\"Обычный\")\n",
+   "n = int(input())    # номер билета\na = n // 1000\nb = n % 1000\ns1 = a // 100 + a // 10 % 10 + a % 10\ns2 = b // 100 + b // 10 % 10 + b % 10\nif s1 == s2:\n    print(\"Обычный\")\nelse:\n    print(\"Счастливый\")\n",
+   "n = int(input())\na = n // 100\nb = n % 100\ns1 = a // 100 + a // 10 % 10 + a % 10\ns2 = b // 100 + b // 10 % 10 + b % 10\nif s1 == s2:\n    print(\"Счастливый\")\nelse:\n    print(\"Обычный\")\n"
+  ]
+ },
+ "p7": {
+  "ref": "k = int(input())\nh = int(input())\nm = int(input())\nt = h * 60 + m\nif t % k == 0:\n    w = 0\nelse:\n    w = k - t % k\nprint(\"Ожидание:\", w, \"мин\")\n",
+  "alt": [
+   "k = int(input())\nh = int(input())\nm = int(input())\nt = h * 60 + m\nw = (k - t % k) % k\nprint(\"Ожидание:\", w, \"мин\")\n"
+  ],
+  "wrong": [
+   "k = int(input())\nh = int(input())\nm = int(input())\nt = h * 60 + m\nprint(\"Ожидание:\", k - t % k, \"мин\")\n",
+   "k = int(input())\nh = int(input())\nm = int(input())\nif m % k == 0:\n    w = 0\nelse:\n    w = k - m % k\nprint(\"Ожидание:\", w, \"мин\")\n",
+   "k = int(input())\nh = int(input())\nm = int(input())\nt = h * 60 + m\nif t % k == 0:\n    w = 0\nelse:\n    w = t % k\nprint(\"Ожидание:\", w, \"мин\")\n",
+   "k = int(input())\nh = int(input())\nm = int(input())\nt = h * 60 + m\nif t % k == 0:\n    w = k\nelse:\n    w = k - t % k\nprint(\"Ожидание:\", w, \"мин\")\n"
+  ]
+ }
+}

@@ -41,7 +41,7 @@ function build(id) {
 
   const head = '<!doctype html>\n<html lang="ru">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n' +
     '<title>' + esc(L.title) + '</title>\n' +
-    '<meta name="material:specification" content="HTML Material Specification Learn-it 4.3.2">\n' +
+    '<meta name="material:specification" content="HTML Material Specification Learn-it ' + (L.specVersion || '4.3.2') + '">\n' +
     '<meta name="material:version" content="' + course.materialVersion + '">\n' +
     '<meta name="catalog:title" content="' + esc(L.title) + '">\n<meta name="catalog:type" content="lesson">\n' +
     '<meta name="catalog:topic" content="' + esc(L.catalog.topic) + '">\n<meta name="catalog:description" content="' + esc(L.catalog.description) + '">\n' +
